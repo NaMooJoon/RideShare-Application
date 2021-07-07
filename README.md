@@ -12,7 +12,8 @@
 
 (Front-End)
 정예준 HTML CSS SCSS JS
-신경식 my first commit
+신경식 this is the second commit
+
 (Back-End)
 : Node.js, MySQL  
 >
