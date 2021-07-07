@@ -11,7 +11,7 @@
 2021년 하계방학 동안 웹으로 구현하는 것을 목표로 만들고 있습니다. 그리고 추후에 이를 PWA 혹은 Habrid App으로 전환하여 안드로이드와 ios에서 동시에 접근할 수 있도록 개발할 예정입니다.
 
 (Front-End)
-정예준 my first commit
+정예준 HTML CSS SCSS JS
 신경식 my first commit
 (Back-End)
 : Node.js, MySQL  
