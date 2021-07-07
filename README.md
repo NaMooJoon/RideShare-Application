@@ -16,4 +16,6 @@
 
 (Back-End)
 : Node.js, MySQL  
->
+
+### Design
+Figma : https://www.figma.com/file/aAYJfCMiGMNLgAQhUFbRwx/Talky---Chat-%26-Video-Messenger-App-(Free)-(Copy)-(Copy)-(Copy)?node-id=7447%3A337>
