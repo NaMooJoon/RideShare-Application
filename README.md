@@ -17,3 +17,4 @@
 (Back-End)
 : Node.js, MySQL  
 >
+정예준
