@@ -1,0 +1,284 @@
+html,body{
+    height:100%;
+    width:100%;
+}
+body{
+    margin:0;
+}
+#Top_form{
+   /*  background-color: aquamarine; */
+    height:50px;
+    width: 90%;
+    display:flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    margin-top:30px;
+
+}
+
+#Picture{
+    background-color:blue;
+    height:50px;
+    width: 50px;
+    border-radius: 100%;
+    
+}
+#Serch{
+    /* background-color:blueviolet; */
+    height:50px;
+    width: 50px;
+}
+#Serch i{
+    font-size:30px;
+    line-height: 50px;
+}
+
+#Buttons{
+    background-color:#F7F7F9;
+    margin: 0 auto;
+    margin-top:10px;
+    height: 52px;
+    width: 327px;
+    border-radius: 8px;
+    display:flex;
+    justify-content: center;
+
+} 
+#B_MYLIST{
+    width:158px;
+    height:40px;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: center;
+    
+
+}
+#B_CHAT{
+    width:158px;
+    height:40px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 40px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#AAB0B7;
+}
+#Short-dis{
+    background-color:darkblue;
+    height:24px;
+    width:100vw;
+    background: rgba(223, 234, 255, 0.8);
+    color: rgba(0, 0, 0, 0.33);
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+#Short-dis span{
+    margin-left:10px;
+}
+#Long-dis{
+    background-color:darkblue;
+    height:24px;
+    width: 100vw;
+    background: rgba(223, 234, 255, 0.8);
+    color: rgba(0, 0, 0, 0.33); 
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+
+}
+#Long-dis span{
+    margin-left:10px;
+}
+
+#Plus{
+    position:absolute;
+    bottom: 5%;
+    right:10%;
+}
+.material-icons{
+    font-size:20.6rem;
+    background-color:blue;
+   /*  background-color:rgba(70,0,255,); */
+}
+
+.list{
+    width:100vw;
+    height:80px;
+    display:flex;
+    justify-content: space-between;
+    border-bottom: 0.5px solid rgba(33,33,33,0.2);
+    border-top: 0.5px solid rgba(33,33,33,0.2);
+  }
+.Arrow{
+  font-size: 30px;
+  margin-left: 2vw;
+  
+}
+.Arrow i{
+  color:rgba(33,33,33,0.7);
+}
+.bu_arrow_wrap{
+  display:flex;
+  margin-right:2.5vw;
+}
+
+.ON_OFF ,.Arrow, .L_Text{
+  display: flex;
+  align-items: center;
+}
+.L_Text{
+  display:flex;
+  flex-direction: column;
+  margin-left: 2vw;
+}
+
+.L_Top_Text{
+  font-family: Inter;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  display:inline-block;
+  margin-top: 10px;
+
+}
+
+.L_bottom_Text{
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  margin-top:18px ;
+
+}
+
+.Time{
+  display: inline-block;
+  margin-right: 5px;
+  padding-right: 20px;
+}
+
+.L_Top_Text span:first-child{
+  margin-right: 5px;
+}
+.L_Top_Text span:last-child{
+  margin-left:5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* //////////////////////////////////////
+///////This is the checkbox's code//// */
+.tg-list-item {
+    margin: 0 2em;
+  }
+  
+  .tgl {
+    display: none;
+  } 
+  .tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+    box-sizing: border-box;
+  }
+  .tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+    background: none;
+  }
+  .tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+    background: none;
+  }
+  .tgl + .tgl-btn {
+    outline: 0;
+    display: block;
+    width: 4em;
+    height: 2em;
+    position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+  }
+  .tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+    position: relative;
+    display: block;
+    content: "";
+    width: 50%;
+    height: 100%;
+  }
+  .tgl + .tgl-btn:after {
+    left: 0;
+  }
+  .tgl + .tgl-btn:before {
+    display: none;
+  }
+  .tgl:checked + .tgl-btn:after {
+    left: 50%;
+  }
+  
+  .tgl-ios + .tgl-btn {
+      background: #fbfbfb;
+      border-radius: 2em;
+      padding: 2px;
+      transition: all 0.4s ease;
+      border: 1px solid #e8eae9;
+    }
+    .tgl-ios + .tgl-btn:after {
+      border-radius: 2em;
+      background: #fbfbfb;
+      transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+    }
+  .tgl-ios + .tgl-btn:hover:after {
+      will-change: padding;
+    }
+    .tgl-ios + .tgl-btn:active {
+      box-shadow: inset 0 0 0 2em #e8eae9;
+    }
+    .tgl-ios + .tgl-btn:active:after {
+      padding-right: 0.8em;
+    }
+    .tgl-ios:checked + .tgl-btn {
+      background: #86d993;
+    }
+    .tgl-ios:checked + .tgl-btn:active {
+      box-shadow: none;
+    }
+    .tgl-ios:checked + .tgl-btn:active:after {
+      margin-left: -0.8em;
+    }
+
