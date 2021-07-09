@@ -1,80 +1,64 @@
-const todoForm = document.getElementById("todo_form");
-const todoInput = todoForm.querySelector("#todo_form input");
-const todoLists = document.querySelector("#todo-list");
-
-let Todoarray = [];
-
-// list 저장
-function saveToDos(){
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
     
-    localStorage.setItem("todos",JSON.stringify(Todoarray));
+if (SavedGetData!==null){
+    Makehtml(SavedGetData);
 }
 
-// list 제거
-function deleteToDo(event){
-    let li2 = event.target.parentElement;
-    console.log(li2)
-    console.log("remove")
-    console.log(Todoarray)
-    Todoarray = Todoarray.filter((toDo)=>toDo.id !== parseInt(li2.id));
-    console.log(Todoarray)
-    li2.remove();
-    saveToDos();
-}
 
 // html 만들기 1
-function MakehtmlTODO(Todoarray){
-  
-         const container = document.querySelector('#todo-list');
-         TKeyOFArray = []
-        
-         container.innerHTML = Todoarray.map((item) => createHTML(item)).join('')
-         let button = document.querySelectorAll('.bt');   
-         console.log(button)
-        
-         button.forEach(function(item) {
-           item.addEventListener("click",deleteToDo ); 
-         });
-    }
-// html 만들기 2
-    function createHTML(item){
-        console.log(item)
-         let ID = item.id
-         let TEXT = item.text
-         console.log(ID,TEXT)
-         return `
-         <li id="${ID}">
-         <div class="innerlist">${TEXT}</div>
-         <button class="bt"></button>
-         </li>
-         `;
-        
-     } 
-// submit handle 하기
-     function HandleTODO(event){
-        event.preventDefault();
-        const newTODO = todoInput.value;
-        todoInput.value = "";
-        const newTODO_OBJ = {
-           text: newTODO,
-           id: Date.now(),
-        };
-        Todoarray.push(newTODO_OBJ);
-        console.log(Todoarray)
-        saveToDos();
-        MakehtmlTODO(Todoarray);
-       
-    }
-
-    todoForm.addEventListener("submit",HandleTODO);
-
-
-    const savedToDos = localStorage.getItem("todos");
-// list  불러오기
-if (savedToDos!==null){
-    const parsedToDos = JSON.parse(savedToDos);
-    Todoarray = parsedToDos;
-    console.log(parsedToDos)
-    MakehtmlTODO(parsedToDos);
-
+function Makehtml(Data_obj){
+    console.log(Data_obj,"Data_obj")
+    let container = document.querySelector('#List-part');
+    console.log(container,"container");
+    container.innerHTML = Data_obj.map((item) => createHTML(item)).join('')
+    let remove = document.querySelectorAll('.Arrow');   
+    
+   
+    remove.forEach(function(item) {
+      item.addEventListener("click",deleteList ); 
+    });
 }
+
+// html 만들기 2
+function createHTML(item){
+    console.log(item)
+     let ID = item.id;
+     let S_TEXT = item.Start_text;
+     let E_TEXT = item.End_text;
+     return`
+     <li id="${ID}" class="list">
+            <div class="L_Text">
+                <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
+                <div class="L_bottom_Text"><span class="Time">08:50~09:10</span><span>MON,FRI</span></div>
+            </div>
+            <div class="bu_arrow_wrap">
+            <div class="ON_OFF">
+                <input class="tgl tgl-ios" id="cb1" type="checkbox"/>
+                <label class="tgl-btn" for="cb1"></label>
+            </div>
+            <div class="Arrow">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+             </div>
+        </li>
+        `;
+    
+ }
+
+ function deleteList(event){
+    /* let li2 = event.target.parentElement; */
+    let li2 = event.currentTarget.parentElement.parentElement;
+    console.log(li2)
+    console.log("remove")
+    SavedGetData = SavedGetData.filter((List)=>List.id !== parseInt(li2.id));
+
+    li2.remove();
+    saveDATA();
+}
+
+function saveDATA(){
+    
+    localStorage.setItem("Datas",JSON.stringify(SavedGetData));
+}
+
+
