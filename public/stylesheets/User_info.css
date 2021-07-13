@@ -1,0 +1,115 @@
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.top {
+  margin-top: 3vh;
+  display: flex;
+  width: 90%;
+  justify-content: start;
+}
+
+.back_button {
+  cursor: pointer;
+  display: flex;
+  width: 100px;
+  height: 45px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  background-color: var(--main-blue);
+}
+
+.back_text {
+  font-size: 22px;
+  font-style: bold;
+  font-weight: 700;
+  color: white;
+}
+
+.btn_text {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+}
+
+.circle {
+  border-radius: 40%;
+}
+
+.profile_image,
+.path_image,
+.bottom_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
+.profile_image {
+  height: 30vh;
+}
+
+.path_image {
+  height: 20vh;
+}
+
+.user_message {
+  margin-top: 1vh;
+  font-family: "Nanum Gothic";
+  width: 90%;
+  display: flex-start;
+  justify-content: flex-start;
+}
+
+.message_text {
+  margin-top: 0.5vh;
+  height: 12vh;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  padding: 1vh;
+  border-radius: 8px;
+}
+
+.bolded {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+  margin: 2vh 0vh;
+}
+
+.username {
+  font-size: 34px;
+}
+
+.path {
+  height: 70%;
+}
+
+.arrow {
+  height: 40%;
+  margin: 12vw 4vw;
+}
+
+.bottom_buttons {
+  justify-content: space-evenly;
+}
+
+div button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-family: "Nanum Gothic";
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 2vh;
+  width: 40%;
+  background-color: var(--main-blue);
+  border-radius: 10px;
+}
