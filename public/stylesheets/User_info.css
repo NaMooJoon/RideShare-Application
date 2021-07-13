@@ -17,19 +17,19 @@ body {
 .back_button {
   cursor: pointer;
   display: flex;
-  width: 100px;
+  width: 90px;
   height: 45px;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 15px;
-  background-color: var(--main-blue);
+  background-color: white;
 }
 
 .back_text {
-  font-size: 22px;
+  font-size: 24px;
   font-style: bold;
   font-weight: 700;
-  color: white;
+  color: var(--main-blue);
 }
 
 .btn_text {
