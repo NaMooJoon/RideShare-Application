@@ -23,13 +23,13 @@ if (SavedUsername === null && SavedUserinfo===null){
     UserForm.addEventListener("submit",StopAndSave)
 }
 else{
-    window.location.href="Main/Main.html" // 이 페이지 뛰어넘는 코드
+    window.location.href="../../views/Main.html" // 이 페이지 뛰어넘는 코드
     /*  After.classList.remove("hidden"); */ // 신경식 유저님 환영합니다
                                       
 }
 
 function MovePage(){
-    window.location.href="Main/Main.html"
+    window.location.href="../../views/Main.html"
 }
 BT.addEventListener("click",MovePage);
 //버튼 눌렀을시 다른 screen으로 가는 기능

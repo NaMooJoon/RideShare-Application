@@ -14,7 +14,8 @@ function HandleStart(event){
     const Send_OBJ = {
         Start_text: StartInput_TEXT,
         End_text:EndInput_TEXT,
-        id: Date.now(),
+        li_id: Date.now(),
+        label_id: Date.now() * 1000,
      };
 
     Sendarray.push(Send_OBJ);
@@ -23,6 +24,9 @@ function HandleStart(event){
 
 StartForm.addEventListener("submit",HandleStart);
 
+
+
+// Data 화면 넘어갈때 초기화 안되도록 array update하기
 const savedupdate = JSON.parse(localStorage.getItem("Datas"));
 if (savedupdate!==null){
     Sendarray = savedupdate;
