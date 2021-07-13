@@ -1,0 +1,101 @@
+/* 기초 CSS 디자인 */
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+/* 본문 디자인 */
+.wrap {
+  display: block;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background: #f0f0f0;
+  padding-top: 55px;
+  background: -webkit-linear-gradient(
+    45deg,
+    hsl(48, 95%, 66%) 0%,
+    transparent 70%
+  );
+}
+/* 버튼으로 사용할 라벨 디자인 */
+.button {
+  font-size: 19px;
+  font-weight: 600;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* 모달 윈도우 디자인 */
+.box_modal {
+  position: fixed;
+  display: block;
+  width: 400px;
+  height: 200px;
+  top: 50%;
+  left: 50%;
+  margin: 0px;
+  background: #d9e5e9;
+  border: 1px solid #386980;
+  overflow: hidden;
+  /* 아래 부분은 애니메이션 효과를 위한 부분 */
+  visibility: collapse;
+  opacity: 0.6;
+  filter: alpha(opacity=60);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-transform: scale(0, 0);
+  -ms-transform: scale(0, 0);
+  transform: scale(0, 0);
+}
+.box_modal:hover {
+  opacity: 1;
+  filter: alpha(opacity=100);
+}
+
+/* 닫기 버튼으로 사용할 라벨 */
+.closer {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  right: 0;
+  background: #eee;
+  border-left: 1px solid #386980;
+  border-bottom: 1px solid #386980;
+  text-align: center;
+  line-height: 26px;
+  font-size: 16x;
+  cursor: pointer;
+}
+.in_modal {
+  display: inline-block;
+  padding: 20px;
+}
+.text h3 {
+  font-size: 19px;
+  margin: 0;
+}
+.text p {
+  font-size: 13px;
+}
+
+/* 모달 윈도우가 팝업되는 코어 소스 */
+input#modal[type="checkbox"]:checked ~ .box_modal {
+  visibility: visible;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1);
+}
