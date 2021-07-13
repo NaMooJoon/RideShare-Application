@@ -10,8 +10,11 @@ body {
   justify-content: center;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 800px) {
   .screen {
+    width: 50%;
+  }
+  .fixtop {
     width: 50%;
   }
 }
