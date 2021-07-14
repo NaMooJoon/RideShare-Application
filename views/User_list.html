@@ -33,17 +33,44 @@
         </div>
 
 
-        <div class="name_and_image">
-            <span class="fatblack">장소 이름</span>
-            <img style="object-fit:fill; border-radius: 20px; margin-top: 1.5vh;" src="https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjFfMTg3/MDAxNjAzMjcwMTYyNzAy.1WRh-Ub6bY-1KgCoJg-EOsSUIkBaBnCzUO0T2OOJnegg.oksMWEkJu0G16LEYg_tMCYqJkV-_E-LyqVxQOhT7Dgkg.JPEG.angel5834/1603270161348.jpg?type=w800">
+        <div class="loc_and_image">
+            <span class="fatblack">선택된 장소 이름</span>
+            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh;" src="https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjFfMTg3/MDAxNjAzMjcwMTYyNzAy.1WRh-Ub6bY-1KgCoJg-EOsSUIkBaBnCzUO0T2OOJnegg.oksMWEkJu0G16LEYg_tMCYqJkV-_E-LyqVxQOhT7Dgkg.JPEG.angel5834/1603270161348.jpg?type=w800">
         </div>
 
 
         <div class="userlist">
-            <div style="width:90%; margin-left: 2vw; display: flex; justify-content: flex-start;">
+            <div style="width:90%; display: flex-start;">
                 <span class="fatblack">List</span>
-            </div>
+                <div class="user_item"> <!--## 리스트의 항목 시작 ##-->
+                    <img class="circle profile" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+                    <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
+                        <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
+                            <div class="name_and_icon"> <!--이름과 아이콘 div-->
+                                <div> <!--이름-->
+                                    <span class="fatblack" style="font-size: 22px;">한동이</span>
+                                </div>
+                                <div> <!--아이콘-->
+                                    <img width="30px" height="30px" src="../public/images/rider.svg"/>
+                                </div>
+                            </div>
+                            <div> <!--출발지와 도착지 텍스트 div-->
+                                <span class="loctext">한동대학교 ➔ 커피유야</span>
+                            </div>
+                        </div>
+                        <div class="messagebox"> <!--유저메세지-->
+                            <span class="message">유저의 상세한 메세지는 여기에 표시됩니다</span>
+                        </div>
+                    </div>
 
+                    <div class="button_and_people"> <!--버튼과 인원수를 넣을 div-->
+                        <button class="findbutton">❯</button>
+                        <span class="loctext">(1/4)</span>
+                    </div>
+                </div>  <!--## 리스트의 항목 끝 ##-->
+               
+
+            </div>
         </div>
 
 
