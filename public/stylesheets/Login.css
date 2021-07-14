@@ -13,6 +13,7 @@ html, body{
 #top_form{
     display:flex;
     margin-top:3vh ;
+    display:none;
 }
 #Profile{
     flex-grow:2;
@@ -50,18 +51,17 @@ html, body{
 #big-letter{
    
     font-family: Inter;
-    font-size: 40px;
+    font-size: 50px;
     font-style: normal;
     font-weight: 700;
     line-height: 48px;
     letter-spacing: 0em;
-    
 
 }
 
 #small-letter{
     font-family: Inter;
-    font-size: 18px;
+    font-size: 21px;
     font-style: normal;
     font-weight: 600;
     line-height: 22px;
