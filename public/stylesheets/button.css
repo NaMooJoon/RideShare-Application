@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.screen {
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+}
+
+@media (min-width: 800px) {
+  .screen {
+    width: 50%;
+  }
+  .fixtop {
+    width: 50%;
+  }
+}
+
+.back_button {
+  cursor: pointer;
+  display: flex;
+  width: 90px;
+  height: 45px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.back_text {
+  font-size: 20px;
+  font-style: bold;
+  font-weight: 700;
+  color: var(--main-blue);
+}
+
+.btn_text {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  color: white;
+}
+
+.circle {
+  border-radius: 40%;
+}
+
+.fatblack {
+  font-size: 28px;
+  font-weight: 700;
+  color: black;
+}
