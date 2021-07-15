@@ -68,3 +68,28 @@ function saveDATA(){
 }
 
 
+// button plus controls
+const PlusButton = document.querySelector(".Circle_test");
+const C1 = document.querySelector(".c1");
+const C2 = document.querySelector(".c2");
+const SPAN1 = document.querySelector(".Short_button_span");
+const SPAN2 = document.querySelector(".Short_button_long");
+console.log(PlusButton)
+function ShowTwobuttons(){
+    PlusButton.classList.toggle("act")
+    C1.classList.toggle("hidden")
+    C1.classList.toggle("display")
+    C2.classList.toggle("hidden2")
+    SPAN1.classList.toggle("hidden_text")
+    SPAN2.classList.toggle("hidden_text2")
+}
+
+function Test(){
+    console.log("login")
+}
+
+
+PlusButton.addEventListener('click',ShowTwobuttons)
+C1.addEventListener('click',Test)
+
+
