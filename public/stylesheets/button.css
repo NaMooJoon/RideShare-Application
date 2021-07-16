@@ -10,12 +10,21 @@ body {
   justify-content: center;
 }
 
-@media (min-width: 800px) {
+.fixtop {
+  position: fixed;
+  height: 10%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 1000px) {
   .screen {
-    width: 50%;
+    width: 60%;
   }
   .fixtop {
-    width: 50%;
+    width: 60%;
   }
 }
 

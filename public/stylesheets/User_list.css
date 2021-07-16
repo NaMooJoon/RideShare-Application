@@ -8,20 +8,6 @@
   justify-content: flex-start;
 }
 
-.fixtop {
-  position: fixed;
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-}
-
-@media (min-width: 800px) {
-  .fixtop {
-    width: 50%;
-  }
-}
-
 .top {
   margin-top: 3vh;
   display: flex;
