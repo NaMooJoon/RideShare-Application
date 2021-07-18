@@ -4,21 +4,19 @@ var bodyParser = require('body-parser');
 const app = require('../app');
 const LoginHisnet = require('../lib/LoginHisnet.js');
 var mysql = require('mysql')
-const fs = require('fs');
+var option = require('../config/option');
 
-const jsonFile = fs.readFileSync('./config/config.json', 'utf8');
-const jsonData = JSON.parse(jsonFile);
 
 // DATABASE SETTING
 var connection = mysql.createConnection({
-    host: jsonData.host,
     port: 3306,
-    user: jsonData.username,
-    password: jsonData.password,
-    database: jsonData.database
+    user: option.storageConfig.username,
+    password: option.storageConfig.password,
+    database: option.storageConfig.database,
+    host: option.storageConfig.host
 })
 
-connection.connect()
+connection.connect();
 
 //router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
