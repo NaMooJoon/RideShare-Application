@@ -6,11 +6,13 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user');
+var loginRouter = require('./routes/login');
+var mainRouter = require('./routes/main');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/ejs'));
 app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
@@ -23,7 +25,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', function(req, res) {
   res.send('Home');
 });
+app.use('/login', loginRouter);
+app.use('/main', mainRouter);
 app.use('/user', userRouter);
+
 
 
 
