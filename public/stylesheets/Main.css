@@ -189,7 +189,7 @@ body{
   margin-left:5px;
 }
 
-#Circle_test{
+/* #Circle_test{
   background-color: blue;
   border-radius: 100%;
   width:56px;
@@ -199,9 +199,98 @@ body{
   text-align: center;
   font-size:24px;
   color:white;
+} */
+
+/* // this is the part that the plus botton css starts 
+////////////////////////////////////////////////////*/
+
+.Circle_test{
+  background-color:cornflowerblue;
+  border-radius: 100%;
+  width:56px;
+  height:56px;
+  box-shadow: -3px 2px 3px rgba(0, 0, 0, 0.1);
+  line-height: 56px;
+  text-align: center;
+  font-size:24px;
+  position:relative;
+  top:10px;
+  left: 100px;
+  transition: 0.5s ease-in;
+  /* position:absolute; */
+  
+}
+  /* transition: 0.2s ease-in ; */
+  
+.c1{
+  width: 11px;
+  height: 11px;
+  background-color:cornflowerblue; 
+  border-radius: 100%;
+  transition-property: transform;
+  transition-duration: 1.1s;
+  position:absolute;
+  top:20px;
+  left:15px;
+  z-index: -1;
+  font-size:3px;
+
+}
+.c2{
+  width: 11px;
+  height: 11px;
+  background-color:cornflowerblue; 
+  border-radius: 100%;
+  transition-property: transform;
+  transition-duration: 1.1s;
+  position:absolute;
+  top:20px;
+  left:15px;
+  z-index: -1;
+  
 }
 
+.hidden{
+  
+  transform: translateY(-60px) scale(3);
+ 
+}
+.hidden2{
+  transform: translateY(-110px) scale(3);
+}
+.act{
+  transform: rotate(-25deg) scale(1.1);
+}
 
+.Short_button_span{
+  position:absolute;
+  font-size:0.4px;
+  transition-property: transform opacity;
+  transition-duration: 1.1s;
+  z-index: -1;
+  opacity: 0;
+  transform: translateY(-25px)
+}
+
+.hidden_text{
+  transform:  translateY(-60px) translateX(40px) scale(2);
+  opacity: 1;
+}
+
+.Short_button_long{
+  position:absolute;
+  font-size:0.4px;
+  transition-property: transform opacity;
+  transition-duration: 1.1s;
+  z-index: -1;
+  opacity: 0;
+  transform: translateY(-25px)
+}
+
+.hidden_text2{
+  transform:  translateY(-115px) translateX(40px) scale(2);
+  opacity: 1;
+}
 
 
 
