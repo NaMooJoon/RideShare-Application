@@ -47,7 +47,7 @@ function sendAjax(url, data){
     xhr.send(data); 
     xhr.addEventListener('load', function(){
         var result = JSON.parse(xhr.responseText);
-        if(result.result !== "ok") { alert(result.messege); }
+        if(result.result !== "ok") { alert(result.message); }
         else { window.location.href="../../views/main"}
     });
 }
