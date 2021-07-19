@@ -48,8 +48,8 @@ function sendAjax(url, data){
     xhr.addEventListener('load', function(){
         var result = JSON.parse(xhr.responseText);
         var resultDiv = document.querySelector(".result");
-        if(result.result !== "ok") resultDiv.innerHTML = "your email is not found"
-        else resultDiv.innerHTML = result.name;
+        if(result.result !== "ok") { alert("Your email is not found"); }
+        else { window.location.href="../../views/Main.html"}
     });
 }
 
