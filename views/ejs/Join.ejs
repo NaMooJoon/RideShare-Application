@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width,
+        initial-scale=1">
+        <title>Join</title>
+    </head>
+    <body>
+        <h1>Join WITH ME</h1>
+        <form action="/login/join" method="post">
+            email: <input type="text" name="email"><br>
+            name: <input type="text" name="name"><br>
+            password: <input type="text" name="password"><br>
+        </form>
+
+        <div id="button_form">
+            <button id="Button">press me</button>
+        </div>
+        <button class="ajaxsend">ajaxsend</button>
+        <div class="result"></div>
+
+    <script>
+        document.querySelector('.ajaxsend').addEventListener('click', function() {
+            var inputdata = document.forms[0].elements[0].value;
+            sendAjax('http://localhost:3000/login/ajax', inputdata);
+        })
+
+        function sendAjax(url, data){
+            var data = {'email' : data};
+            data = JSON.stringify(data);
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', url);
+            xhr.setRequestHeader('Content-Type', "application/json");
+            xhr.send(data); 
+            xhr.addEventListener('load', function(){
+                var result = JSON.parse(xhr.responseText);
+                var resultDiv = document.querySelector(".result");
+                if(result.result !== "ok") resultDiv.innerHTML = "ID uavailable"
+                else resultDiv.innerHTML = result.name;
+            });
+        }
+    </script>
+
+    </body>
+
+</html>
