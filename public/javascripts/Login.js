@@ -47,9 +47,8 @@ function sendAjax(url, data){
     xhr.send(data); 
     xhr.addEventListener('load', function(){
         var result = JSON.parse(xhr.responseText);
-        var resultDiv = document.querySelector(".result");
-        if(result.result !== "ok") { alert("Your email is not found"); }
-        else { window.location.href="../../views/Main.html"}
+        if(result.result !== "ok") { alert(result.messege); }
+        else { window.location.href="../../views/main"}
     });
 }
 
