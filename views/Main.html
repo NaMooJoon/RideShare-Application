@@ -9,7 +9,7 @@
     <link href="../public/stylesheets/Main.css" rel="stylesheet">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 </head>
 <body>
@@ -55,16 +55,20 @@
     <!-- <a href="../MakeList/MakeList.html" data-transition="slide" class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons"><i class="fas fa-plus"></i></i></a> -->
     <!-- // this is real
     <a href="MakeList.html"><div id="Circle_test"><i class="fas fa-plus"></i></div></a> -->
-    <div class="Circle_test" >
-        <span class="Short_button_span">Short</span>
-        <span class="Short_button_long">Long</span>
-        <div class="c1">
-        </div>
-        <div class="c2">
-        </div>
-    <i class="fas fa-plus"></i>
-    </div>
+    <div id="bt" class="fixed-action-btn click-to-toggle">
+        <a class="btn-floating btn-large blue">
+          <i class="large material-icons">mode_edit</i>
+        </a>
+        <ul>
+          <li><a class="btn-floating  blue darken-3">long<!-- <i class="material-icons">insert_chart</i> --></a></li>
+          <li><a class="btn-floating blue darken-3">short<!-- <i class="material-icons">format_quote</i> --></a></li>
+         <!--  <li><a class="btn-floating green"><i class="material-icons">publish</i></a></li>
+          <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a></li> -->
+        </ul>
+      </div>
 </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src='../public/javascripts/Main.js'></script>
     
 </body>
