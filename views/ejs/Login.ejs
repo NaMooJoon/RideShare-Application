@@ -47,15 +47,14 @@
         <div id="input_form">
                 <input
                 id = "input1"
-                  name = "ID"
+                name = "ID"
                 required
                 type="text" 
                 placeholder="Enter your Hisnet ID"/>
                 <input 
                 id ="input2"
-                name = "password"
                 required
-                type="text" 
+                type="password" 
                 placeholder="Enter your Hisnet password"/>
         </div>
     
@@ -63,35 +62,13 @@
         <div id="button_form">
             <button id="Button">press me</button>
         </div>
+        <button id="sendtest">send</button>
     </form>
-
-    <button class="ajaxsend">ajaxsend</button>
-    <div class="result"></div>
-
-    <script>
-        document.querySelector('.ajaxsend').addEventListener('click', function() {
-            var inputdata = document.forms[0].elements[0].value;
-            sendAjax('http://localhost:3000/login/ajax', inputdata);
-        })
-
-        function sendAjax(url, data){
-            var data = {'email' : data};
-            data = JSON.stringify(data);
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', url);
-            xhr.setRequestHeader('Content-Type', "application/json");
-            xhr.send(data); 
-            xhr.addEventListener('load', function(){
-                var result = JSON.parse(xhr.responseText);
-                var resultDiv = document.querySelector(".result");
-                if(result.result !== "ok") resultDiv.innerHTML = "your email is not found"
-                else resultDiv.innerHTML = result.name;
-            });
-        }
-    </script>
     
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/cesiumjs/1.78/Build/Cesium/Cesium.js"></script>
+    <div id="test"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/javascripts/Login.js"></script>
+    
 </body>
 </html>
