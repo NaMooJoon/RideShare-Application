@@ -8,6 +8,10 @@
   justify-content: flex-start;
 }
 
+.svgico {
+  margin-left: 1vh;
+}
+
 .top {
   margin-top: 3vh;
   display: flex;
@@ -16,14 +20,16 @@
 }
 
 .userlist {
-  display: flex;
-  width: 100%;
-  height: auto;
-  align-items: center;
+  width: 90%;
+  align-items: left;
   justify-content: center;
-  border-radius: 10px;
   padding: 1vh;
   background-color: white;
+}
+
+.items {
+  width: 90%;
+  display: flex-start;
 }
 
 .loc_and_image {
@@ -39,10 +45,12 @@ img {
   height: 25vh;
 }
 
-.user_item {
+.user_item_layout,
+.useritem {
+  width: 90%;
   display: flex;
   height: 85px;
-  margin: 2vh 0vh;
+  margin: 1vh 0vh;
   align-items: center;
   justify-content: space-between;
 }
@@ -82,7 +90,7 @@ img {
   align-items: center;
 }
 
-.loctext {
+.smalltext {
   font-size: 14px;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
@@ -103,5 +111,35 @@ img {
   width: 50px;
   height: 60px;
   border: none;
-  background-color: rgba(210, 231, 255, 0.5);
+  background-color: rgba(210, 231, 255, 0.4);
+}
+
+.disabled {
+  display: none;
+}
+
+.test {
+  padding: 10px;
+  background-color: var(--main-blue);
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.testinput {
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  outline: none;
+  padding: 3px;
+  margin: 3px;
+  margin-bottom: 6px;
+}
+
+.testbtn {
+  width: 90%;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
 }
