@@ -9,6 +9,11 @@ router.get('/', function(req, res, next) {
     //res.render('Main',);
 });
 
+router.get('/profile', function(req, res, next) {
+    console.log('profile is loaded', req.user);
 
+    res.render('Profile');
+    //res.render('Main',);
+});
 
 module.exports = router;

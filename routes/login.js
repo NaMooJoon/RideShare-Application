@@ -128,7 +128,7 @@ router.get('/join', function(req, res){
 })
 
 router.post('/join', passport.authenticate('local-join', {
-    successRedirect: '/main',
+    successRedirect: '/main/profile',
     failureRedirect: '/login/join',
     failureFlash: true })
 );
