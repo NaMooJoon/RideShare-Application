@@ -1,5 +1,8 @@
-document.querySelector("div.loc_and_image span").innerHTML="여기에 장소이름 입력"
-document.querySelector("div.loc_and_image img").src="../public/images/nodata.png"
+const locname = "퐝역"
+const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
+
+document.querySelector("div.loc_and_image span").innerHTML=locname
+document.querySelector("div.loc_and_image img").src=locimage
 
 function createitem(name, img, way, startloc, destination, message, usernum, maxnum) {
     document.querySelector("div.user_item_layout span.nametext").innerHTML=name
@@ -8,6 +11,7 @@ function createitem(name, img, way, startloc, destination, message, usernum, max
     document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
     document.querySelector("div.user_item_layout span.message").innerHTML=message
     document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
+
     if (!img) {
         document.querySelector("div.user_item_layout img.profile").src="../public/images/profile_null.png"
     }
@@ -19,6 +23,12 @@ function createitem(name, img, way, startloc, destination, message, usernum, max
     newitem.innerHTML = layout[0].innerHTML;
     userlist[0].append(newitem);
 }
+
+function chatButtonClick(){
+    
+}
+
+
 
 
 function testclick(){
