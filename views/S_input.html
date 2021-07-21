@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S_input</title>
+    <link rel="stylesheet" href="../public/stylesheets/S_input.css">
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/components/dropdown.min.css">
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/components/transition.min.css">
+    <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/components/icon.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../public/stylesheets/jquery.nice-number.css">
+  </head>
+<body>
+    <div class="Short-distance">Short-distance</div>
+    
+    <a href="Main.html">
+    <div class="back_form">
+        <div id="iconpart"><span id="icon"><i class="fas fa-arrow-left"></i></span> <span id="BACK">BACK</span></div>
+    </div>
+    </a>
+
+   
+    <div class="location_form">
+      <div class="Start_wrap">
+         <div class="Start_text">출발지:</div>
+         <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-start">
+      
+            <span id="T1" class="text"><i class="search icon"></i>Search</span>
+            <div class="menu">
+              <div class="ui search icon input">
+                <i class="search icon"></i>
+                <input type="text" name="search" placeholder="Search issues...">
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                <i class="caret right"></i>
+                양덕
+              </div>
+              <div class="item">
+                
+                커피유야
+              </div>
+              <div class="item">
+               
+                그랜드할인마트
+              </div>
+              <div class="item">
+                
+                하나로마트
+              </div>
+              <div class="item">
+                광천수
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                <i class="calendar icon"></i>
+                바다
+              </div>
+              <div class="item">
+                &nbsp&nbsp영일대
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                한동대
+              </div>
+              <div class="item">
+                한동대학교
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                포항역
+              </div>
+              <div class="item">
+                포항역
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                육거리
+              </div>
+            </div>
+          </div>
+          </div>
+          <div class="End_wrap">
+          <div class="End_text">도착지:</div>
+          <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-end">
+      
+            <span id="T2" class="text"><i class="search icon"></i>Search</span>
+            <div class="menu">
+              <div class="ui search icon input">
+                <i class="search icon"></i>
+                <input type="text" name="search" placeholder="Search issues...">
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                <i class="caret right"></i>
+                양덕
+              </div>
+              <div class="item">
+                
+                커피유야
+              </div>
+              <div class="item">
+               
+                그랜드할인마트
+              </div>
+              <div class="item">
+                
+                하나로마트
+              </div>
+              <div class="item">
+                광천수
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                <i class="calendar icon"></i>
+                바다
+              </div>
+              <div class="item">
+                &nbsp&nbsp영일대
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                한동대
+              </div>
+              <div class="item">
+                한동대학교
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                포항역
+              </div>
+              <div class="item">
+                포항역
+              </div>
+              <div class="divider"></div>
+              <div class="header">
+                육거리
+              </div>
+            </div>
+          </div>
+          </div>
+
+    </div>
+
+
+    <div class="Time_form">
+      <div class="Time_text">출발시간</div>
+      <input type="text" id="time" class="timepicker" required/>
+    </div>
+
+
+    <div class="Repeat_form">
+      <div class="ui fluid multiple search selection dropdown" id="week">
+        <input type="hidden" name="country" id="weekinput" placeholder="Enter your Hisnet ID">
+        <i class="dropdown icon"></i>
+        <div class="default text" id="Select">Select Repeat or not</div>
+        <div class="menu">
+        <div class="item" data-value="Once"><i class="as flag"></i>한번실행</div>
+        <div class="item" data-value="mon"><i class="af flag"></i>월</div>
+        <div class="item" data-value="tue"><i class="ax flag"></i>화</div>
+        <div class="item" data-value="wed"><i class="al flag"></i>수</div>
+        <div class="item" data-value="thu"><i class="dz flag"></i>목</div>
+        <div class="item" data-value="fri"><i class="as flag"></i>금</div>
+        <div class="item" data-value="sat"><i class="as flag"></i>토</div>
+        <div class="item" data-value="sun"><i class="as flag"></i>일</div>
+          </div>
+          </div>
+    </div>
+    <div class="Date_form">
+      <div class="Date_text">날짜선택</div>
+      <input type="text" id="date" class="datepicker" required>
+    </div>
+    <div class="LimitNum_form">
+      <div class="LimitNum_text">제한 승객 인원</div>
+      <div class="container">
+        <input type="number" name="" id="mid" value="1" min="1" max="5">
+    </div>
+    </div>
+
+
+
+
+    <div class="Trans_form">
+      <div id="Trans_text">이용수단</div>
+      <div class="ui fluid selection dropdown" id="Trans">
+        <input type="hidden" name="user">
+        <i class="dropdown icon"></i>
+        <div class="default text">Select Friend</div>
+        <div class="menu">
+          <div class="item" data-value="driver">
+            <img class="ui mini avatar image" src="../public\images\driver.svg">
+            운전자
+          </div>
+          <div class="item" data-value="rider">
+            <img class="ui mini avatar image" src="../public\images\rider.svg">
+            탑승자
+          </div>
+          <div class="item" data-value="taxi">
+            <img class="ui mini avatar image" src="../public\images\taxi.svg">
+            택시 동반
+          </div>
+          <div class="item" data-value="ktx">
+            <img class="ui mini avatar image" src="../public\images\ktx.svg">
+            ktx 동반
+          </div>
+          <div class="item" data-value="bus">
+            <img class="ui mini avatar image" src="../public\images\bus.svg">
+            bus 동반
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="Comments_form">
+      <div class="Comments_text">Comments</div>
+      <textarea id="Comments_input"></textarea>
+    </div>
+    <div id="summitBT_div">
+    <button id="summitBT">
+        submit
+    </button>
+    </div>
+    <div id="me"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="../Semantic-UI-CSS-master\Semantic-UI-CSS-master\components\dropdown.min.js"></script>
+    <script src="../Semantic-UI-CSS-master\Semantic-UI-CSS-master\components\transition.min.js"></script>
+    <script src="../public/javascripts/jquery.nice-number.js"></script>
+    <script src="../public/javascripts/S_input.js"></script>
+</body>
+</html>

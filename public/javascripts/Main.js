@@ -25,13 +25,15 @@ function createHTML(item){
     console.log(item)
      let LI_ID = item.li_id;
      let LABEL_ID = item.label_id;
-     let S_TEXT = item.Start_text;
-     let E_TEXT = item.End_text;
+     let S_TEXT = item.Location_start;
+     let E_TEXT = item.Location_end;
+     let TIME_TEXT = item.Start_time;
+     let WEEk = item.Repeat_ornot;
      return`
      <li id="${LI_ID}" class="list">
             <div class="L_Text">
                 <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
-                <div class="L_bottom_Text"><span class="Time">08:50~09:10</span><span>MON,FRI</span></div>
+                <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div> 
             </div>
             <div class="bu_arrow_wrap">
             <div class="ON_OFF">
