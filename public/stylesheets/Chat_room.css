@@ -1,0 +1,19 @@
+.dot {
+  border: 1px dotted black;
+}
+
+.screen {
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.fixtop {
+  background-color: rgba(147, 181, 255, 0.4);
+}
+
+.top {
+  display: flex;
+  width: 90%;
+  justify-content: start;
+}
