@@ -131,4 +131,9 @@ router.post('/join', passport.authenticate('local-join', {
     failureFlash: true })
 );
   
+router.get('/logout', function(req, res){
+	req.logout();
+	res.redirect('/login');
+});
+
 module.exports = router;
