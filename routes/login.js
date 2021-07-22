@@ -1,19 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var bodyParser = require('body-parser');
+const express = require('express');
+const router = express.Router();
+const bodyParser = require('body-parser');
 const LoginHisnet = require('../lib/LoginHisnet.js');
-var mysql = require('mysql')
-var option = require('../config/option');
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy;
-const app = require('../app.js');
-
+const mysql = require('mysql')
+const option = require('../config/option');
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const saltRounds = option.saltRounds;
 
 
 // DATABASE SETTING
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     port: 3306,
     user: option.storageConfig.username,
     password: option.storageConfig.password,
@@ -31,14 +29,13 @@ router.use(bodyParser.json());
 passport.serializeUser(function(user, done) {
     console.log('passport session save : ', user.id);
     done(null, user.id);
-  });
-  
+});
   passport.deserializeUser(function(id, done) {
     console.log('passport session get id : ', id);
     done(null, id);
-  });
+});
  
-
+// passport login
 passport.use('local-login', new LocalStrategy({
     usernameField: 'ID',
     passwordField: 'password',
@@ -64,10 +61,11 @@ passport.use('local-login', new LocalStrategy({
   }
 ));
 
+// GET  /login
 router.get('/', function(req, res, next) {
     res.render('Login');
 });
-
+// POST /login
 router.post('/', function(req, res, next) {
     passport.authenticate('local-login', function(err, user, info) {
         if(err) res.status(500).json(err);
@@ -80,7 +78,7 @@ router.post('/', function(req, res, next) {
 })
 
 
-
+// passport join
 passport.use('local-join', new LocalStrategy({
     usernameField: 'joinID',
     passwordField: 'password',
@@ -119,80 +117,18 @@ passport.use('local-join', new LocalStrategy({
 ));
 
 
-
+// GET  /login/join
 router.get('/join', function(req, res){
     var msg;
     var errMsg = req.flash('error');
     if(errMsg) msg = errMsg;
     res.render('join2', {'message' : msg});
 })
-
+// POST /login/join
 router.post('/join', passport.authenticate('local-join', {
     successRedirect: '/main/profile',
     failureRedirect: '/login/join',
     failureFlash: true })
 );
-
-/*
-router.post("/", function(req, res) {
-    var email = req.body.ID;
-    var password = req.body.password;
-    var responseData = {};
-
-    var query = connection.query('SELECT pwd FROM user WHERE email="' + email +'"', function(err, rows) {
-        if(err) throw err;
-        if(rows[0]) {
-            if(rows[0].pwd === password){
-                responseData.result = "ok";
-                responseData.message = "Login success!";
-            } else {
-                responseData.result = "nope";
-                responseData.message = "Wrong password";
-            }
-        } else {
-            console.log('none ' +  rows[0]);
-            responseData.result = "nope";
-            responseData.message = "Unregistered ID";
-        }  
-        res.json(responseData);
-    })
-});
-*/
-
-router.post('/process', function(req, res, next) {
-    var post = req.body;
-    const hisnet_id = post.ID;
-    const hisnet_pw = post.Password;
-    console.log('Hisnet ID: ', hisnet_id);
-    console.log('Hisnet PW: ', hisnet_pw);
-    LoginHisnet.GoHisnet(hisnet_id, hisnet_pw, function(student){
-        console.log('Web crawling success!');
-        console.log('name: ', student.name);
-        console.log('StID: ', student.id);
-
-        res.json(student);
-    }).catch(err => { 
-        console.log('Web crawling is failed'); 
-        res.redirect('/')
-    });
-});
-
-
-
-
-/*
-router.post('/join', function(req, res){
-    var body = req.body;
-    var email = body.email;
-    var name = body.name;
-    var password = body.password;
-
-    var sql = {email: email, name: name, pwd: password};
-    var query = connection.query('INSERT INTO user SET ?', sql, function(err,rows){
-        if(err) throw err;
-        console.log("ok db insert : ", rows.insertId, name);
-    });
-})
-*/
   
 module.exports = router;
