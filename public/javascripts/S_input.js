@@ -151,6 +151,8 @@ function saveDATA(){
 
 
 
+
+
 /* JSON 형식으로 줄것 */
 /* {
     Location_start: string으로 ex) 커피유야
