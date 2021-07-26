@@ -13,14 +13,7 @@ function Makehtml(Data_obj){
     let Short_list = document.querySelector('#short-List-part');
     let Long_list = document.querySelector('#long-List-part');
 
-    Short_list.innerHTML = Data_obj.map((item) => {
-
-        if(item.Repeat_ornot===""){
-            console.log("long"); return createHTML(item)
-        }
-        else{
-            console.log("short"); return createHTML(item)
-        }}).join('')
+    Short_list.innerHTML = Data_obj.map((item) => createHTML(item)).join('')
 /*     Data_obj.map((item) => {
 
         if(item.Repeat_ornot===""){
