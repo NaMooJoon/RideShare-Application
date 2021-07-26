@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/stylesheets/reset.css" />
+    <link rel="stylesheet" href="/stylesheets/button.css" />
+    <link rel="stylesheet" href="/stylesheets/User_list.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <title>With Me</title>
+</head>
+
+
+<body>
+    <div class="screen">
+        <div class="fixtop">
+            <div class="top">
+                <div class="back_button" onclick="goBack()">
+                    <div style="align-items:center; justify-content: center;  width:28px; height:28px; border-radius: 50%; background-color: rgb(213, 233, 255);">
+                        <svg width="26" height="26" viewBox="-3 -1 18 12" xmlns="http://www.w3.org/2000/svg">
+                        <path style="fill:var(--main-blue)" fill-rule="evenodd" clip-rule="evenodd" d="M12.6001 7.49999C13.3732 7.49999 14 6.82843 14 5.99998C14 5.17153 13.3732 4.49998 12.6001 4.49998L4.7797 4.49998L6.58969 2.56062C7.13637 1.97487 7.13637 1.02506 6.58969 0.439313C6.04287 -0.146439 5.15656 -0.146439 4.60975 0.439313L0.409907 4.93933C0.147417 5.22058 1.51299e-06 5.60218 1.47821e-06 5.99998C1.44344e-06 6.39778 0.147417 6.77938 0.409907 7.06063L4.60974 11.5607C5.15656 12.1464 6.04287 12.1464 6.58969 11.5607C7.13637 10.9749 7.13637 10.0251 6.58969 9.43933L4.7797 7.49998L12.6001 7.49999Z" fill="rgba(255,255,255,1)"/>
+                        </svg>
+                        <script>
+                        function goBack() {
+                        window.history.back();
+                        }
+                        </script>
+                    </div>
+                        <span class="back_text">Back</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="loc_and_image">
+            <span class="fatblack">선택된 장소 이름</span>
+            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh;" src="https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjFfMTg3/MDAxNjAzMjcwMTYyNzAy.1WRh-Ub6bY-1KgCoJg-EOsSUIkBaBnCzUO0T2OOJnegg.oksMWEkJu0G16LEYg_tMCYqJkV-_E-LyqVxQOhT7Dgkg.JPEG.angel5834/1603270161348.jpg?type=w800">
+        </div>
+
+
+        <div class="userlist">
+            <div style="width:90%; display: flex-start;">
+                <span class="fatblack">List</span>
+                <div class="user_item"> <!--## 리스트의 항목 시작 ##-->
+                    <img class="circle profile" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+                    <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
+                        <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
+                            <div class="name_and_icon"> <!--이름과 아이콘 div-->
+                                <div> <!--이름-->
+                                    <span class="fatblack" style="font-size: 22px;">한동이</span>
+                                </div>
+                                <div> <!--아이콘-->
+                                    <img width="30px" height="30px" src="/images/rider.svg"/>
+                                </div>
+                            </div>
+                            <div> <!--출발지와 도착지 텍스트 div-->
+                                <span class="loctext">한동대학교 ➔ 커피유야</span>
+                            </div>
+                        </div>
+                        <div class="messagebox"> <!--유저메세지-->
+                            <span class="message">유저의 상세한 메세지는 여기에 표시됩니다</span>
+                        </div>
+                    </div>
+
+                    <div class="button_and_people"> <!--버튼과 인원수를 넣을 div-->
+                        <button class="findbutton">❯</button>
+                        <span class="loctext">(1/4)</span>
+                    </div>
+                </div>  <!--## 리스트의 항목 끝 ##-->
+               
+
+            </div>
+        </div>
+
+
+    </div>
+</body>
+</html>
+
+
+
+    

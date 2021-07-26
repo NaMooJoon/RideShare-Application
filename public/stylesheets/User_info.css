@@ -11,32 +11,7 @@
 }
 
 .back_button {
-  cursor: pointer;
-  display: flex;
-  width: 90px;
-  height: 45px;
-  align-items: center;
-  justify-content: space-evenly;
-  border-radius: 15px;
   background-color: white;
-}
-
-.back_text {
-  font-size: 20px;
-  font-style: bold;
-  font-weight: 700;
-  color: var(--main-blue);
-}
-
-.btn_text {
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  color: white;
-}
-
-.circle {
-  border-radius: 40%;
 }
 
 .profile_image,
@@ -50,6 +25,13 @@
 
 .profile_image {
   height: 30vh;
+  width: 30vh;
+}
+
+.profile_image_src {
+  height: 26vh;
+  width: 26vh;
+  object-fit: cover;
 }
 
 .path_image {
@@ -104,8 +86,8 @@ div button {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  padding: 2vh;
-  width: 40%;
+  padding: 1.5vh;
+  width: 35%;
   background-color: var(--main-blue);
-  border-radius: 10px;
+  border-radius: 18px;
 }

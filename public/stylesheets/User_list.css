@@ -8,18 +8,8 @@
   justify-content: flex-start;
 }
 
-.fixtop {
-  position: fixed;
-  width: 100%;
-  height: 20%;
-  display: flex;
-  justify-content: center;
-}
-
-@media (min-width: 800px) {
-  .fixtop {
-    width: 50%;
-  }
+.svgico {
+  margin-left: 1vh;
 }
 
 .top {
@@ -30,14 +20,16 @@
 }
 
 .userlist {
-  display: flex;
-  width: 100%;
-  height: auto;
-  align-items: center;
+  width: 90%;
+  align-items: left;
   justify-content: center;
-  border-radius: 10px;
   padding: 1vh;
   background-color: white;
+}
+
+.items {
+  width: 90%;
+  display: flex-start;
 }
 
 .loc_and_image {
@@ -53,23 +45,28 @@ img {
   height: 25vh;
 }
 
-.user_item {
+.user_item_layout,
+.useritem {
+  padding: 10px;
+  width: 90%;
   display: flex;
-  height: 85px;
-  margin: 2vh 0vh;
+  height: auto;
+  margin: 1vh 0vh;
   align-items: center;
   justify-content: space-between;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
 }
 
 .info {
   justify-content: space-between;
-  margin: 0vw 2vw;
+  margin: 0vw 20px;
   width: 80%;
 }
 
 .align {
   display: flex;
-  height: 50px;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
 }
@@ -92,11 +89,12 @@ img {
 }
 
 .messagebox {
-  height: 25px;
+  height: auto;
+  margin-bottom: 5px;
   align-items: center;
 }
 
-.loctext {
+.smalltext {
   font-size: 14px;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
@@ -117,5 +115,50 @@ img {
   width: 50px;
   height: 60px;
   border: none;
-  background-color: rgba(210, 231, 255, 0.5);
+  background-color: rgba(210, 231, 255, 0.4);
+}
+
+.disabled {
+  display: none;
+}
+
+.test {
+  padding: 10px;
+  background-color: var(--main-blue);
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+}
+
+.testinput {
+  width: 20%;
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  outline: none;
+  padding: 3px;
+  margin: 3px;
+  margin-bottom: 6px;
+}
+
+.testbtn {
+  width: 90%;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.floating_btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  bottom: 50px;
+  right: 50px;
+  opacity: 80%;
+  background-color: var(--main-blue);
 }

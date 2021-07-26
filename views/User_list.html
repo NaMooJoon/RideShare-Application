@@ -33,48 +33,70 @@
         </div>
 
 
+        <div class="floating_btn" onclick="chatButtonClick()">
+            <img width="50px" src="../public/images/addchat.svg"/>
+        </div>
+
+
         <div class="loc_and_image">
-            <span class="fatblack">선택된 장소 이름</span>
-            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh;" src="https://mblogthumb-phinf.pstatic.net/MjAyMDEwMjFfMTg3/MDAxNjAzMjcwMTYyNzAy.1WRh-Ub6bY-1KgCoJg-EOsSUIkBaBnCzUO0T2OOJnegg.oksMWEkJu0G16LEYg_tMCYqJkV-_E-LyqVxQOhT7Dgkg.JPEG.angel5834/1603270161348.jpg?type=w800">
+            <span class="fatblack">여기에 장소이름 입력</span>
+            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh; border: 5px solid rgba(50, 110, 240, 0.8); " src=""/>
+        </div>
+
+        <div class="test disabled">
+            <div style="display: flex; justify-content: space-evenly ;">
+            <input id="test1" type="text" class="testinput" placeholder="이름" required/>
+            <input id="test2" type="text" class="testinput" placeholder="이미지" required/>
+            <input id="test3" type="text" class="testinput" placeholder="이용수단" required/>
+            <input id="test4" type="text" class="testinput" placeholder="출발지" required/></div>
+            <div style="display: flex;  justify-content: space-evenly ;">
+            <input id="test5" type="text" class="testinput" placeholder="도착지" required/>
+            <input id="test6" type="text" class="testinput" placeholder="메세지" required/>
+            <input id="test7" type="text" class="testinput" placeholder="현재인원" required/>
+            <input id="test8" type="text" class="testinput" placeholder="총원" required/></div>
+            <div style="display: flex;  justify-content: space-evenly ;">
+            <input type="button" class="testbtn" value="리스트 추가하기" onclick="testclick()" required/></div>
+
         </div>
 
 
         <div class="userlist">
-            <div style="width:90%; display: flex-start;">
-                <span class="fatblack">List</span>
-                <div class="user_item"> <!--## 리스트의 항목 시작 ##-->
-                    <img class="circle profile" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
-                    <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
-                        <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
-                            <div class="name_and_icon"> <!--이름과 아이콘 div-->
-                                <div> <!--이름-->
-                                    <span class="fatblack" style="font-size: 22px;">한동이</span>
-                                </div>
-                                <div> <!--아이콘-->
-                                    <img width="30px" height="30px" src="../public/images/rider.svg"/>
-                                </div>
-                            </div>
-                            <div> <!--출발지와 도착지 텍스트 div-->
-                                <span class="loctext">한동대학교 ➔ 커피유야</span>
-                            </div>
-                        </div>
-                        <div class="messagebox"> <!--유저메세지-->
-                            <span class="message">유저의 상세한 메세지는 여기에 표시됩니다</span>
-                        </div>
-                    </div>
+            <span class="fatblack">List</span>
+        </div>
+    </div> <!--screen 끝-->
 
-                    <div class="button_and_people"> <!--버튼과 인원수를 넣을 div-->
-                        <button class="findbutton">❯</button>
-                        <span class="loctext">(1/4)</span>
-                    </div>
-                </div>  <!--## 리스트의 항목 끝 ##-->
-               
 
+
+
+
+    <div class="user_item_layout disabled"> <!--## 리스트의 항목 시작 ##-->
+        <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+        <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
+            <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
+                <div class="name_and_icon"> <!--이름과 아이콘 div-->
+                    <div> <!--이름-->
+                        <span class="fatblack nametext" style="font-size: 22px;">이름</span>
+                    </div>
+                    <div class="svgico"> <!--아이콘-->
+                        <img width="30px"alt="이용수단" src="../public/images/rider.svg"/>
+                    </div>
+                </div>
+                <div> <!--출발지와 도착지 텍스트 div-->
+                    <span class="smalltext loctext">한동대학교 ➔ 커피유야</span>
+                </div>
+            </div>
+            <div class="messagebox"> <!--유저메세지-->
+                <span class="message drag_allow">유저의 상세한 메세지는 여기에 표시됩니다</span>
             </div>
         </div>
 
+        <div class="button_and_people"> <!--버튼과 인원수를 넣을 div-->
+            <button class="findbutton">❯</button>
+            <span class="smalltext peoplenum">(1/4)</span>
+        </div>
+    </div>  <!--## 리스트의 항목 끝 ##-->
 
-    </div>
+<script  type="text/javascript" src="../public/javascripts/User_list.js"></script>
 </body>
 </html>
 
