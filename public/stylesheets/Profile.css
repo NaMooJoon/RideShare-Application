@@ -33,7 +33,7 @@ body{
 
 #input_form{
 /*     background-color:blue; */
-    width:77vw;          /* 319px; */
+    width:319px;          /* 319px; */
     height:126px;
     top: 57.5%;
     position: absolute; 
@@ -59,7 +59,7 @@ body{
 
 #input1{
  
-    width:100%;          /* 288px; */
+    width:288px;          /* 288px; */
     height:28px;
     font-size: 18px;
     padding: 7px;
@@ -71,7 +71,7 @@ body{
 }
 
 #input2{
-    width:100%;
+    width:288px;
     height:28px;
     font-size: 18px;
     padding: 7px;

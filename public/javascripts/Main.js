@@ -9,9 +9,27 @@ if (SavedGetData!==null){
 // html 만들기 1
 function Makehtml(Data_obj){
     console.log(Data_obj,"Data_obj")
-    let container = document.querySelector('#List-part');
-    console.log(container,"container");
-    container.innerHTML = Data_obj.map((item) => createHTML(item)).join('')
+   
+    let Short_list = document.querySelector('#short-List-part');
+    let Long_list = document.querySelector('#long-List-part');
+
+    Short_list.innerHTML = Data_obj.map((item) => {
+
+        if(item.Repeat_ornot===""){
+            console.log("long"); return createHTML(item)
+        }
+        else{
+            console.log("short"); return createHTML(item)
+        }}).join('')
+/*     Data_obj.map((item) => {
+
+        if(item.Repeat_ornot===""){
+            console.log("long"); return createHTML(item)
+        }
+        else{
+            console.log("short"); return createHTML(item)
+        }}).join('')
+     */
     let remove = document.querySelectorAll('.Arrow');   
     
    
