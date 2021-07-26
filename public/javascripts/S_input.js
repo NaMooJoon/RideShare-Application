@@ -108,11 +108,15 @@ $("#summitBT").click(function () {
     Sendarray.push(Send_OBJ);
     saveDATA();
 
-      console.log("no blank",window.location.href="../../views/Main.html"); 
+      console.log("no blank",
+      // window.location.href="../../views/Main.html"
+      window.location.href="/Main/create_list"
+      ); 
     } else {
       document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
       alert("채우지 않은 빈칸이 있습니다.")
     }
+    SendDataPost()
 }); 
 
 
@@ -129,6 +133,22 @@ function saveDATA(){
     
     localStorage.setItem("Datas",JSON.stringify(Sendarray));
 }
+
+// Data 서버에 보내기
+
+ function SendDataPost(event){
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/main/create_list');
+  xhr.onreadystatechange = function(){
+    /*   document.querySelector('#time').innerHTML = xhr.responseText; */
+  }
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  var data = '';
+  data += 'timezone='+"TESTDATA1";
+  data += '&format='+"TESTDATA";
+  xhr.send(data); 
+};
+
 
 
 /* JSON 형식으로 줄것 */
