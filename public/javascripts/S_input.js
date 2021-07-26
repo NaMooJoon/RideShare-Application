@@ -110,7 +110,7 @@ $("#summitBT").click(function () {
 
       console.log("no blank",
       // window.location.href="../../views/Main.html"
-      window.location.href="/Main/create_list"
+      window.location.href="/main/create_list"
       ); 
     } else {
       document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
