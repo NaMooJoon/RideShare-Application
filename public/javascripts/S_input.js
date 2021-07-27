@@ -116,7 +116,35 @@ $("#summitBT").click(function () {
       document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
       alert("채우지 않은 빈칸이 있습니다.")
     }
-    SendDataPost()
+   
+    /* var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/main/create_list');
+    xhr.onreadystatechange = function(){
+         document.querySelector('#time').innerHTML = xhr.responseText; 
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var data = '';
+    data += 'timezone='+"TESTDATA1";
+    data += '&format='+"TESTDATA";
+    data += 'Location_start='+ StartLocation;
+    data += '&Location_end='+ StartLocation;
+    data += '&Start_time='+ StartLocation;
+    data += '&Repeat_ornot='+ StartLocation;
+    data += '&Limit_person='+ StartLocation;
+    data += '&transport_way='+ StartLocation;
+    data += '&comments='+ StartLocation;
+    data += '&li_id='+ StartLocation;
+    data += '&label_id='+ StartLocation;
+    Location_end:  EndLocation,
+    Start_time: TimeInput,
+    Repeat_ornot: week,
+    Start_date: DateInput,
+    Limit_person: PMValue,
+    transport_way: TransValue,
+    comments: TextArea,
+    li_id: Date.now(),
+    label_id: Date.now() * 1000,
+    xhr.send(data);  */
 }); 
 
 
@@ -136,18 +164,8 @@ function saveDATA(){
 
 // Data 서버에 보내기
 
- function SendDataPost(event){
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/main/create_list');
-  xhr.onreadystatechange = function(){
-    /*   document.querySelector('#time').innerHTML = xhr.responseText; */
-  }
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  var data = '';
-  data += 'timezone='+"TESTDATA1";
-  data += '&format='+"TESTDATA";
-  xhr.send(data); 
-};
+
+
 
 
 
