@@ -6,9 +6,9 @@
          console.log(data)
         } 
     })
-})
+}) */
 // id name
-if (data.id === "nope"){
+/* if (data.id === "nope"){
     prompt("Can not login to withme")
 } else{
     prompt("login 되었습니다")

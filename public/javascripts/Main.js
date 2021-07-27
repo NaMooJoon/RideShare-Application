@@ -1,19 +1,42 @@
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 
-// 받아온 Data 불러오기
+// 서버에서 DATA joson으로 받기
+window.onlaod(function(){
+    $.ajax({
+        url:'',
+        dataType:'json',
+        success:function(data){
+         console.log(data)
+        } 
+    })
+})
+
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+/* let SavedGetData = data; */
+// 받아온 Data 불러오기 (localstorage)
 if (SavedGetData!==null){
     Makehtml(SavedGetData);
 }
 
 
+
 // html 만들기 1
 function Makehtml(Data_obj){
+    Data_short = [];
+    Data_long = [];
     console.log(Data_obj,"Data_obj")
-   
+    Data_obj.forEach(function(item) {
+        if (item.Repeat_ornot ===""){
+            Data_long.push(item)
+        } else{
+            Data_short.push(item)
+        }
+    });
+
     let Short_list = document.querySelector('#short-List-part');
     let Long_list = document.querySelector('#long-List-part');
 
-    Short_list.innerHTML = Data_obj.map((item) => createHTML(item)).join('')
+    Short_list.innerHTML = Data_short.map((item) => createHTML(item)).join('')
+    Long_list.innerHTML = Data_long.map((item) => createHTML(item)).join('')
 /*     Data_obj.map((item) => {
 
         if(item.Repeat_ornot===""){
@@ -33,7 +56,7 @@ function Makehtml(Data_obj){
 
 // html 만들기 2
 function createHTML(item){
-    console.log(item)
+  
      let LI_ID = item.li_id;
      let LABEL_ID = item.label_id;
      let S_TEXT = item.Location_start;
@@ -49,7 +72,7 @@ function createHTML(item){
             <div class="bu_arrow_wrap">
             <div class="ON_OFF">
                 <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox"/>
-                <label class="tgl-btn" for="${LABEL_ID}"></label>
+                <label class="tgl-btn" for="${LABEL_ID}" onclick="SendTFData(this.id)"></label>
             </div>
             <div class="Arrow">
                 <i class="fas fa-chevron-right"></i>
@@ -91,8 +114,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  let IDS = "1627354198623000"
 
-  
+console.log($(`input:checkbox[id=${IDS}]`).is(":checked"),"this2")
+
+const Checkbox = document.querySelectorAll("label");
+console.log(Checkbox)
+Checkbox.onclick = function(){
+    alert("hi")
+}
+
+function SendTFData(C_ID){
+    console.log(C_ID,"id")
+    console.log("TF")
+}
+ 
+
+
 
 
 
