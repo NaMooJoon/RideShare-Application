@@ -66,7 +66,7 @@ img {
 
 .align {
   display: flex;
-  height: 50px;
+  height: 40px;
   justify-content: space-between;
   align-items: center;
 }
@@ -149,16 +149,21 @@ img {
 }
 
 .floating_btn {
+  color: rgb(202, 214, 255);
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  bottom: 50px;
-  right: 50px;
-  opacity: 80%;
+  bottom: 30px;
+  right: 30px;
+  opacity: 90%;
   background-color: var(--main-blue);
+}
+
+.refresh_btn {
+  bottom: 130px;
 }
