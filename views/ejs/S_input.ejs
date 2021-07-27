@@ -16,13 +16,13 @@
 <body>
     <div class="Short-distance">Short-distance</div>
     
-    <a href="/Main">
+    <a href="Main.html">
     <div class="back_form">
         <div id="iconpart"><span id="icon"><i class="fas fa-arrow-left"></i></span> <span id="BACK">BACK</span></div>
     </div>
     </a>
 
-   
+   <form action="/main/create_list" method="post">
     <div class="location_form">
       <div class="Start_wrap">
          <div class="Start_text">출발지:</div>
@@ -32,7 +32,7 @@
             <div class="menu">
               <div class="ui search icon input">
                 <i class="search icon"></i>
-                <input type="text" name="search" placeholder="Search issues...">
+                <input type="text" name="Location_start" placeholder="Search issues...">
               </div>
               <div class="divider"></div>
               <div class="header">
@@ -91,7 +91,7 @@
             <div class="menu">
               <div class="ui search icon input">
                 <i class="search icon"></i>
-                <input type="text" name="search" placeholder="Search issues...">
+                <input type="text" name="Location_end" placeholder="Search issues...">
               </div>
               <div class="divider"></div>
               <div class="header">
@@ -148,13 +148,13 @@
 
     <div class="Time_form">
       <div class="Time_text">출발시간</div>
-      <input type="text" id="time" class="timepicker" required/>
+      <input type="text" id="time" name="Start_time" class="timepicker" required/>
     </div>
 
 
     <div class="Repeat_form">
       <div class="ui fluid multiple search selection dropdown" id="week">
-        <input type="hidden" name="country" id="weekinput" placeholder="Enter your Hisnet ID">
+        <input type="hidden" name="Repeat_ornot" id="weekinput" placeholder="Enter your Hisnet ID">
         <i class="dropdown icon"></i>
         <div class="default text" id="Select">Select Repeat or not</div>
         <div class="menu">
@@ -171,12 +171,12 @@
     </div>
     <div class="Date_form">
       <div class="Date_text">날짜선택</div>
-      <input type="text" id="date" class="datepicker" required>
+      <input type="text" id="date" name="Start_date" class="datepicker" required>
     </div>
     <div class="LimitNum_form">
       <div class="LimitNum_text">제한 승객 인원</div>
       <div class="container">
-        <input type="number" name="" id="mid" value="1" min="1" max="5">
+        <input type="number" name="Limit_person" id="mid" value="1" min="1" max="5">
     </div>
     </div>
 
@@ -186,7 +186,7 @@
     <div class="Trans_form">
       <div id="Trans_text">이용수단</div>
       <div class="ui fluid selection dropdown" id="Trans">
-        <input type="hidden" name="user">
+        <input type="hidden" name="transport_way">
         <i class="dropdown icon"></i>
         <div class="default text">Select Friend</div>
         <div class="menu">
@@ -221,7 +221,7 @@
 
     <div class="Comments_form">
       <div class="Comments_text">Comments</div>
-      <textarea id="Comments_input"></textarea>
+      <textarea id="Comments_input" name="comments"></textarea>
     </div>
 
     <div id="Blank_mes"></div>
@@ -231,6 +231,7 @@
         submit
     </button>
     </div>
+    </form>
 
     
 
@@ -242,7 +243,7 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
     <script src="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/dropdown.min.js"></script>
-    <script src="/plug\Semantic-UI-CSS-master\Semantic-UI-CSS-master\transition.min.js"></script>
+    <script src="/plug/Semantic-UI-CSS-master\Semantic-UI-CSS-master\transition.min.js"></script>
     <script src="/javascripts/jquery.nice-number.js"></script>
     <script src="/javascripts/S_input.js"></script>
 </body>
