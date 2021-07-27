@@ -10,9 +10,14 @@
 $('#Search-Cate-start')
   .dropdown({
     action: 'activate',
-  
+    
 
   })
+;
+
+
+$('#Search-Cate-start')
+  .dropdown('set value')
 ;
 
 // 도착지 검색 드롭다운 활성화
@@ -110,7 +115,7 @@ $("#summitBT").click(function () {
 
       console.log("no blank",
       // window.location.href="../../views/Main.html"
-      //window.location.href="/main/create_list"
+      // window.location.href="/main/create_list"
       ); 
     } else {
       document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
