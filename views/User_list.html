@@ -13,7 +13,7 @@
 
 
 <body>
-    <div class="screen">
+    <div id = "screen" class="screen">
         <div class="fixtop">
             <div class="top">
                 <div class="back_button" onclick="goBack()">
@@ -34,13 +34,17 @@
 
 
         <div class="floating_btn" onclick="chatButtonClick()">
-            <img width="50px" src="../public/images/addchat.svg"/>
+            <i class="far fa-comment-dots fa-3x"></i>
+        </div>
+
+        <div class="floating_btn refresh_btn" onclick="refreshClick()">
+            <i class="fas fa-sync-alt fa-3x"></i>
         </div>
 
 
         <div class="loc_and_image">
             <span class="fatblack">여기에 장소이름 입력</span>
-            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh; border: 5px solid rgba(50, 110, 240, 0.8); " src=""/>
+            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh; border: 3px solid rgba(50, 110, 240, 0.8); " src=""/>
         </div>
 
         <div class="test disabled">
@@ -96,6 +100,12 @@
         </div>
     </div>  <!--## 리스트의 항목 끝 ##-->
 
-<script  type="text/javascript" src="../public/javascripts/User_list.js"></script>
+
+    <script src="https://kit.fontawesome.com/09cb309e6f.js" crossorigin="anonymous"></script>   
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script  type="text/javascript" src="../public/javascripts/User_list.js"></script>
 </body>
 </html>
