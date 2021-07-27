@@ -11,11 +11,12 @@
 2021년 하계방학 동안 웹으로 구현하는 것을 목표로 만들고 있습니다. 그리고 추후에 이를 PWA 혹은 Habrid App으로 전환하여 안드로이드와 ios에서 동시에 접근할 수 있도록 개발할 예정입니다.
 
 (Front-End)
-정예준 HTML CSS SCSS JS
-신경식 this is the second commit
+: HTML CSS SCSS JS
 
 (Back-End)
 : Node.js, MySQL  
 
 ### Design
-Figma : https://www.figma.com/file/aAYJfCMiGMNLgAQhUFbRwx/Talky---Chat-%26-Video-Messenger-App-(Free)-(Copy)-(Copy)-(Copy)?node-id=7447%3A337>
+
+<img width="30%" src="https://user-images.githubusercontent.com/47983023/127087584-41839ff9-e8f4-4c0b-9a41-0d6ef89ea028.gif" />
+해당 디자인은 Figma를 통해 구상해본 앱 디자인 입니다.
