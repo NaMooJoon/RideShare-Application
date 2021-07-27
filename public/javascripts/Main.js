@@ -1,14 +1,35 @@
 
 // 서버에서 DATA joson으로 받기
-window.onlaod(function(){
-    $.ajax({
-        url:'',
-        dataType:'json',
-        success:function(data){
-         console.log(data)
-        } 
-    })
-})
+
+    // $.ajax({
+    //     url:'/main',
+    //     dataType:'json',
+    //     success:function(data){
+    //      console.log(data)
+    //     } 
+    // })
+// var xhr = new XMLHttpRequest();
+// xhr.addEventListener('load', function(){
+//     var result = JSON.parse(xhr.responseText);
+//     console.log(result);
+//     // if(result.result !== "ok") { alert(result.message); }
+//     // else { window.location.href="http://localhost:3000/main"}
+// });
+$.getJSON( "/main", function( data ) {
+    console.log("Input data ",data);
+});
+
+var data;
+$(function () {
+    $.getJSON("/main", function(json){
+       data = json;
+       console.log(" data : "+JSON.stringify(data));
+       $('#table').bootstrapTable({
+          data: data
+       });
+    });
+});
+
 
 let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* let SavedGetData = data; */
