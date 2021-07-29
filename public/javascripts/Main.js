@@ -30,7 +30,9 @@
 //    });
 //});
 
-sendAjax('http://localhost:3000/main/data', "GET", function(Data){
+// host -> 현재 창의 주소를 담고 있는 변수.
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
 });
 
