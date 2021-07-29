@@ -15,28 +15,46 @@
 //     // if(result.result !== "ok") { alert(result.message); }
 //     // else { window.location.href="http://localhost:3000/main"}
 // });
-$.getJSON( "/main", function( data ) {
-    console.log("Input data ",data);
+//$.getJSON( "http://localhost:3000/main/data", function( data ) {
+//    console.log("Input data ",data);
+//});
+
+//var data;
+//$(function () {
+//    $.getJSON("/main", function(json){
+//       data = json;
+//       console.log(" data : "+JSON.stringify(data));
+//       $('#table').bootstrapTable({
+//          data: data
+//       });
+//    });
+//});
+
+sendAjax('http://localhost:3000/main/data', "GET", function(Data){
+    Makehtml(Data);
 });
 
-var data;
-$(function () {
-    $.getJSON("/main", function(json){
-       data = json;
-       console.log(" data : "+JSON.stringify(data));
-       $('#table').bootstrapTable({
-          data: data
-       });
+
+var SavedGetData; 
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
+
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
     });
-});
+};
 
-
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* let SavedGetData = data; */
 // 받아온 Data 불러오기 (localstorage)
-if (SavedGetData!==null){
-    Makehtml(SavedGetData);
-}
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
 
 
 
