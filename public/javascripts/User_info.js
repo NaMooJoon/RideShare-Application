@@ -9,8 +9,12 @@
 // host -> 현재 창의 주소를 담고 있는 변수.
 var host = window.location.protocol + "//" + window.location.host;
 
+var result = window.location.pathname;
+const path = result.split('/');
+const id = path[path.length-1];
 
-sendAjax(host + '/ride-share/info/data', "GET", function(data){
+
+sendAjax(host + `/ride-share/${id}/data`, "GET", function(data){
 	console.log(data);
 	const username = data.name;
 	const message = data.comments;
