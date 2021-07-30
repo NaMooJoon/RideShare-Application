@@ -114,7 +114,7 @@ document.querySelector("div.loc_and_image span").innerHTML=locname
 document.querySelector("div.loc_and_image img").src=locimage
 
 function goUserinfo(li_id) {
-
+    
 
 }
 
@@ -156,6 +156,7 @@ function refreshClick(){
 }
 
 
+/* 테스트용 함수
 function testclick(){
     const a = document.querySelector("input#test1");
     const b = document.querySelector("input#test2");
@@ -167,3 +168,4 @@ function testclick(){
     const h = document.querySelector("input#test8");
     createitem(a.value, b.value, c.value, d.value, e.value, f.value, g.value, h.value);
 }
+*/
