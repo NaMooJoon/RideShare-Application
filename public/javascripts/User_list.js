@@ -40,7 +40,7 @@ function sendAjax(url, method, call) {
 sendAjax(host + '/ride-share/data', "GET", function(users){
 	console.log(users);
     for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person);
+        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
     }
 });
 
@@ -56,14 +56,14 @@ function goUserinfo(li_id) {
 }
 
 //아이템 만드는 함수 시작
-function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum) {
+function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
     document.querySelector("div.user_item_layout span.nametext").innerHTML=name
     document.querySelector("div.user_item_layout img.profile").src=img
     document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg"
     document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
     document.querySelector("div.user_item_layout span.message").innerHTML=message
     document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
-    document.querySelector(".findbutton").onclick=goUserinfo(users[json_index].li_id)
+    document.querySelector(".findbutton").onclick=goUserinfo(li_id)
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
@@ -87,6 +87,7 @@ function chatButtonClick(){
 }
 
 function refreshClick(){
+    $( 'div' ).remove( '.useritem' );
     sendAjax(host + '/ride-share/data', "GET", function(users){
         console.log(users);
         for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
@@ -109,7 +110,7 @@ function testclick(){
     createitem(a.value, b.value, c.value, d.value, e.value, f.value, g.value, h.value);
 }
 */
-
+/*
 const users = [ //임시 JSON
     {
         "user_name":"정예준",
@@ -217,3 +218,4 @@ const users = [ //임시 JSON
         "transport_way": "ktx"
     }
 ]
+*/
