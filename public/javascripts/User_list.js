@@ -1,4 +1,4 @@
-const locname = "퐝역"
+const locname = "포항역"
 const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
 
 
@@ -39,21 +39,23 @@ function sendAjax(url, method, call) {
 */ 
 sendAjax(host + '/ride-share/data', "GET", function(users){
 	console.log(users);
-    for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
-    }
+    iterate_createitem(users);
 });
 
 
 
 
 
-
-
-function goUserinfo(li_id) {
-    
-
+var goUserinfo = function(li_id) {
+    window.location.href=host + '/ride-share/' + li_id;
 }
+
+function iterate_createitem(users){
+    for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
+        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
+    }
+}
+
 
 //아이템 만드는 함수 시작
 function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
@@ -63,7 +65,10 @@ function createitem(json_index,name, img, way, startloc, destination, message, u
     document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
     document.querySelector("div.user_item_layout span.message").innerHTML=message
     document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
-    document.querySelector(".findbutton").onclick=goUserinfo(li_id)
+    //document.querySelector(".findbutton").onclick=goUserinfo(li_id);
+    document.querySelector("div.user_item_layout .findbutton").setAttribute('onclick','goUserinfo('+li_id+')')
+    console.log(li_id, message);
+
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
@@ -90,9 +95,7 @@ function refreshClick(){
     $( 'div' ).remove( '.useritem' );
     sendAjax(host + '/ride-share/data', "GET", function(users){
         console.log(users);
-        for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-            createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person);
-        }
+        iterate_createitem(users);
     });    
 }
 
