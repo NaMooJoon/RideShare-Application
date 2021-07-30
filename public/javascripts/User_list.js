@@ -1,3 +1,115 @@
+const locname = "퐝역"
+const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
+
+
+document.querySelector("div.loc_and_image span").innerHTML=locname
+document.querySelector("div.loc_and_image img").src=locimage
+
+// host -> 현재 창의 주소를 담고 있는 변수.
+var host = window.location.protocol + "//" + window.location.host;
+
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
+
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
+
+/*
+"user_name":"신경식",
+"profile_img":"https://www.fnnews.com/resource/media/image/2020/11/20/202011200752197268_l.jpg",
+"Limit_person": 4,
+"Current_person" : 2,
+"Location_end": "서울",
+"Location_start": "포항",
+"Repeat_ornot": "wed,thu,sat",
+"Start_date": "Jul 14, 2021",
+"Start_time": "05:34 PM",
+"comments": "코로나 천국 서울로 떠나실 분~",
+"label_id": 1627284879581000,
+"li_id": 1627284879581,
+"transport_way": "ktx"
+*/ 
+sendAjax(host + '/ride-share/data', "GET", function(users){
+	console.log(users);
+    for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
+        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person);
+    }
+});
+
+
+
+
+
+
+
+function goUserinfo(li_id) {
+    
+
+}
+
+//아이템 만드는 함수 시작
+function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum) {
+    document.querySelector("div.user_item_layout span.nametext").innerHTML=name
+    document.querySelector("div.user_item_layout img.profile").src=img
+    document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg"
+    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
+    document.querySelector("div.user_item_layout span.message").innerHTML=message
+    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
+    document.querySelector(".findbutton").onclick=goUserinfo(users[json_index].li_id)
+    if(message.length >= 50){
+        document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
+    }
+    if (!img) {
+        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png"
+    }
+    const layout = document.getElementsByClassName("user_item_layout");
+    const userlist = document.getElementsByClassName("screen");
+    let newitem = document.createElement('div');
+    newitem.className ="useritem";
+    newitem.innerHTML = layout[0].innerHTML;
+    userlist[0].append(newitem);
+} //아이템 만드는 함수 종료
+
+
+
+
+
+function chatButtonClick(){
+    location.href="Main.html";
+}
+
+function refreshClick(){
+    sendAjax(host + '/ride-share/data', "GET", function(users){
+        console.log(users);
+        for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
+            createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person);
+        }
+    });    
+}
+
+
+/* 테스트용 함수
+function testclick(){
+    const a = document.querySelector("input#test1");
+    const b = document.querySelector("input#test2");
+    const c = document.querySelector("input#test3");
+    const d = document.querySelector("input#test4");
+    const e = document.querySelector("input#test5");
+    const f = document.querySelector("input#test6");
+    const g = document.querySelector("input#test7");
+    const h = document.querySelector("input#test8");
+    createitem(a.value, b.value, c.value, d.value, e.value, f.value, g.value, h.value);
+}
+*/
+
 const users = [ //임시 JSON
     {
         "user_name":"정예준",
@@ -105,67 +217,3 @@ const users = [ //임시 JSON
         "transport_way": "ktx"
     }
 ]
-
-const locname = "퐝역"
-const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
-
-
-document.querySelector("div.loc_and_image span").innerHTML=locname
-document.querySelector("div.loc_and_image img").src=locimage
-
-function goUserinfo(li_id) {
-    
-
-}
-
-//아이템 만드는 함수 시작
-function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum) {
-    document.querySelector("div.user_item_layout span.nametext").innerHTML=name
-    document.querySelector("div.user_item_layout img.profile").src=img
-    document.querySelector("div.user_item_layout div.svgico img").src="../public/images/"+way+".svg"
-    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
-    document.querySelector("div.user_item_layout span.message").innerHTML=message
-    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
-    document.querySelector(".findbutton").onclick=goUserinfo(users[json_index].li_id)
-    if(message.length >= 50){
-        document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
-    }
-    if (!img) {
-        document.querySelector("div.user_item_layout img.profile").src="../public/images/profile_null.png"
-    }
-    const layout = document.getElementsByClassName("user_item_layout");
-    const userlist = document.getElementsByClassName("screen");
-    let newitem = document.createElement('div');
-    newitem.className ="useritem";
-    newitem.innerHTML = layout[0].innerHTML;
-    userlist[0].append(newitem);
-} //아이템 만드는 함수 종료
-
-
-for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-    createitem(i,users[i].user_name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person);
-}
-
-
-function chatButtonClick(){
-    location.href="Main.html";
-}
-
-function refreshClick(){
-    $("#screen").load(window.location.href + "#screen");
-}
-
-
-/* 테스트용 함수
-function testclick(){
-    const a = document.querySelector("input#test1");
-    const b = document.querySelector("input#test2");
-    const c = document.querySelector("input#test3");
-    const d = document.querySelector("input#test4");
-    const e = document.querySelector("input#test5");
-    const f = document.querySelector("input#test6");
-    const g = document.querySelector("input#test7");
-    const h = document.querySelector("input#test8");
-    createitem(a.value, b.value, c.value, d.value, e.value, f.value, g.value, h.value);
-}
-*/
