@@ -87,11 +87,14 @@ function Makehtml(Data_obj){
             console.log("short"); return createHTML(item)
         }}).join('')
      */
+    
+    
     let remove = document.querySelectorAll('.Arrow');   
     
    
     remove.forEach(function(item) {
-      item.addEventListener("click",deleteList ); 
+      //item.addEventListener("click",deleteList ); 
+      item.addEventListener("click",next ); 
     });
 }
 
@@ -123,7 +126,11 @@ function createHTML(item){
         `;
     
  }
-
+//////////////////////// 임시 함수
+function next(event){
+    window.location.href=host + '/ride-share'
+}
+//////////////////////// 임시 함수
 
  // list 삭제하기
 
