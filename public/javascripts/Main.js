@@ -1,6 +1,6 @@
 
 // 서버에서 DATA joson으로 받기
-window.onlaod(function(){
+/* window.onlaod(function(){
     $.ajax({
         url:'',
         dataType:'json',
@@ -8,7 +8,7 @@ window.onlaod(function(){
          console.log(data)
         } 
     })
-})
+}) */
 
 let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* let SavedGetData = data; */
