@@ -2,23 +2,14 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 const LoginHisnet = require('../lib/LoginHisnet.js');
-const mysql = require('mysql')
 const option = require('../config/option');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const saltRounds = option.saltRounds;
+const db = require('../lib/db');
 
 
-// DATABASE SETTING
-const connection = mysql.createConnection({
-    port: 3306,
-    user: option.storageConfig.username,
-    password: option.storageConfig.password,
-    database: option.storageConfig.database,
-    host: option.storageConfig.host
-})
-connection.connect();
 
 //router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -27,6 +18,7 @@ router.use(bodyParser.json());
 
 //passport.serialize
 passport.serializeUser(function(user, done) {
+    console.log(user);
     console.log('passport session save : ', user.id);
     done(null, user.id);
 });
@@ -41,7 +33,7 @@ passport.use('local-login', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback : true
   }, function(req, ID, password, done) {
-    var query = connection.query('SELECT * FROM user WHERE email=?', [ID], function(err, rows){
+    var query = db.connection.query('SELECT * FROM user WHERE email=?', [ID], function(err, rows){
         if(err) return done(err);
 
         if(rows.length) {
@@ -84,7 +76,7 @@ passport.use('local-join', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback : true
   }, function(req, joinID, password, done) {
-    var query = connection.query('SELECT * FROM user WHERE email=?', [joinID], function(err, rows){
+    var query = db.connection.query('SELECT * FROM user WHERE email=?', [joinID], function(err, rows){
         if(err) return done(err);
         // 기존에 아이디가 존재한다면
         if(rows.length) {
@@ -101,7 +93,7 @@ passport.use('local-join', new LocalStrategy({
                     bcrypt.hash(password, salt, function(err2, hash){
                         if(err2) throw err2;
                         var sql = {stID: student.id, email: joinID, name:student.name, pwd: hash};
-                        var query = connection.query('INSERT INTO user SET ?', sql, function(err2, rows) {
+                        var query = db.connection.query('INSERT INTO user SET ?', sql, function(err2, rows) {
                             if(err2) throw err;
                             console.log(rows.insertId);
                             return done(null, {'result': "ok", 'id': student.id});
@@ -126,14 +118,9 @@ router.get('/join', function(req, res){
 })
 // POST /login/join
 router.post('/join', passport.authenticate('local-join', {
-    successRedirect: '/main/profile',
+    successRedirect: '/main',
     failureRedirect: '/login/join',
     failureFlash: true })
 );
-  
-router.get('/logout', function(req, res){
-	req.logout();
-	res.redirect('/login');
-});
 
 module.exports = router;

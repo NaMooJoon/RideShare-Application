@@ -13,7 +13,7 @@
 
 
 <body>
-    <div class="screen">
+    <div id = "screen" class="screen">
         <div class="fixtop">
             <div class="top">
                 <div class="back_button" onclick="goBack()">
@@ -34,15 +34,20 @@
 
 
         <div class="floating_btn" onclick="chatButtonClick()">
-            <img width="50px" src="/images/addchat.svg"/>
+            <i class="far fa-comment-dots fa-3x"></i>
+        </div>
+
+        <div class="floating_btn refresh_btn" onclick="refreshClick()">
+            <i class="fas fa-sync-alt fa-3x"></i>
         </div>
 
 
         <div class="loc_and_image">
             <span class="fatblack">여기에 장소이름 입력</span>
-            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh; border: 5px solid rgba(50, 110, 240, 0.8); " src=""/>
+            <img style="object-fit:fill; border-radius: 20px; margin-top: 2vh; border: 3px solid rgba(50, 110, 240, 0.8); " src=""/>
         </div>
 
+        <!-- 테스트용 div
         <div class="test disabled">
             <div style="display: flex; justify-content: space-evenly ;">
             <input id="test1" type="text" class="testinput" placeholder="이름" required/>
@@ -56,8 +61,8 @@
             <input id="test8" type="text" class="testinput" placeholder="총원" required/></div>
             <div style="display: flex;  justify-content: space-evenly ;">
             <input type="button" class="testbtn" value="리스트 추가하기" onclick="testclick()" required/></div>
-
         </div>
+    -->
 
 
         <div class="userlist">
@@ -78,7 +83,7 @@
                         <span class="fatblack nametext" style="font-size: 22px;">이름</span>
                     </div>
                     <div class="svgico"> <!--아이콘-->
-                        <img width="30px"alt="이용수단" src="/images/rider.svg"/>
+                        <img width="35px" alt="이용수단" src="/images/rider.svg"/>
                     </div>
                 </div>
                 <div> <!--출발지와 도착지 텍스트 div-->
@@ -96,10 +101,12 @@
         </div>
     </div>  <!--## 리스트의 항목 끝 ##-->
 
-<script  type="text/javascript" src="/javascripts/User_list.js"></script>
+
+    <script src="https://kit.fontawesome.com/09cb309e6f.js" crossorigin="anonymous"></script>   
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    <script  type="text/javascript" src="/javascripts/User_list.js"></script>
 </body>
 </html>
-
-
-
-    

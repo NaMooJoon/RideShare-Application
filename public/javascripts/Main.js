@@ -1,21 +1,64 @@
 
 // 서버에서 DATA joson으로 받기
-/* window.onlaod(function(){
-    $.ajax({
-        url:'',
-        dataType:'json',
-        success:function(data){
-         console.log(data)
-        } 
-    })
-}) */
 
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+
+    // $.ajax({
+    //     url:'/main',
+    //     dataType:'json',
+    //     success:function(data){
+    //      console.log(data)
+    //     } 
+    // })
+// var xhr = new XMLHttpRequest();
+// xhr.addEventListener('load', function(){
+//     var result = JSON.parse(xhr.responseText);
+//     console.log(result);
+//     // if(result.result !== "ok") { alert(result.message); }
+//     // else { window.location.href="http://localhost:3000/main"}
+// });
+//$.getJSON( "http://localhost:3000/main/data", function( data ) {
+//    console.log("Input data ",data);
+//});
+
+//var data;
+//$(function () {
+//    $.getJSON("/main", function(json){
+//       data = json;
+//       console.log(" data : "+JSON.stringify(data));
+//       $('#table').bootstrapTable({
+//          data: data
+//       });
+//    });
+//});
+
+// host -> 현재 창의 주소를 담고 있는 변수.
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/main/data', "GET", function(Data){
+    Makehtml(Data);
+});
+
+
+var SavedGetData; 
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
+
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
+
+>>>>>>> be6ce456adc9228318365103858d10b850cc3c6d
 /* let SavedGetData = data; */
 // 받아온 Data 불러오기 (localstorage)
-if (SavedGetData!==null){
-    Makehtml(SavedGetData);
-}
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
 
 
 
@@ -46,11 +89,14 @@ function Makehtml(Data_obj){
             console.log("short"); return createHTML(item)
         }}).join('')
      */
+    
+    
     let remove = document.querySelectorAll('.Arrow');   
     
    
     remove.forEach(function(item) {
-      item.addEventListener("click",deleteList ); 
+      //item.addEventListener("click",deleteList ); 
+      item.addEventListener("click",next ); 
     });
 }
 
@@ -82,7 +128,11 @@ function createHTML(item){
         `;
     
  }
-
+//////////////////////// 임시 함수
+function next(event){
+    window.location.href=host + '/ride-share'
+}
+//////////////////////// 임시 함수
 
  // list 삭제하기
 
