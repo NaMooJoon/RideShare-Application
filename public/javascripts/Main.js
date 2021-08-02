@@ -53,7 +53,7 @@ function sendAjax(url, method, call) {
     });
 };
 
->>>>>>> be6ce456adc9228318365103858d10b850cc3c6d
+
 /* let SavedGetData = data; */
 // 받아온 Data 불러오기 (localstorage)
 // if (SavedGetData!==null){
