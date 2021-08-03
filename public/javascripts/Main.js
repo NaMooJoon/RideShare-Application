@@ -1,6 +1,7 @@
 
 // 서버에서 DATA joson으로 받기
 
+
     // $.ajax({
     //     url:'/main',
     //     dataType:'json',
@@ -51,6 +52,7 @@ function sendAjax(url, method, call) {
 		call(result);
     });
 };
+
 
 /* let SavedGetData = data; */
 // 받아온 Data 불러오기 (localstorage)
