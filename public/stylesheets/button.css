@@ -35,9 +35,11 @@ body {
   height: 50px;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 12px;
+  border-radius: 8px;
+  border: 3px solid var(--main-blue);
+  border-bottom: 5px solid var(--main-blue);
   background-color: white;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(30, 30, 30, 0.1);
 }
 
 .back_text {
@@ -59,7 +61,7 @@ body {
 }
 
 .fatblack {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: 700;
   color: black;
 }

@@ -1,0 +1,94 @@
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background-color: var(--main-blue);
+  width: 99%;
+  height: 99%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top,
+.title,
+.bot {
+  font-family: "Kaushan Script", "Nanum Gothic", sans-serif;
+}
+
+.title {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.t1,
+.t2 {
+  width: 100%;
+  margin: 20px;
+  color: white;
+  text-align: center;
+  font-size: 60px;
+  -webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.61, 0.355, 1)
+    both;
+  animation: tracking-in-expand 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
+}
+
+.t2 {
+  animation-delay: 0.7s;
+  font-size: 110px;
+}
+
+.top {
+  opacity: 0%;
+}
+
+.bot div {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  margin: 10px;
+}
+
+.bot div:nth-child(2) {
+  display: none;
+  font-family: "Nanum Gothic", sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

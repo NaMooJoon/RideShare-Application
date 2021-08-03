@@ -84,12 +84,10 @@ function createitem(json_index,name, img, way, startloc, destination, message, u
 } //아이템 만드는 함수 종료
 
 
-
-
-
 function chatButtonClick(){
     location.href="Main.html";
 }
+
 
 function refreshClick(){
     $( 'div' ).remove( '.useritem' );
@@ -98,6 +96,18 @@ function refreshClick(){
         iterate_createitem(users);
     });    
 }
+
+
+refbtn = document.querySelector(".refresh_btn");
+
+refbtn.addEventListener("click", function(e) {
+  e.preventDefault;
+  refbtn.classList.remove("jello");
+  refbtn.offsetWidth = refbtn.offsetWidth;
+  refbtn.classList.add("jello");
+}, false);
+
+
 
 
 /* 테스트용 함수
