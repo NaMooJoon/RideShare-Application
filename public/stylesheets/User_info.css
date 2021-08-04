@@ -105,12 +105,7 @@ div button {
   color: var(--main-blue);
 }
 
-.top,
-.username,
-.profile_image,
-.user_message,
-.path_image,
-.bottom_buttons {
+.screen {
   -webkit-animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }

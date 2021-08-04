@@ -95,6 +95,7 @@ function refreshClick(){
         console.log(users);
         iterate_createitem(users);
     });    
+    document.body.scrollTop = intY
 }
 
 
@@ -108,14 +109,22 @@ refbtn.addEventListener("click", function(e) {
 }, false);
 
 
-const body_screen = document.querySelector("html");
-console.log(body_screen)
-var deg = 45;
 
-playAlert = setInterval(function() {
-    deg = deg + 1;
-    body_screen.style.background = 'linear-gradient(' + deg%360 + 'deg, var(--main-blue-40), rgba(150, 240, 220,0.4))';
-}, 30);
+ var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
+ if(strCook.indexOf("!~")!=0) {
+  var intS = strCook.indexOf("!~");
+  var intE = strCook.indexOf("~!");
+  var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
+  document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
+  }
+ document.plan6.resizeFrame(this);
+
+ function SetDivPosition()
+ {
+  var intY = document.body.scrollTop;
+  document.cookie = "yPos=!~"+intY+"~!";
+ }
+
 
 
 /* 테스트용 함수
