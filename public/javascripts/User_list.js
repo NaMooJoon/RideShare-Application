@@ -91,6 +91,7 @@ function refreshClick(){
 }
 
 
+
 var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
 if(strCook.indexOf("!~")!=0) {
 var intS = strCook.indexOf("!~");
