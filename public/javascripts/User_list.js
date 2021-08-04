@@ -106,16 +106,6 @@ function SetDivPosition(){
 }
 
 
-refbtn = document.querySelector(".refresh_btn");
-
-refbtn.addEventListener("click", function(e) {
-  e.preventDefault;
-  refbtn.classList.remove("jello");
-  refbtn.offsetWidth = refbtn.offsetWidth;
-  refbtn.classList.add("jello");
-}, false);
-
-
 
 /* 테스트용 함수
 function testclick(){
