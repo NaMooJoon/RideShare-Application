@@ -32,12 +32,13 @@
 //});
 
 // host -> 현재 창의 주소를 담고 있는 변수.
-var host = window.location.protocol + "//" + window.location.host;
+//이거 다시 회복
+/* var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-});
-
-
+}); */
+// 이거 다시 회복
+/* 
 var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
@@ -51,7 +52,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-};
+}; */
 
 
 /* let SavedGetData = data; */
@@ -186,12 +187,12 @@ function TS(){
     console.log("hihihih")
 }
 
-const COG = document.querySelector("#Picture");
-COG.addEventListener("click",Sidebar)
-function Sidebar(){
-    /* document.querySelector("#sidebar").style.left = "0px"; */
-    document.querySelector("#sidebar").classList.toggle("to")
-}
+
+
+
+
+
+
 
 
 

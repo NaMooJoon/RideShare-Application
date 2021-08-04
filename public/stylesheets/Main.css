@@ -5,6 +5,10 @@ html,body{
 body{
     margin:0;
 }
+#Whole{
+  height:100%;
+  width:100%;
+}
 #Top_Part{
   position: relative;
 }
@@ -17,39 +21,55 @@ body{
     
     margin: 0 auto;
     margin-top:30px;
- 
-}
+    
+  }
+  label{
+    color:rgba(0,0,0,0.87) !important;
+  }
+
 input[id="Side_input"]{
   display:none;
 }
-.Side_label{
-  flex-grow:3;
 
-}
-input[id="Side_input"]:checked ~ #Top_Part #Top_form #sidebar{
-  left:0;
-}
 #sidebar{
-  /* position:fixed; */
+  /*  position:fixed; */
   position:absolute;
   top:50px;
-  left:-290px;
-  width:300px;
-  height:300px;
-  background-color:teal;
+  left:-170px;
+  width:170px;
+  height:100vh;
+  background-color:rgb(230,230,255);
   z-index:30;
   transition: .35s; 
 }
-
-#Picture{
-  font-size:30px;
-  margin-left: 4vw;
-  /* flex-grow:3; */
-  position:relative;
+#sidebar label{
+  position:absolute;
+  width:100%;
+  height: 100%;
+  background-color:salmon ;
+  z-index: -1;
 }
 
-#Picture i{
+input[id="Side_input"]:checked ~ #Top_Part #Top_form #sidebar{
+  left:0;
+}
+
+#Cog_div{
+  font-size:30px;
+  margin-left: 4vw;
+  flex-grow:3;
+  position:relative;
+}
+#Cog_Area{
+  
+  width:30px;
+  margin:0;
+  
+}
+
+#Cog_div i{
   line-height: 50px;
+  font-size:30px;
 }
 
 #bell{
