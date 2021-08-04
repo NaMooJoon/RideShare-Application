@@ -1,7 +1,6 @@
 body {
-  background-color: rgba(50, 110, 240, 0.05);
+  height: 100vh;
 }
-
 .dot {
   border: 1px dotted black;
 }
@@ -17,7 +16,7 @@ body {
   object-fit: fill;
   border-radius: 20px;
   margin-top: 3vh;
-  box-shadow: 0px 0px 20px rgba(50, 110, 240, 0.3);
+  box-shadow: 0px 0px 20px rgba(195, 214, 255, 0.5);
 }
 
 .svgico {
@@ -46,7 +45,7 @@ body {
 .loc_and_image {
   display: flex;
   flex-direction: column;
-  margin-top: 8vh;
+  margin-top: 10vh;
   justify-content: center;
   text-align: center;
   height: 35vh;
@@ -174,10 +173,10 @@ img {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  bottom: 20px;
+  bottom: 25px;
   right: 25px;
   background-color: var(--main-blue);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px white;
 }
 
 .jello {
