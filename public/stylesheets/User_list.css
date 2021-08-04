@@ -1,5 +1,10 @@
+html {
+  background-color: none;
+}
+
 body {
-  background-color: rgba(50, 110, 240, 0.05);
+  background-color: none;
+  height: auto;
 }
 
 .dot {
@@ -7,6 +12,7 @@ body {
 }
 
 .screen {
+  background-color: none;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -17,7 +23,7 @@ body {
   object-fit: fill;
   border-radius: 20px;
   margin-top: 3vh;
-  box-shadow: 0px 0px 20px rgba(50, 110, 240, 0.3);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
 }
 
 .svgico {
@@ -25,7 +31,6 @@ body {
 }
 
 .top {
-  margin-top: 3vh;
   display: flex;
   width: 90%;
   justify-content: start;
@@ -46,14 +51,10 @@ body {
 .loc_and_image {
   display: flex;
   flex-direction: column;
-  margin-top: 8vh;
+  margin-top: 10vh;
   justify-content: center;
   text-align: center;
-  height: 35vh;
-}
-
-img {
-  height: 25vh;
+  width: 60%;
 }
 
 .user_item_layout,
@@ -165,6 +166,7 @@ img {
 }
 
 .floating_btn {
+  z-index: 99;
   color: rgb(233, 244, 255);
   cursor: pointer;
   display: flex;
@@ -174,10 +176,10 @@ img {
   width: 65px;
   height: 65px;
   border-radius: 50%;
-  bottom: 20px;
+  bottom: 25px;
   right: 25px;
   background-color: var(--main-blue);
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 5px white;
 }
 
 .jello {
@@ -193,6 +195,36 @@ img {
 
 .nametext {
   width: 40%;
+}
+
+.screen {
+  -webkit-animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
 
 @-webkit-keyframes jello {
