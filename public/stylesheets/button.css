@@ -12,8 +12,9 @@ body {
 }
 
 .fixtop {
+  z-index: 99;
   position: fixed;
-  height: 12%;
+  height: 12vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -24,23 +25,20 @@ body {
   .screen {
     width: 60%;
   }
-  .fixtop {
-    width: 60%;
-  }
 }
 
 .back_button {
   cursor: pointer;
   display: flex;
-  width: 100px;
-  height: 50px;
+  width: 90px;
+  height: 40px;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 8px;
-  border: 3px solid var(--main-blue);
+  border: 2px solid var(--main-blue);
   border-bottom: 5px solid var(--main-blue);
   background-color: white;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 00.4);
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
 .back_text {

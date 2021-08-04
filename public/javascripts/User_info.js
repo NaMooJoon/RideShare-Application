@@ -41,7 +41,7 @@ function sendAjax(url, method, call) {
 };
 
 
-const body_screen = document.querySelector(".screen");
+const body_screen = document.querySelector("body");
 
 console.log(body_screen)
 var deg = 45;
