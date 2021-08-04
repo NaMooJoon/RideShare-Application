@@ -2,6 +2,7 @@
   height: 100vh;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
 }
 
 .top {
@@ -78,6 +79,7 @@
 
 .bottom_buttons {
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 div button {
@@ -101,4 +103,39 @@ div button {
   font-style: normal;
   font-weight: 700;
   color: var(--main-blue);
+}
+
+.top,
+.username,
+.profile_image,
+.user_message,
+.path_image,
+.bottom_buttons {
+  -webkit-animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
