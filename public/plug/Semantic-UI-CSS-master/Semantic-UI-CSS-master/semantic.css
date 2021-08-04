@@ -39,14 +39,14 @@ html {
 
 /* iPad Input Shadows */
 
-input[type="text"],
+ input[type="text"],
 input[type="email"],
 input[type="search"],
 input[type="password"] {
   -webkit-appearance: none;
   -moz-appearance: none;
-  /* mobile firefox too! */
-}
+ /*  mobile firefox too!  */
+} 
 
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -312,11 +312,11 @@ select,
 textarea {
   font-family: sans-serif;
   /* 1 */
-  font-size: 100%;
+ /*  font-size: 100%; */
   /* 1 */
-  line-height: 1.15;
+ /*  line-height: 1.15; */
   /* 1 */
-  margin: 0;
+ /*  margin: 0; */
   /* 2 */
 }
 
@@ -328,7 +328,7 @@ textarea {
 button,
 input {
   /* 1 */
-  overflow: visible;
+  /* overflow: visible; */
 }
 
 /**

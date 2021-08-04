@@ -34,9 +34,23 @@ const timer = document.querySelector(".timepicker");
 M.Timepicker.init(timer,{});
 
 // 요일 선택 활성화
+
 $('#week')
   .dropdown({
-    maxSelections: 7
+    maxSelections: 7,
+    onChange: function(value,text,$choice){
+      if(value === "Once"){
+        const DATE_FORM = document.querySelector(".Date_form");
+        const REPET_FORM = document.querySelector(".Repeat_form");
+        console.log(DATE_FORM)
+        DATE_FORM.classList.remove("UNable");
+        REPET_FORM.style.pointerEvents = "none";
+        REPET_FORM.style.opacity = "0.6";
+       
+       /*  DATE_FORM.style.opacity = "1"; */
+        console.log("성공!")
+      }
+    }
   })
 ;
 
@@ -69,13 +83,19 @@ $("#summitBT").click(function () {
     let TimeInput = Tinput.value;
     let Dinput = document.querySelector("#date");
     let DateInput = Dinput.value;
-    let array1 = [TextArea,TimeInput,DateInput,PMValue,week,StartLocation,EndLocation,TransValue];
-    let Sbutton = document.querySelector("#summitBT");
+    let array1 = [TextArea,TimeInput,week,PMValue,StartLocation,EndLocation,TransValue];
+    let array2 = [DateInput,TextArea,TimeInput,week,PMValue,StartLocation,EndLocation,TransValue]
     // 공백있는지 확인
     let blank_TF = false;
+    console.log(PMValue,"this is test")
+    if (week !== "Once"){
     for (let element of array1) {
         if (element === ""){ blank_TF = true;  }
-    } 
+    } } else{
+      for (let elements of array2) {
+        if (elements === ""){ blank_TF = true;  }
+    }
+    }
     
     console.log(TextArea,TimeInput,DateInput,PMValue,week,StartLocation,EndLocation,TransValue)
 
@@ -122,34 +142,25 @@ $("#summitBT").click(function () {
       alert("채우지 않은 빈칸이 있습니다.")
     }
    
-    /* var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest();
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
          document.querySelector('#time').innerHTML = xhr.responseText; 
     }
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data = '';
-    data += 'timezone='+"TESTDATA1";
-    data += '&format='+"TESTDATA";
     data += 'Location_start='+ StartLocation;
-    data += '&Location_end='+ StartLocation;
-    data += '&Start_time='+ StartLocation;
-    data += '&Repeat_ornot='+ StartLocation;
-    data += '&Limit_person='+ StartLocation;
-    data += '&transport_way='+ StartLocation;
-    data += '&comments='+ StartLocation;
-    data += '&li_id='+ StartLocation;
-    data += '&label_id='+ StartLocation;
-    Location_end:  EndLocation,
-    Start_time: TimeInput,
-    Repeat_ornot: week,
-    Start_date: DateInput,
-    Limit_person: PMValue,
-    transport_way: TransValue,
-    comments: TextArea,
-    li_id: Date.now(),
-    label_id: Date.now() * 1000,
-    xhr.send(data);  */
+    data += '&Location_end='+ EndLocation;
+    data += '&Start_time='+ TimeInput;
+    data += '&Repeat_ornot='+ week;
+    data += '&Limit_person='+ PMValue;
+    data += '&transport_way='+ TransValue;
+    data += '&comments='+ TextArea;
+    data += '&label_onoff='+ true;
+   /*  data += '&li_id='+ Date.now();
+    data += '&label_id='+ Date.now() * 1000; */
+
+    xhr.send(data); 
 }); 
 
 
