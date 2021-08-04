@@ -108,6 +108,14 @@ refbtn.addEventListener("click", function(e) {
 }, false);
 
 
+const body_screen = document.querySelector("body");
+console.log(body_screen)
+var deg = 45;
+
+playAlert = setInterval(function() {
+    deg = deg + 1;
+    body_screen.style.background = 'linear-gradient(' + deg%360 + 'deg, var(--main-blue), rgb(150, 240, 220))';
+}, 50);
 
 
 /* 테스트용 함수

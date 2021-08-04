@@ -40,8 +40,13 @@ function sendAjax(url, method, call) {
     });
 };
 
-// username.innerHTML = "김한동"
-// message.innerHTML = "메세지는 여기에 표시됩니다."
-// profile.src = "../public/images/nodata.png"
-// path1.src = "../public/images/nodata.png"
-// path2.src = "../public/images/nodata.png"
+
+const body_screen = document.querySelector(".screen");
+
+console.log(body_screen)
+var deg = 45;
+
+playAlert = setInterval(function() {
+    deg = deg + 1;
+    body_screen.style.background = 'linear-gradient(' + deg%360 + 'deg, var(--main-blue), rgb(150, 240, 220))';
+}, 30);
