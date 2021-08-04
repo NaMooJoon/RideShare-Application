@@ -181,7 +181,17 @@ function SendTFData(C_ID){
  
 
 
+document.querySelector(".fa-cog").addEventListener("click",TS)
+function TS(){
+    console.log("hihihih")
+}
 
+const COG = document.querySelector("#Picture");
+COG.addEventListener("click",Sidebar)
+function Sidebar(){
+    /* document.querySelector("#sidebar").style.left = "0px"; */
+    document.querySelector("#sidebar").classList.toggle("to")
+}
 
 
 

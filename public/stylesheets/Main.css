@@ -5,28 +5,67 @@ html,body{
 body{
     margin:0;
 }
+#Top_Part{
+  position: relative;
+}
 #Top_form{
    /*  background-color: aquamarine; */
     height:50px;
     width: 90%;
     display:flex;
-    justify-content: space-between;
+   /*  justify-content: space-between;  */
+    
     margin: 0 auto;
     margin-top:30px;
+ 
+}
+input[id="Side_input"]{
+  display:none;
+}
+.Side_label{
+  flex-grow:3;
 
+}
+input[id="Side_input"]:checked ~ #Top_Part #Top_form #sidebar{
+  left:0;
+}
+#sidebar{
+  /* position:fixed; */
+  position:absolute;
+  top:50px;
+  left:-290px;
+  width:300px;
+  height:300px;
+  background-color:teal;
+  z-index:30;
+  transition: .35s; 
 }
 
 #Picture{
-    background-color:blue;
-    height:50px;
-    width: 50px;
-    border-radius: 100%;
-    
+  font-size:30px;
+  margin-left: 4vw;
+  /* flex-grow:3; */
+  position:relative;
 }
+
+#Picture i{
+  line-height: 50px;
+}
+
+#bell{
+  font-size:30px;
+  flex-grow:0.5;
+  text-align: center;
+}
+#bell i{
+  line-height: 50px;
+}
+
 #Serch{
     /* background-color:blueviolet; */
-    height:50px;
-    width: 50px;
+  /*  margin-right:23px; */
+   flex-grow:0.5;
+   text-align: center;
 }
 #Serch i{
     font-size:30px;
