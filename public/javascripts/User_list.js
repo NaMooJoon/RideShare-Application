@@ -87,22 +87,19 @@ function chatButtonClick(){
 
 
 function refreshClick(){
-    $( 'div' ).remove( '.useritem' );
-    sendAjax(host + '/ride-share/data', "GET", function(users){
-        console.log(users);
-        iterate_createitem(users);
-    });    
-    var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
- if(strCook.indexOf("!~")!=0) {
-  var intS = strCook.indexOf("!~");
-  var intE = strCook.indexOf("~!");
-  var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
-  document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
-  }
- document.plan6.resizeFrame(this);
-
+    location.reload();  
 }
 
+
+var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
+if(strCook.indexOf("!~")!=0) {
+var intS = strCook.indexOf("!~");
+var intE = strCook.indexOf("~!");
+var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
+document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
+}
+
+document.plan6.resizeFrame(this);
 function SetDivPosition(){
  var intY = document.body.scrollTop;
  document.cookie = "yPos=!~"+intY+"~!";
