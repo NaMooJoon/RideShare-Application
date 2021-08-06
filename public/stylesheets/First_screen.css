@@ -1,38 +1,28 @@
-html {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0px;
-  padding: 0px;
+#body_screen {
   width: 100vw;
   height: 100vh;
-}
-
-body {
-  background-color: var(--main-blue);
-  width: 99%;
-  height: 99%;
   display: flex;
+  position: fixed;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 }
 
-.top,
-.title,
-.bot {
+div#body_screen .top,
+div#body_screen .title,
+div#body_screen .bot {
   font-family: "Kaushan Script", "Nanum Gothic", sans-serif;
 }
 
-.title {
+div#body_screen .title {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.t1,
-.t2 {
+div#body_screen .t1,
+div#body_screen .t2 {
   width: 100%;
   margin: 20px;
   color: white;
@@ -43,38 +33,38 @@ body {
   animation: tracking-in-expand 1s cubic-bezier(0.215, 0.61, 0.355, 1) both;
 }
 
-.t2 {
+div#body_screen .t2 {
   animation-delay: 0.7s;
   font-size: 20vw;
 }
 
-.top {
+div#body_screen .top {
   opacity: 0%;
 }
 
-.bot div {
+div#body_screen .bot div {
   font-size: 18px;
   color: white;
   text-align: center;
   margin: 10px;
 }
 
-.bot div:nth-child(2) {
+div#body_screen .bot div:nth-child(2) {
   display: none;
   font-family: "Nanum Gothic", sans-serif;
   font-size: 14px;
   font-weight: bold;
 }
 
-.disable {
+div#body_screen .disable {
   opacity: 0;
 }
 
 @media (min-width: 1000px) {
-  .t1 {
+  div#body_screen .t1 {
     font-size: 6vw;
   }
-  .t2 {
+  div#body_screen .t2 {
     font-size: 12vw;
   }
 }
@@ -105,13 +95,13 @@ body {
   }
 }
 
-.spinner {
+div#body_screen .spinner {
   margin-bottom: 70px;
   width: 100px;
   text-align: center;
 }
 
-.spinner > div {
+div#body_screen .spinner > div {
   width: 20px;
   height: 20px;
   background-color: whitesmoke;
@@ -122,12 +112,12 @@ body {
   animation: sk-bouncedelay 1s infinite ease-in-out both;
 }
 
-.spinner .bounce1 {
+div#body_screen .spinner .bounce1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
 
-.spinner .bounce2 {
+div#body_screen .spinner .bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }
@@ -187,7 +177,7 @@ body {
   }
 }
 
-.title {
+div#body_screen .title {
   -webkit-animation: blur-out-expand-fwd 0.7s
     cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
   animation: blur-out-expand-fwd 0.7s cubic-bezier(0.55, 0.085, 0.68, 0.53) both;
