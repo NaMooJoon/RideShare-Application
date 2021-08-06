@@ -66,7 +66,7 @@ input[id="bell_input"]{
   width:35vw;
   /* width:10vw; */
   margin-right:10vw;
-  height:200px;
+  height:400px;
   background-color: rosybrown;
   z-index: 30;
   transition: .35s;
@@ -76,6 +76,22 @@ input[id="bell_input"]{
 }
 
 /* 미디어 쿼리 쓰기!! */
+@media screen and (min-width:432px){
+  #bell_sidebar{
+    margin-right:8vw;
+  }
+}
+
+@media screen and (min-width:668px){
+  #bell_sidebar{
+    margin-right:6vw;
+  }
+}
+@media screen and (min-width:1507px){
+  #bell_sidebar{
+    margin-right:4.7vw;
+  }
+}
 
 #log_sidebar li{
   width:170px;
@@ -329,7 +345,9 @@ span.badge{
 .L_Top_Text span:last-child{
   margin-left:5px;
 }
-
+a{
+  text-decoration: none !important;
+}
 /* #Circle_test{
   background-color: blue;
   border-radius: 100%;
