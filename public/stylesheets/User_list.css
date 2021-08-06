@@ -192,8 +192,8 @@ body {
 .screen,
 .top,
 .floating_btn {
-  -webkit-animation: fade-in-fwd 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-  animation: fade-in-fwd 0.5s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation: fade-in-fwd 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 
 .refresh_btn {
