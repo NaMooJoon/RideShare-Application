@@ -131,6 +131,7 @@ $("#summitBT").click(function () {
         label_id: Date.now() * 1000,
     }
     Sendarray.push(Send_OBJ);
+    console.log(Sendarray,"Sendarray")
     saveDATA();
 
       console.log("no blank",

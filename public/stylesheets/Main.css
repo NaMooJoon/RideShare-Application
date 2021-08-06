@@ -59,6 +59,7 @@ input[id="bell_input"]{
   z-index: -1;
 }
 #bell_sidebar{
+  display:none;
   position:absolute;
   top:50px;
   right:0;
@@ -106,6 +107,7 @@ input[id="bell_input"]{
  
 }
 #bell_sidebar li{
+  display:none;
   width:100%;
   height:70px;
   text-align: center;
