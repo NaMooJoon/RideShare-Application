@@ -1,45 +1,15 @@
 
-// 서버에서 DATA joson으로 받기
 
-
-    // $.ajax({
-    //     url:'/main',
-    //     dataType:'json',
-    //     success:function(data){
-    //      console.log(data)
-    //     } 
-    // })
-// var xhr = new XMLHttpRequest();
-// xhr.addEventListener('load', function(){
-//     var result = JSON.parse(xhr.responseText);
-//     console.log(result);
-//     // if(result.result !== "ok") { alert(result.message); }
-//     // else { window.location.href="http://localhost:3000/main"}
-// });
-//$.getJSON( "http://localhost:3000/main/data", function( data ) {
-//    console.log("Input data ",data);
-//});
-
-//var data;
-//$(function () {
-//    $.getJSON("/main", function(json){
-//       data = json;
-//       console.log(" data : "+JSON.stringify(data));
-//       $('#table').bootstrapTable({
-//          data: data
-//       });
-//    });
-//});
 
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-/* var host = window.location.protocol + "//" + window.location.host;
+ var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-}); */
+}); 
 // 이거 다시 회복
 
-/* var SavedGetData; 
+var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -52,15 +22,33 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-}; */
+}; 
+
+// 토글 버튼 클릭시 서버로 데이터 전송
+//https://ourcstory.tistory.com/161 블로그 주소
+
+/* let params = {Test1: "data1",Test2:"data2"};
+$("#Serch")
+$.ajax({ 
+    url:"/main/toggle", 
+         type:"POST", data:JSON.stringify(params), 
+         contentType: "application/json", 
+         success: function(result) {
+              if (result) 
+              { alert("저장되었습니다."); } 
+              else { alert("잠시 후에 시도해주세요."); } 
+            }, 
+            error: function() { alert("에러 발생"); } 
+        }) */
 
 
-/* let SavedGetData = data;  */
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+
+let SavedGetData = data; 
+/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
 /* 받아온 Data 불러오기 (localstorage) */
-if (SavedGetData!==null){
+/* if (SavedGetData!==null){
     Makehtml(SavedGetData);
-}
+} */
  
 
 
@@ -97,8 +85,8 @@ function Makehtml(Data_obj){
     
    
     remove.forEach(function(item) {
-      item.addEventListener("click",deleteList ); 
-    //   item.addEventListener("click",next );  서버쓰 코드
+      /* item.addEventListener("click",deleteList );  */
+      item.addEventListener("click",next );  //서버's 코드
     });
 }
 
