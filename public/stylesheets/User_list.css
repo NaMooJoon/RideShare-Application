@@ -30,12 +30,6 @@ body {
   margin-left: 1vh;
 }
 
-.top {
-  display: flex;
-  width: 90%;
-  justify-content: start;
-}
-
 .userlist {
   width: 90%;
   align-items: left;
