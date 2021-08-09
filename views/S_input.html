@@ -5,13 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>S_input</title>
-    <link rel="stylesheet" href="../public/stylesheets/S_input.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="../public/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/dropdown.min.css">
     <link rel="stylesheet" type="text/css" href="../public/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/transition.min.css">
-<!--     <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/icon.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="../public/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/icon.css">
+ <!--    <link rel="stylesheet" type="text/css" href="../public/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/semantic.min.css"> -->
+    <!--     <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/icon.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="../public/stylesheets/jquery.nice-number.css">
+    <link rel="stylesheet" href="../public/stylesheets/S_input.css">
   </head>
 <body>
     <div class="Short-distance">Short-distance</div>
@@ -22,11 +24,11 @@
     </div>
     </a>
 
-   <form action="/main/create_list" method="post">
+   <!-- <form action="/main/create_list" method="post"> -->
     <div class="location_form">
       <div class="Start_wrap">
          <div class="Start_text">출발지:</div>
-         <!-- <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-start">
+        <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-start" >
       
             <span id="T1" class="text" ><i class="search icon"></i>Search</span>
             <div class="menu">
@@ -60,7 +62,7 @@
                 바다
               </div>
               <div class="item">
-                &nbsp&nbsp영일대
+                영일대
               </div>
               <div class="divider"></div>
               <div class="header">
@@ -82,12 +84,12 @@
               </div>
             </div>
           </div>
-           -->
-           <input type="text" name="Location_start">
+          
+          
           </div>
           <div class="End_wrap">
           <div class="End_text">도착지:</div>
-          <!-- <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-end">
+           <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-end">
       
             <span id="T2" class="text"><i class="search icon"></i>Search</span>
             <div class="menu">
@@ -121,7 +123,7 @@
                 바다
               </div>
               <div class="item">
-                &nbsp&nbsp영일대
+                영일대
               </div>
               <div class="divider"></div>
               <div class="header">
@@ -143,8 +145,8 @@
               </div>
             </div>
           </div>
-           -->
-           <input type="text" name="Location_end">
+          
+       
           </div>
 
     </div>
@@ -162,21 +164,22 @@
         <i class="dropdown icon"></i>
         <div class="default text" id="Select">Select Repeat or not</div>
         <div class="menu">
-        <div class="item" data-value="Once"><i class="as flag"></i>한번실행</div>
-        <div class="item" data-value="mon"><i class="af flag"></i>월</div>
-        <div class="item" data-value="tue"><i class="ax flag"></i>화</div>
-        <div class="item" data-value="wed"><i class="al flag"></i>수</div>
-        <div class="item" data-value="thu"><i class="dz flag"></i>목</div>
-        <div class="item" data-value="fri"><i class="as flag"></i>금</div>
-        <div class="item" data-value="sat"><i class="as flag"></i>토</div>
-        <div class="item" data-value="sun"><i class="as flag"></i>일</div>
+        <div class="item" data-value="Once">한번실행</div>
+        <div class="item" data-value="mon">월</div>
+        <div class="item" data-value="tue">화</div>
+        <div class="item" data-value="wed">수</div>
+        <div class="item" data-value="thu">목</div>
+        <div class="item" data-value="fri">금</div>
+        <div class="item" data-value="sat">토</div>
+        <div class="item" data-value="sun">일</div>
           </div>
           </div>
     </div>
-    <div class="Date_form">
+    <div class="Date_form UNable">
       <div class="Date_text">날짜선택</div>
       <input type="text" id="date" name="Start_date" class="datepicker" required>
     </div>
+
     <div class="LimitNum_form">
       <div class="LimitNum_text">제한 승객 인원</div>
       <div class="container">
@@ -235,7 +238,7 @@
         submit
     </button>
     </div>
-    </form>
+  <!--   </form> -->
 
     
 

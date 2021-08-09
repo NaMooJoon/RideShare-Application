@@ -75,6 +75,7 @@ body{
     font-size: 20px;
     font-weight: 700;
     padding-right: 20px;
+    line-height: 42px;
 }
 
 #T1, #T2{
@@ -87,10 +88,25 @@ body{
     border: 1px solid AAB0B7;
     border-radius: 10px;
 }
+/* #Search-Cate-end{
+    padding-top: 7 !important;
+    padding-bottom: 0 !important;
+    line-height: 42px;
+}
+#Search-Cate-start{
+    padding-top: 0.2 !important;
+    padding-bottom: 0;
+    line-height: 42px;
+} */
 
 
 /* /////// Time /////// */
-
+.ui.button:hover{
+    background-color: #fff !important;
+}
+.ui.button{
+    background:#fff !important;
+}
 
 .Time_form{
     height: 95px;
@@ -175,7 +191,11 @@ body{
     color:blue !important
   }
   
-  
+ /*  ///// UNable //// */
+ .UNable{
+    pointer-events: none;
+    opacity: 0.4;
+ }
 
 
 
@@ -268,3 +288,4 @@ body{
     margin-bottom:10px;
     color:deeppink;
 }
+

@@ -32,13 +32,14 @@
 //});
 
 // host -> 현재 창의 주소를 담고 있는 변수.
-var host = window.location.protocol + "//" + window.location.host;
+//이거 다시 회복
+/* var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-});
+}); */
+// 이거 다시 회복
 
-
-var SavedGetData; 
+/* var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -51,15 +52,16 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-};
+}; */
 
 
-/* let SavedGetData = data; */
-// 받아온 Data 불러오기 (localstorage)
-// if (SavedGetData!==null){
-//     Makehtml(SavedGetData);
-// }
-
+/* let SavedGetData = data;  */
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+/* 받아온 Data 불러오기 (localstorage) */
+if (SavedGetData!==null){
+    Makehtml(SavedGetData);
+}
+ 
 
 
 // html 만들기 1
@@ -95,8 +97,8 @@ function Makehtml(Data_obj){
     
    
     remove.forEach(function(item) {
-      //item.addEventListener("click",deleteList ); 
-      item.addEventListener("click",next ); 
+      item.addEventListener("click",deleteList ); 
+    //   item.addEventListener("click",next );  서버쓰 코드
     });
 }
 
@@ -179,6 +181,16 @@ function SendTFData(C_ID){
     console.log("TF")
 }
  
+
+
+document.querySelector(".fa-cog").addEventListener("click",TS)
+function TS(){
+    console.log("hihihih")
+}
+
+
+
+
 
 
 
