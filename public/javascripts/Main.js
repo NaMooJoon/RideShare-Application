@@ -43,7 +43,7 @@ $.ajax({
 
 
 
-let SavedGetData = data; 
+// let SavedGetData = data; 
 /* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
 /* 받아온 Data 불러오기 (localstorage) */
 /* if (SavedGetData!==null){
