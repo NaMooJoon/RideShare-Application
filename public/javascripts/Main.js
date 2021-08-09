@@ -43,7 +43,7 @@ $.ajax({
 
 
 
-// let SavedGetData = data; 
+let SavedGetData = data; 
 /* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
 /* 받아온 Data 불러오기 (localstorage) */
 /* if (SavedGetData!==null){
@@ -121,6 +121,31 @@ function createHTML(item){
 //////////////////////// 임시 함수
 function next(event){
     window.location.href=host + '/ride-share'
+    let li_pick = event.currentTarget.parentElement.parentElement;
+    let LI_ID_AR = li_pick.id;
+    let LI_ID_ARROW_JOSON = { LI_ID_AR : li_pick.id }
+    $.ajax({ 
+        url:"/main/toggle", 
+             type:"POST", data:JSON.stringify(LI_ID_ARROW_JOSON), 
+             contentType: "application/json", 
+             success: function(result) {
+                  if (result) 
+                  { console("저장되었습니다."); } 
+                  else { console("전달실패"); } 
+                }, 
+                error: function() { alert("에러 발생"); } 
+            })
+
+   /*  var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/main/create_list');
+    xhr.onreadystatechange = function(){
+         document.querySelector('#time').innerHTML = xhr.responseText; 
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var data = '';
+    data += 'LI_ID_AR='+LI_ID_AR ;
+   
+    xhr.send(data);  */
 }
 //////////////////////// 임시 함수
 

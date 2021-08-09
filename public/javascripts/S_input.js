@@ -146,7 +146,7 @@ $("#summitBT").click(function () {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
-         document.querySelector('#time').innerHTML = xhr.responseText; 
+        
     }
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data = '';
