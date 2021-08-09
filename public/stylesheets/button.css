@@ -21,6 +21,13 @@ body {
   align-items: center;
 }
 
+.top {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 @media (min-width: 1000px) {
   .screen {
     width: 60%;
@@ -46,6 +53,10 @@ body {
   font-style: bold;
   font-weight: 700;
   color: var(--main-blue);
+}
+
+.empty {
+  width: 90px;
 }
 
 .circle {
