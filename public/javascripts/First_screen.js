@@ -25,15 +25,12 @@ function sendAjax(url, method, call) {
 };
 
 
-
-
 setTimeout(function() {
-    sendAjax(host + '/data', "GET", function(users){
-        iterate_createitem(users);
-        if (users == undefined){
-            window.location.href = host + "/login";
+    sendAjax(host + '/data', "GET", function(result){
+        if (result.user === undefined){
+            window.location.href = "/login";
         }else{
-            window.location.href = host + "/main"
+            window.location.href = "/main"
         }
 });
- }, 3500);
+ }, 3300);
