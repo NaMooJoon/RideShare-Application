@@ -43,13 +43,13 @@ $.ajax({
 
 
 
-let SavedGetData = data; 
+//let SavedGetData = data; 
 /* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
 /* 받아온 Data 불러오기 (localstorage) */
 /* if (SavedGetData!==null){
     Makehtml(SavedGetData);
-} */
- 
+}
+  */
 
 
 // html 만들기 1
@@ -83,11 +83,20 @@ function Makehtml(Data_obj){
     
     let remove = document.querySelectorAll('.Arrow');   
     
-   
+   // Arrow 클릭시 AJAX함수 실행
     remove.forEach(function(item) {
       /* item.addEventListener("click",deleteList );  */
       item.addEventListener("click",next );  //서버's 코드
     });
+
+    // toggle 버튼 클릭시 AJAX함수 실행
+   
+    let toggle_bt = document.querySelectorAll(".ON_OFF input");
+    console.log(toggle_bt,"toggle_bt")
+    toggle_bt.forEach(function(item){
+    item.addEventListener("click", CheckToggle)
+    });
+
 }
 
 // html 만들기 2
@@ -107,8 +116,8 @@ function createHTML(item){
             </div>
             <div class="bu_arrow_wrap">
             <div class="ON_OFF">
-                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox"/>
-                <label class="tgl-btn" for="${LABEL_ID}" onclick="SendTFData(this.id)"></label>
+                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" />
+                <label class="tgl-btn" for="${LABEL_ID}"></label>
             </div>
             <div class="Arrow">
                 <i class="fas fa-chevron-right"></i>
@@ -118,7 +127,37 @@ function createHTML(item){
         `;
     
  }
-//////////////////////// 임시 함수
+ //onclick="SendTFData(this.id)
+
+
+
+
+// toggle 버튼 눌렀을때 AJAX함수: 
+function CheckToggle(event){
+   let List_tog = event.currentTarget.parentElement.parentElement.parentElement;
+    console.log(List_tog,"pick");
+   let LIST_ID_to = List_tog.id;
+   let toggle_bt_ID = event.currentTarget.id;
+   let toggle_TF = event.currentTarget.checked;
+   console.log("ForEach-LI_ID:",LIST_ID_to);
+   console.log("ForEach-toggle_ID:",toggle_bt_ID);
+   console.log("ForEach-toggle_TF:",toggle_TF);
+   TO_DATA = {li_id:LIST_ID_to,
+            label_id:toggle_bt_ID,
+            label_onoff:toggle_TF}
+   $.ajax({ 
+    url:"/main/toggle", 
+         type:"POST", data:JSON.stringify(TO_DATA), 
+         contentType: "application/json", 
+         success: function(result) {
+              if (result) 
+              { console.log("저장되었습니다."); } 
+              else { console.log("잠시 후에 시도해주세요."); } 
+            }, 
+            error: function() { console.log("에러 발생"); } 
+        })
+ };
+ // Arrow 눌렀을때 AJAX함수: 서버에게 lI_id 전송 
 function next(event){
     window.location.href=host + '/ride-share'
     let li_pick = event.currentTarget.parentElement.parentElement;
@@ -136,18 +175,8 @@ function next(event){
                 error: function() { alert("에러 발생"); } 
             })
 
-   /*  var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/main/create_list');
-    xhr.onreadystatechange = function(){
-         document.querySelector('#time').innerHTML = xhr.responseText; 
-    }
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    var data = '';
-    data += 'LI_ID_AR='+LI_ID_AR ;
-   
-    xhr.send(data);  */
 }
-//////////////////////// 임시 함수
+
 
  // list 삭제하기
 
@@ -179,21 +208,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  let IDS = "1627354198623000"
-
-console.log($(`input:checkbox[id=${IDS}]`).is(":checked"),"this2")
 
 const Checkbox = document.querySelectorAll("label");
 console.log(Checkbox)
 Checkbox.onclick = function(){
     alert("hi")
 }
-
-function SendTFData(C_ID){
-    console.log(C_ID,"id")
-    console.log("TF")
-}
- 
 
 
 document.querySelector(".fa-cog").addEventListener("click",TS)
