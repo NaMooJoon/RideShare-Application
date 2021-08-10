@@ -37,14 +37,14 @@ function sendAjax(url, method, call) {
 "li_id": 1627284879581,
 "transport_way": "ktx"
 */ 
-sendAjax(host + '/ride-share/data', "GET", function(users){
+sendAjax( window.location.href , "POST", function(users){
 	console.log(users);
     iterate_createitem(users);
 });
 
 
 var goUserinfo = function(li_id) {
-    window.location.href=host + '/ride-share/' + li_id;
+    window.location.href=host + '/ride-share/list/' + li_id;
 }
 
 function iterate_createitem(users){

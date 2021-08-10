@@ -14,7 +14,7 @@ const path = result.split('/');
 const id = path[path.length-1];
 
 
-sendAjax(host + `/ride-share/${id}/data`, "GET", function(data){
+sendAjax(window.location.href, "POST", function(data){
 	console.log(data);
 	const username = data.name;
 	const message = data.comments;
