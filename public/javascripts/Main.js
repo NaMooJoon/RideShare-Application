@@ -3,10 +3,10 @@
 
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
- var host = window.location.protocol + "//" + window.location.host;
+/*  var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-}); 
+});  */
 // 이거 다시 회복
 
 var SavedGetData; 
@@ -48,8 +48,8 @@ $.ajax({
 /* 받아온 Data 불러오기 (localstorage) */
 /* if (SavedGetData!==null){
     Makehtml(SavedGetData);
-}
-  */
+} */
+ 
 
 
 // html 만들기 1
@@ -108,6 +108,12 @@ function createHTML(item){
      let E_TEXT = item.Location_end;
      let TIME_TEXT = item.Start_time;
      let WEEk = item.Repeat_ornot;
+     let TO_TF_SEVER = item.label_onoff;
+     if (TO_TF_SEVER===1){
+         TO_TF = "checked"
+     } else{
+         TO_TF = ""
+     }
      return`
      <li id="${LI_ID}" class="list">
             <div class="L_Text">
@@ -116,7 +122,7 @@ function createHTML(item){
             </div>
             <div class="bu_arrow_wrap">
             <div class="ON_OFF">
-                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" />
+                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF} />
                 <label class="tgl-btn" for="${LABEL_ID}"></label>
             </div>
             <div class="Arrow">
@@ -160,7 +166,6 @@ function CheckToggle(event){
  // Arrow 눌렀을때 AJAX함수: 서버에게 lI_id 전송 
 function next(event){
     let li_pick = event.currentTarget.parentElement.parentElement;
-    let LI_ID_AR = li_pick.id;
     let LI_ID_ARROW_JOSON = { LI_ID_AR : li_pick.id }
     $.ajax({ 
         url:"/main/toggle", 
@@ -171,7 +176,7 @@ function next(event){
                   { console.log("저장되었습니다."); } 
                   else { console.log("전달실패"); } 
                 }, 
-                error: function() { alert("에러 발생"); } 
+                error: function() { console.log("에러 발생"); } 
             })
 
 }
@@ -208,11 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
 
-const Checkbox = document.querySelectorAll("label");
-console.log(Checkbox)
-Checkbox.onclick = function(){
-    alert("hi")
-}
+
 
 
 document.querySelector(".fa-cog").addEventListener("click",TS)
