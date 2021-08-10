@@ -23,6 +23,8 @@ var loginRouter = require('./routes/login');
 var mainRouter = require('./routes/main');
 var chatRouter = require('./routes/chat');
 var logoutRouter = require('./routes/logout');
+var profileRouter = require('./routes/profile');
+const { profile } = require('console');
 
 var app = express();
 
@@ -53,6 +55,7 @@ app.use('/main', mainRouter);
 app.use('/ride-share', rideRouter);
 app.use('/chat-share', chatRouter);
 app.use('/logout', logoutRouter);
+app.use('/profile', profileRouter);
 
 
 
