@@ -18,7 +18,6 @@ router.use(bodyParser.json());
 
 //passport.serialize
 passport.serializeUser(function(user, done) {
-    console.log(user);
     console.log('passport session save : ', user.id);
     done(null, user.id);
 });

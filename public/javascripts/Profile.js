@@ -28,8 +28,42 @@ else{
                                 
 }
 
+// host -> 현재 창의 주소를 담고 있는 변수.
+var host = window.location.protocol + "//" + window.location.host;
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
 
-function saveImage() {
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
+
+sendAjax( host + '/profile/user' , "POST", function(users){
+    console.log(users);
+	UsernameInput.value = users[0].name;
+    UserInfoInput.value = users[0].stID;
+
+    BT.addEventListener("click", e => {
+        e.preventDefault();
+        saveImage(users[0].stID);
+    });
+});
+
+function blobToFile(theBlob, fileName){
+    //A Blob() is almost a File() - it's just missing the two properties below which we will add
+    theBlob.lastModifiedDate = new Date();
+    theBlob.name = fileName;
+    return theBlob;
+}
+
+
+function saveImage(stID) {
     var $canvas = document.createElement('canvas');
     var imgDataUrl = $canvas.toDataURL('image/png');
     
@@ -41,7 +75,9 @@ function saveImage() {
     var file = new Blob([new Uint8Array(array)], {type: 'image/png'});	// Blob 생성
     var formdata = new FormData();	// formData 생성
     console.log(file);
-    formdata.append("file", file, 'test');	// file data 추가
+    formdata.append("file", file, `${stID}`);	// file data 추가
+    var png = blobToFile(file, 'test.png');
+    console.log(png);
 
     console.log("폼데이터 쉬불", formdata.get("file"));
     // const test = document.querySelector("#testimg");
@@ -52,6 +88,7 @@ function saveImage() {
         type : 'post',
         url : '/profile',
         data : formdata,
+        //data: png,
         processData : false,	// data 파라미터 강제 string 변환 방지!!
         contentType : false,	// application/x-www-form-urlencoded; 방지!!
         success : function (data){
@@ -63,10 +100,7 @@ function saveImage() {
 }
 
 
-BT.addEventListener("click", e => {
-    e.preventDefault();
-    saveImage();
-});
+
 
 //버튼 눌렀을시 다른 screen으로 가는 기능
 //if onclik

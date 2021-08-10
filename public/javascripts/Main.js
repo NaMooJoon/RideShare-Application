@@ -3,10 +3,10 @@
 
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-/*  var host = window.location.protocol + "//" + window.location.host;
+var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-});  */
+}); 
 // 이거 다시 회복
 
 var SavedGetData; 
@@ -167,17 +167,18 @@ function CheckToggle(event){
 function next(event){
     let li_pick = event.currentTarget.parentElement.parentElement;
     let LI_ID_ARROW_JOSON = { LI_ID_AR : li_pick.id }
-    $.ajax({ 
-        url:"/main/toggle", 
-             type:"POST", data:JSON.stringify(LI_ID_ARROW_JOSON), 
-             contentType: "application/json", 
-             success: function(result) {
-                  if (result) 
-                  { console.log("저장되었습니다."); } 
-                  else { console.log("전달실패"); } 
-                }, 
-                error: function() { console.log("에러 발생"); } 
-            })
+    window.location.href = host + '/ride-share/' + li_pick.id;
+    // $.ajax({ 
+    //     url:"/main/toggle", 
+    //          type:"POST", data:JSON.stringify(LI_ID_ARROW_JOSON), 
+    //          contentType: "application/json", 
+    //          success: function(result) {
+    //               if (result) 
+    //               { console.log("저장되었습니다."); } 
+    //               else { console.log("전달실패"); } 
+    //             }, 
+    //             error: function() { console.log("에러 발생"); } 
+    //         })
 
 }
 
