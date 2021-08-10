@@ -1,28 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, 
     maximum-scale=1.0, minimum-scale=1.0" />
-    <title>User_info</title>
+    <title>Profile</title>
+    <link href='/stylesheets/reset.css' rel='stylesheet'>
+    <link href='/stylesheets/button.css' rel='stylesheet'>
     <link href='/stylesheets/Profile.css' rel='stylesheet'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     
 </head>
 <body>
+<div class="background"></div>
+<div class="fixtop">
+    <div class="top">
+        <div class="back_button" onclick="goBack()">
+            <div style="align-items:center; justify-content: center;  width:28px; height:28px; border-radius: 50%; background-color: rgb(213, 233, 255);">
+                <svg width="26" height="26" viewBox="-3 -1 18 12" xmlns="http://www.w3.org/2000/svg">
+                <path style="fill:var(--main-blue)" fill-rule="evenodd" clip-rule="evenodd" d="M12.6001 7.49999C13.3732 7.49999 14 6.82843 14 5.99998C14 5.17153 13.3732 4.49998 12.6001 4.49998L4.7797 4.49998L6.58969 2.56062C7.13637 1.97487 7.13637 1.02506 6.58969 0.439313C6.04287 -0.146439 5.15656 -0.146439 4.60975 0.439313L0.409907 4.93933C0.147417 5.22058 1.51299e-06 5.60218 1.47821e-06 5.99998C1.44344e-06 6.39778 0.147417 6.77938 0.409907 7.06063L4.60974 11.5607C5.15656 12.1464 6.04287 12.1464 6.58969 11.5607C7.13637 10.9749 7.13637 10.0251 6.58969 9.43933L4.7797 7.49998L12.6001 7.49999Z" fill="rgba(255,255,255,1)"/>
+                </svg>
+                <script>
+                function goBack() {
+                window.history.back();
+                }
+                </script>
+            </div>
+                <span class="back_text">Back</span>
+        </div>
+    </div>
+</div>
 <div id="Whole" >
 
 
-    <div id="top_form">
-        <div id="iconpart"><span id="icon"><i class="fas fa-arrow-left"></i></span> <span id="BACK">BACK</span></div>
-        <div id="Profile">Profile</div>
+
+    <div id="picture_form" class="circle">
+        <canvas id="canvas" class ="hidden" width="250px" height="250px">으악</canvas>
+        <img id="canvas_display" src="/images/profile_null.png" class="circle"/>
+        <label id="up_btn" for="inputfile">이미지 업로드</label>
+        <span class="s_text">* 1:1 비율의 이미지를 업로드 하는것을 권장합니다.</span>
+        <input type="file" id="inputfile" onchange="handleImageView(this.files)">
     </div>
-
-
-    <div id="picture_form"></div>
-
 <form id="formTAG" autocomplete="off">
     <div id="input_form">
             <input
@@ -40,19 +60,22 @@
 
 
     <div id="button_form">
-        <button id="Button">press me</button>
+        <button id="Button">확인</button>
     </div>
 </form>
 
-</div>
-<!-- 유저 입력 후 창 -->
-<div id="after" class="hidden">
-<div id="afterlayout">
-    안녕하세요 신경식님
-<a href="MakeList.html">Screen2</a>
+
+    <img id="testimg" src="#"/>
+
+
 </div>
 
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
     <script src='/javascripts/Profile.js'></script>
+    <script src='/javascripts/background.js'></script>
     
 </body>
 </html>

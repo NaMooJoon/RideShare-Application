@@ -1,3 +1,4 @@
+//const { registerCustomQueryHandler } = require("puppeteer");
 const UserForm = document.querySelector("#formTAG");
 const UsernameInput = document.querySelector("#input1");
 const UserInfoInput = document.querySelector("#input2");
@@ -39,21 +40,35 @@ function saveImage() {
     }
     var file = new Blob([new Uint8Array(array)], {type: 'image/png'});	// Blob 생성
     var formdata = new FormData();	// formData 생성
+    console.log(file);
     formdata.append("file", file);	// file data 추가
+
+    console.log(formdata.getName("file"));
+    // const test = document.querySelector("#testimg");
+    // test.src = formdata;
+    // console.dir(test);
+
     $.ajax({
         type : 'post',
-        url : 'localhost/board',
+        url : '/profile',
         data : formdata,
         processData : false,	// data 파라미터 강제 string 변환 방지!!
         contentType : false,	// application/x-www-form-urlencoded; 방지!!
-        success : function (data){}
+        success : function (data){
+            alert("프로필 정보가 등록되었습니다.");
+            //window.location.href="/profile";
+        }
     })
-    alert("프로필 정보가 등록되었습니다.");
-    window.location.href="../views/Main.html";
+    
 }
 
 
-BT.addEventListener("click",saveImage);
+//BT.addEventListener("click",saveImage);
+BT.addEventListener("click", e => {
+    e.preventDefault();
+    saveImage();
+});
+
 //버튼 눌렀을시 다른 screen으로 가는 기능
 //if onclik
 
