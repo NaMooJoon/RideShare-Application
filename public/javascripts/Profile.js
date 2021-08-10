@@ -43,7 +43,7 @@ function saveImage() {
     console.log(file);
     formdata.append("file", file);	// file data 추가
 
-    console.log(formdata.getName("file"));
+    console.log("폼데이터 쉬불", formdata.get("file"));
     // const test = document.querySelector("#testimg");
     // test.src = formdata;
     // console.dir(test);
@@ -63,7 +63,6 @@ function saveImage() {
 }
 
 
-//BT.addEventListener("click",saveImage);
 BT.addEventListener("click", e => {
     e.preventDefault();
     saveImage();
