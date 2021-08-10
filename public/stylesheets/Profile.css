@@ -1,12 +1,11 @@
 #picture_form {
-  background-color: rgba(0, 0, 0, 0.1);
   width: 250px;
-  height: 250px;
+  height: auto;
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  top: 30%;
+  top: 36%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
@@ -17,9 +16,10 @@
 
 #canvas_display {
   background-color: white;
-  object-fit: fill;
   width: 250px;
   height: 250px;
+  object-fit: fill;
+  border: 5px solid white;
 }
 
 #input_form {
