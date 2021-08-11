@@ -104,11 +104,11 @@ var strPos = strCook.substring(intS+2, intE);//스크롤 위치를 구한다.
 document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
 }
 
-//document.plan6.resizeFrame(this);
-//function SetDivPosition(){
-// var intY = document.body.scrollTop;
-// document.cookie = "yPos=!~"+intY+"~!";
-//}
+// document.plan6.resizeFrame(this);
+// function SetDivPosition(){
+//  var intY = document.body.scrollTop;
+//  document.cookie = "yPos=!~"+intY+"~!";
+// }
 
 
 
