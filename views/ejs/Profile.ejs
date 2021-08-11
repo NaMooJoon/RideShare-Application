@@ -45,27 +45,20 @@
     </div>
 <form id="formTAG" autocomplete="off">
     <div id="input_form">
-            <input
-            id = "input1"
-            required
-            maxlength="15"
-            type="text" 
-            placeholder="이름을 입력해주십시오"/>
-            <input 
-            id ="input2"
-            required
-            type="text" 
-            placeholder="사용자 정보를 입력해주십시오"/>
-    </div>
+        <div id = "input1">한동이</div>
+        <div id ="input2">12345678</div>
 
 
-    <div id="button_form">
-        <button id="Button">확인</button>
-    </div>
-</form>
+        <img height="250px" width="250px" id="profile_image" class="circle"/>
+        <input type="file" id="input_file" onchange="test(this.files)">
 
 
 </div>
+<div id="button_form">
+    <button id="Button">확인</button>
+</div>
+</form>
+
 
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -73,6 +66,6 @@
     crossorigin="anonymous"></script>
     <script src='/javascripts/Profile.js'></script>
     <script src='/javascripts/background.js'></script>
-    
+    <script src='/javascripts/profileimg.js'></script>    
 </body>
 </html>

@@ -46,8 +46,8 @@ function sendAjax(url, method, call) {
 
 sendAjax( host + '/profile/user' , "POST", function(users){
     console.log(users);
-	UsernameInput.value = users[0].name;
-    UserInfoInput.value = users[0].stID;
+	UsernameInput.innerHTML = users[0].name;
+    UserInfoInput.innerHTML = users[0].stID;
 
     BT.addEventListener("click", e => {
         e.preventDefault();
@@ -79,7 +79,7 @@ function saveImage(stID) {
     var png = blobToFile(file, 'test.png');
     console.log(png);
 
-    console.log("폼데이터 쉬불", formdata.get("file"));
+    console.log("폼데이터 @~@", formdata.get("file"));
     // const test = document.querySelector("#testimg");
     // test.src = formdata;
     // console.dir(test);
@@ -129,3 +129,4 @@ function handleImageView(files){
 	}
 	reader.readAsDataURL(file);
 }
+
