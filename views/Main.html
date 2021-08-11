@@ -8,9 +8,16 @@
     <title>Main</title>
     <link href="../public/stylesheets/Main.css" rel="stylesheet">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <style>
+        .Modal_list{
+            width:100px;
+            height:70px;
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
 <div id="Whole">
@@ -20,14 +27,17 @@
     <div id="Top_form">
         <!-- 설정아이콘 -->
         <div id="Cog_div">
+            <a href="#" data-target="slide-out" class="sidenav-trigger">
             <div id="Cog_Area">
             <label for="Side_input" class="Side_label">
             <i class="fas fa-cog"></i>
         </label>
             </div>
+            </a>
         </div>
        <!--  알림 아이콘 -->
         <div id="bell">
+            <a class="modal-trigger" href="#modal1">
             <label for="bell_input" class="bell_click_input">
                 <i class="fas fa-bell">
                         <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -36,19 +46,20 @@
                     </span>
                 </i>
             </label>
+            </a>
         </div>
         <!--   검색 아이콘 -->
         <div id="Serch">
             <i class="fas fa-search"></i>
         </div>
         <!-- 설정 창 사이드 바 -->
-        <div id="log_sidebar">
+        <!-- <div id="log_sidebar">
             <ul>
                 <li>프로필 편집</li>
                 <li><i class="fas fa-sign-out-alt"></i>로그아웃</li>
             </ul>
             <label for="Side_input"></label>
-        </div>
+        </div> -->
         <!-- 알림 창 사이드 바 -->
         <div id="bell_sidebar">
             <ul>
@@ -111,10 +122,51 @@
       </div>
 </div>
 
+
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--  Materilize sidebar -->
+<ul id="slide-out" class="sidenav">
+    <li><div class="user-view">
+      <div class="background">
+       <!--  <img src="images/office.jpg"> -->
+      </div>
+      <a href="#user"><img class="circle" src="#">hihi</a>
+      <a href="#name"><span class="white-text name">신경식</span></a>
+      <a href="#email"><span class="white-text email">22100411</span></a>
+    </div></li>
+    <li><a class="subheader">프로필 편집</a></li>
+    <li><a class="waves-effect"href="#!"><i class="fas fa-sign-out-alt"></i>Profile</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">로그아웃하기</a></li>
+    <li><a class="waves-effect" href="#!"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+  </ul>
+ 
+    
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+      <div class="modal-content">
+        <h4>알림창</h4>
+        <p>A bunch of text</p>
+      <div class="Modal_list">
+
+      </div>
+      <div class="Modal_list">
+
+    </div>
+    <div class="Modal_list">
+
+    </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
     <script src='../public/javascripts/Main.js'></script>
     

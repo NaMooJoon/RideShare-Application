@@ -332,3 +332,14 @@ $(function () {
       threshold: 200,
     });
   });
+
+// sidebar materilize 시작
+  $(document).ready(function(){
+    $('.sidenav').sidenav();
+  });
+
+  // modal 창(materilize) 시작
+  $(document).ready(function(){
+    $('.modal').modal();
+  });
+          

@@ -5,6 +5,11 @@ html,body{
 body{
     margin:0;
 }
+@media (min-width: 1000px) {
+  .screen {
+    width: 60%;
+  }
+}
 #Whole{
   height:100%;
   width:100%;
@@ -26,6 +31,15 @@ body{
   /* ///////////////////////////// */
   /*    사이드 바 css ,애니메이션  */
   /* /////////////////////////// */
+
+/*  ///// materilize sidebar ///// */
+.white-text{
+  color:blue !important;
+}
+.sidenav{
+  width:200px !important;
+}
+  /* /////////////////// */
   label{
     color:rgba(0,0,0,0.87) !important;
   }
