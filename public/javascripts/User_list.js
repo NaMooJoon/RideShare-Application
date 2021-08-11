@@ -49,29 +49,32 @@ var goUserinfo = function(li_id) {
 
 function iterate_createitem(users){
     for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
+        createitem(users[i].stID,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
     }
 }
 
 
 //아이템 만드는 함수 시작
-function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
-    document.querySelector("div.user_item_layout span.nametext").innerHTML=name
-    document.querySelector("div.user_item_layout img.profile").src=img
-    document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg"
-    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
-    document.querySelector("div.user_item_layout span.message").innerHTML=message
-    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
-    //document.querySelector(".findbutton").onclick=goUserinfo(li_id);
-    document.querySelector("div.user_item_layout .findbutton").setAttribute('onclick','goUserinfo('+li_id+')')
+function createitem(stID,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
+    document.querySelector("div.user_item_layout span.nametext").innerHTML=name;
+    document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg";
+    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination;
+    document.querySelector("div.user_item_layout span.message").innerHTML=message;
+    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")";
+    document.querySelector("div.user_item_layout .findbutton").setAttribute('onclick','goUserinfo('+li_id+')');
     console.log(li_id, message);
-
+    
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
     if (!img) {
-        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png"
+        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png";
     }
+    sendAjax( host + '/profile/data/'+ stID, "POST", function(blob){
+        const blobUrl = window.URL.createObjectURL(blob);
+        document.querySelector("div.user_item_layout img.profile").src=blobUrl;
+        window.URL.revokeObjectURL(blobUrl);
+    });
     const layout = document.getElementsByClassName("user_item_layout");
     const userlist = document.getElementsByClassName("screen");
     let newitem = document.createElement('div');
@@ -79,6 +82,7 @@ function createitem(json_index,name, img, way, startloc, destination, message, u
     newitem.innerHTML = layout[0].innerHTML;
     userlist[0].append(newitem);
 } //아이템 만드는 함수 종료
+
 
 
 function chatButtonClick(){
