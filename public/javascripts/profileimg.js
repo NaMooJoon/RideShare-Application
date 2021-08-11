@@ -9,11 +9,10 @@
 //    var imageUrl = urlCreator.createObjectURL(this.response);
 //    document.querySelector("#profile_image").src = imageUrl;
 // }
-
-function test(files) {
-    var blob = files[0];
+sendAjax( host + '/profile/data' , "POST", function(blob){
+    console.log(blob);
     const blobUrl = window.URL.createObjectURL(blob);
     document.querySelector("#profile_image").src = blobUrl;
     console.log("blob의 Url",blobUrl);
     window.URL.revokeObjectURL(blobUrl);
-}
+});
