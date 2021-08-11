@@ -37,7 +37,7 @@
 
 
     <div id="picture_form" class="circle">
-        <canvas id="canvas" class ="hidden" width="250px" height="250px">으악</canvas>
+        <canvas id="canvas" class ="hidden" width="250px" height="250px"></canvas>
         <img id="canvas_display" src="../public/images/profile_null.png" class="circle"/>
         <label id="up_btn" for="inputfile">이미지 업로드</label>
         <span class="s_text">* 1:1 비율의 이미지를 업로드 하는것을 권장합니다.</span>
@@ -45,27 +45,20 @@
     </div>
 <form id="formTAG" autocomplete="off">
     <div id="input_form">
-            <input
-            id = "input1"
-            required
-            maxlength="15"
-            type="text" 
-            placeholder="이름을 입력해주십시오"/>
-            <input 
-            id ="input2"
-            required
-            type="text" 
-            placeholder="사용자 정보를 입력해주십시오"/>
+            <div id = "input1">한동이</div>
+            <div id ="input2">12345678</div>
+
+
+            <img height="250px" width="250px" id="profile_image" class="circle"/>
+            <input type="file" id="input_file" onchange="test(this.files)">
+
+
     </div>
-
-
     <div id="button_form">
         <button id="Button">확인</button>
     </div>
 </form>
 
-
-</div>
 
     <script
     src="https://code.jquery.com/jquery-3.6.0.min.js"
@@ -73,6 +66,7 @@
     crossorigin="anonymous"></script>
     <script src='../public/javascripts/Profile.js'></script>
     <script src='../public/javascripts/background.js'></script>
+    <script src='../public/javascripts/profileimg.js'></script>
     
 </body>
 </html>
