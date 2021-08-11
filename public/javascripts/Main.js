@@ -217,7 +217,17 @@ function next(event){
 function removeAjax(event){
     let li_from_de = event.currentTarget.parentElement.parentElement.parentElement;
     console.log("delete",li_from_de)
-    
+    $.ajax({ 
+          url:`/main/${li_from_de.id}`, 
+               type:"delete", data:null, 
+             
+               success: function(result) {
+                    if (result) 
+                    { console.log("저장되었습니다.",result);  } 
+                    else { console.log("전달실패",result); } 
+                  }, 
+                  error: function() { console.log("에러 발생"); } 
+              })
 }
 
  // list 삭제하기
