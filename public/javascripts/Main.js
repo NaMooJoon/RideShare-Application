@@ -3,13 +3,13 @@
 
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-var host = window.location.protocol + "//" + window.location.host;
+/* var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-}); 
+});  */
 // 이거 다시 회복
 
-var SavedGetData; 
+/* var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -22,7 +22,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-}; 
+};  */
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -44,11 +44,11 @@ $.ajax({
 
 
 // let SavedGetData = data; 
-/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* 받아온 Data 불러오기 (localstorage) */
-/* if (SavedGetData!==null){
+if (SavedGetData!==null){
     Makehtml(SavedGetData);
-} */
+}
  
 
 
@@ -81,10 +81,10 @@ function Makehtml(Data_obj){
      */
     
     
-    let remove = document.querySelectorAll('.Arrow');   
+    let arrow = document.querySelectorAll('.Arrow');   
     
    // Arrow 클릭시 AJAX함수 실행
-    remove.forEach(function(item) {
+    arrow.forEach(function(item) {
       /* item.addEventListener("click",deleteList );  */
       item.addEventListener("click",next );  //서버's 코드
     });
@@ -97,6 +97,11 @@ function Makehtml(Data_obj){
     item.addEventListener("click", CheckToggle)
     });
 
+    // remove 버튼 클릭시 AJAX함수 실행
+    let remove = document.querySelectorAll('.list__item-action'); 
+    remove.forEach(function(item) {
+        item.addEventListener("click",removeAjax );  
+      });
 }
 
 // html 만들기 2
@@ -114,7 +119,7 @@ function createHTML(item){
      } else{
          TO_TF = ""
      }
-     return`
+    /*  return`
      <li id="${LI_ID}" class="list">
             <div class="L_Text">
                 <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
@@ -130,8 +135,35 @@ function createHTML(item){
             </div>
              </div>
         </li>
-        `;
-    
+        `; */
+        return`
+        <div id="${LI_ID}" class="test-wrapper">
+          <ul id="test" class="list">
+            <li class="list__item">
+              <div class="list__item-text">
+                <li  id="list" class="swiper-slide" >
+                    <div class="L_Text">
+                        <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
+                        <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div>
+                    </div>
+                    <div class="bu_arrow_wrap">
+                    <div class="ON_OFF">
+                        <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF}/>
+                        <label class="tgl-btn" for="${LABEL_ID}"></label>
+                    </div>
+                    <div class="Arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                     </div>
+                     <div class="list__item-action">
+                       <span >delete</span>
+                     </div>
+                    </li>
+              </div>
+            </li>
+        </ul>
+      </div>
+    `;
  }
  //onclick="SendTFData(this.id)
 
@@ -140,7 +172,7 @@ function createHTML(item){
 
 // toggle 버튼 눌렀을때 AJAX함수: 
 function CheckToggle(event){
-   let List_tog = event.currentTarget.parentElement.parentElement.parentElement;
+   let List_tog = event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement;
     console.log(List_tog,"pick");
    let LIST_ID_to = List_tog.id;
    let toggle_bt_ID = event.currentTarget.id;
@@ -165,8 +197,8 @@ function CheckToggle(event){
  };
  // Arrow 눌렀을때 AJAX함수: 서버에게 lI_id 전송 
 function next(event){
-    let li_pick = event.currentTarget.parentElement.parentElement;
-    let LI_ID_ARROW_JOSON = { LI_ID_AR : li_pick.id }
+    let li_pick = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
+    console.log("LIST_PICK",li_pick.id)
     window.location.href = host + '/ride-share/' + li_pick.id;
     // $.ajax({ 
     //     url:"/main/toggle", 
@@ -181,7 +213,22 @@ function next(event){
     //         })
 
 }
-
+//
+function removeAjax(event){
+    let li_from_de = event.currentTarget.parentElement.parentElement.parentElement;
+    console.log("delete",li_from_de)
+    $.ajax({ 
+          url:`/main/${li_from_de.id}`, 
+               type:"delete", data:null, 
+             
+               success: function(result) {
+                    if (result) 
+                    { console.log("저장되었습니다.",result);  } 
+                    else { console.log("전달실패",result); } 
+                  }, 
+                  error: function() { console.log("에러 발생"); } 
+              })
+}
 
  // list 삭제하기
 
@@ -217,17 +264,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-document.querySelector(".fa-cog").addEventListener("click",TS)
-function TS(){
-    console.log("hihihih")
-}
 
+// 스와이프 코드
 
+$(function () {
+    $('#test li').swipe({
+      swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+        if (direction === 'right') {
+          if (!$(this).hasClass('active')) return;
 
+          $(this)
+            .stop(true)
+            .css({
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-${100 - distance}px, 0px, 0px)`,
+            });
 
+          if ((phase === 'cancel' || phase === 'end') && distance >= 120) {
+            $(this)
+              .stop(true)
+              .css({
+                transform: `translate3d(0px, 0px, 0px)`,
+              })
+              .removeClass('active');
 
+            setTimeout(() => {
+              $(this).stop(true).css({
+                transition: 'all 0s ease-out',
+              });
+            }, 300);
+          } else if ((phase === 'cancel' || phase === 'end') && distance < 120) {
+            $(this).stop(true).css({
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-100px, 0px, 0px)`,
+            });
+          }
+        } else if (direction === 'left') {
+          if ($(this).hasClass('active')) return;
+          else {
+            $(this)
+              .stop(true)
+              .css({
+                transition: 'all 0s ease-out',
+                transform: `translate3d(-${distance}px, 0px, 0px)`,
+              });
+          }
 
+          if (phase === 'cancel' && distance < 100) {
+            $(this).stop(true).css({
+              transition: 'all .3s ease-out',
+            });
 
-
-
-
+            setTimeout(() => {
+              $(this).stop(true).css({
+                transform: `translate3d(0px, 0px, 0px)`,
+              });
+            }, 0);
+          } else if ((phase === 'cancel' || phase === 'end') && distance >= 100) {
+            $(this).addClass('active');
+            $(this).stop(true).css({
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-100px, 0px, 0px)`,
+            });
+          }
+        }
+      },
+      threshold: 200,
+    });
+  });
