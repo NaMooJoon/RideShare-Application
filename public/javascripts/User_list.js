@@ -67,14 +67,15 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
-    if (!img) {
-        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png";
-    }
-    sendAjax( host + '/profile/data/'+ stID, "POST", function(blob){
-        const blobUrl = window.URL.createObjectURL(blob);
-        document.querySelector("div.user_item_layout img.profile").src=blobUrl;
-        window.URL.revokeObjectURL(blobUrl);
+
+    var fs = require('fs'); 
+    fs.readFile('public/images/profile/'+stID, 'utf8', function(data){ //blob파일 읽어오기
+    console.log(data);
+    const blobUrl = window.URL.createObjectURL(blob);
+    document.querySelector("div.user_item_layout img.profile").src=blobUrl;
+    window.URL.revokeObjectURL(blobUrl);
     });
+
     const layout = document.getElementsByClassName("user_item_layout");
     const userlist = document.getElementsByClassName("screen");
     let newitem = document.createElement('div');
