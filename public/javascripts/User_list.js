@@ -100,15 +100,15 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
     console.log(getText(stID));
     const blobUrl = window.URL.createObjectURL(blob);
     document.querySelector("div.user_item_layout img.profile").src=blobUrl;
-});
 
-const layout = document.getElementsByClassName("user_item_layout");
-const userlist = document.getElementsByClassName("screen");
-let newitem = document.createElement('div');
-newitem.className ="useritem";
-newitem.innerHTML = layout[0].innerHTML;
-userlist[0].append(newitem);
-window.URL.revokeObjectURL(blobUrl);
+
+    const layout = document.getElementsByClassName("user_item_layout");
+    const userlist = document.getElementsByClassName("screen");
+    let newitem = document.createElement('div');
+    newitem.className ="useritem";
+    newitem.innerHTML = layout[0].innerHTML;
+    userlist[0].append(newitem);
+    window.URL.revokeObjectURL(blobUrl);
 } //아이템 만드는 함수 종료
 
 
