@@ -69,6 +69,19 @@ function iterate_createitem(users){
 //     }
 // }
 
+function getText(student_id){
+    var request = new XMLHttpRequest();
+    request.open('GET', 'public/images/profile/'+student_id , true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader('Content-Type');
+            if (type.indexOf("text") !== 1) {
+                return request.responseText;
+            }
+        }
+    }
+}
 
 //아이템 만드는 함수 시작
 function createitem(stID,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
@@ -84,21 +97,7 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
 
-    function getText(){
-        var request = new XMLHttpRequest();
-        request.open('GET', 'public/images/profile/'+stID , true);
-        request.send(null);
-        request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-                var type = request.getResponseHeader('Content-Type');
-                if (type.indexOf("text") !== 1) {
-                    return request.responseText;
-                }
-            }
-        }
-    }
-
-    console.log(getText());
+    console.log(getText(stID));
     const blobUrl = window.URL.createObjectURL(blob);
     document.querySelector("div.user_item_layout img.profile").src=blobUrl;
 });
