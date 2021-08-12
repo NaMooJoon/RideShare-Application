@@ -98,7 +98,7 @@ $("#summitBT").click(function () {
         Location_start: StartLocation,
         Location_end:  EndLocation,
         Start_time: TimeInput,
-        Repeat_ornot: "", //because this json is from Long-distance, there is no Repeat
+        Repeat_ornot: null, //because this json is from Long-distance, there is no Repeat
         Start_date: DateInput,
         Limit_person: PMValue,
         transport_way: TransValue,
@@ -109,11 +109,29 @@ $("#summitBT").click(function () {
     Sendarray.push(Send_OBJ);
     saveDATA();
 
-      console.log("no blank"); window.location.href="../../views/Main.html"; 
+      console.log("no blank"); 
+      /* window.location.href="../../views/Main.html";  */
     } else {
       document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
       alert("채우지 않은 빈칸이 있습니다.")
     }
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/main/create_list');
+    xhr.onreadystatechange = function(){
+        
+    }
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    var data = '';
+    data += 'Location_start='+ StartLocation;
+    data += '&Location_end='+ EndLocation;
+    data += '&Start_time='+ TimeInput;
+    data += '&Repeat_ornot='+ null;
+    data += '&Limit_person='+ PMValue;
+    data += '&transport_way='+ TransValue;
+    data += '&comments='+ TextArea;
+   
+
+    xhr.send(data); 
 }); 
 
 

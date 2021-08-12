@@ -57,7 +57,7 @@ function Makehtml(Data_obj){
     Data_long = [];
     console.log(Data_obj,"Data_obj")
     Data_obj.forEach(function(item) {
-        if (item.Repeat_ornot ===""){
+        if (item.Repeat_ornot === null){
             Data_long.push(item)
         } else{
             Data_short.push(item)
@@ -258,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
       hoverEnabled: false
     });
   });
+
 
 
 
