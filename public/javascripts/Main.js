@@ -1,6 +1,3 @@
-
-
-
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
 var host = window.location.protocol + "//" + window.location.host;
