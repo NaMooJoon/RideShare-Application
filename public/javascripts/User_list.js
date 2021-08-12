@@ -69,17 +69,15 @@ function iterate_createitem(users){
 //     }
 // }
 
-function getText(student_id){
+function getBlob(student_id, callback){
     var request = new XMLHttpRequest();
-    request.open('GET', 'public/images/profile/'+student_id , true);
+    request.open('GET', '/images/profile/'+student_id , true);
+	request.responseType = 'blob';
     request.send(null);
     request.onreadystatechange = function () {
-        if (request.readyState === 4 && request.status === 200) {
-            var type = request.getResponseHeader('Content-Type');
-            if (type.indexOf("text") !== 1) {
-                return request.responseText;
-            }
-        }
+		if(request.readyState === request.DONE) {
+			callback(request.response);
+		}
     }
 }
 
@@ -97,18 +95,19 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
 
-    console.log(getText(stID));
-    const blobUrl = window.URL.createObjectURL(blob);
-    document.querySelector("div.user_item_layout img.profile").src=blobUrl;
-
-
-    const layout = document.getElementsByClassName("user_item_layout");
-    const userlist = document.getElementsByClassName("screen");
-    let newitem = document.createElement('div');
-    newitem.className ="useritem";
-    newitem.innerHTML = layout[0].innerHTML;
-    userlist[0].append(newitem);
-    window.URL.revokeObjectURL(blobUrl);
+	getBlob(stID, function(Blob){
+		console.log(textUrl);
+    	const blobUrl = window.URL.createObjectURL(Blob);
+	    document.querySelector("div.user_item_layout img.profile").src=blobUrl;
+	
+	    const layout = document.getElementsByClassName("user_item_layout");
+	    const userlist = document.getElementsByClassName("screen");
+	    let newitem = document.createElement('div');
+	    newitem.className ="useritem";
+	    newitem.innerHTML = layout[0].innerHTML;
+	    userlist[0].append(newitem);
+	    window.URL.revokeObjectURL(blobUrl);
+	});
 } //아이템 만드는 함수 종료
 
 
