@@ -7,24 +7,18 @@ var passport = require('passport')
 var session = require('express-session')
 var flash = require('connect-flash')
 var MySQLStore = require('express-mysql-session')(session)
-var option = require('./config/option');
-var options = {
-  host: option.storageConfig.host,
-  port: 3306,
-  user: option.storageConfig.username,
-  password: option.storageConfig.password,
-  database: option.storageConfig.database,
-};
+var options = require('./lib/db').options;
 var sessionStore = new MySQLStore(options);
 
+// Call routers
 var indexRouter = require('./routes/index');
 var rideRouter = require('./routes/ride-share');
 var loginRouter = require('./routes/login');
+var joinRouter = require('./routes/join');
 var mainRouter = require('./routes/main');
 var chatRouter = require('./routes/chat');
 var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
-const { profile } = require('console');
 
 var app = express();
 
@@ -48,15 +42,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
-
+// Using routers.
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
+app.use('/join', joinRouter);
 app.use('/main', mainRouter);
 app.use('/ride-share', rideRouter);
 app.use('/chat-share', chatRouter);
 app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
-
 
 
 //////////////////////////error///////////////////////////////////
@@ -74,4 +68,5 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 module.exports = app;
