@@ -157,7 +157,7 @@ $("#summitBT").click(function () {
     data += '&Limit_person='+ PMValue;
     data += '&transport_way='+ TransValue;
     data += '&comments='+ TextArea;
-    data += '&label_onoff='+ true;
+    /* data += '&label_onoff='+ true; */
    /*  data += '&li_id='+ Date.now();
     data += '&label_id='+ Date.now() * 1000; */
 
