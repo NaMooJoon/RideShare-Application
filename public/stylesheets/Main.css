@@ -306,7 +306,7 @@ span.badge{
   display:flex;
   justify-content: space-between;
   border-bottom: 0.5px solid rgba(33,33,33,0.2);
-  border-top: 0.5px solid rgba(33,33,33,0.2);
+  /* border-top: 0.5px solid rgba(33,33,33,0.2); */
 }
 .Arrow{
 font-size: 30px;
@@ -390,7 +390,7 @@ a{
 
 .list__item {
   background: rgb(47, 47, 204);
-  border-bottom: 1px solid #000;
+  
   height: auto;
   display: flex;
 }
