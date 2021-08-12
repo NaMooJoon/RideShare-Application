@@ -76,7 +76,7 @@ function getBlob(student_id, callback){
     request.send(null);
     request.onreadystatechange = function () {
 		if(request.readyState === request.DONE) {
-			callback(request.response);
+			callback(window.URL.createObjectURL(request.response));
 		}
     }
 }
@@ -95,18 +95,15 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
 
-	getBlob(stID, function(Blob){
-		console.log(textUrl);
-    	const blobUrl = window.URL.createObjectURL(Blob);
-	    document.querySelector("div.user_item_layout img.profile").src=blobUrl;
-	
+	getBlob(stID, function(generatedUrl){
+	    document.querySelector("div.user_item_layout img.profile").src=generatedUrl;
 	    const layout = document.getElementsByClassName("user_item_layout");
 	    const userlist = document.getElementsByClassName("screen");
 	    let newitem = document.createElement('div');
 	    newitem.className ="useritem";
 	    newitem.innerHTML = layout[0].innerHTML;
 	    userlist[0].append(newitem);
-	    window.URL.revokeObjectURL(blobUrl);
+	    window.URL.revokeObjectURL(generatedUrl);
 	});
 } //아이템 만드는 함수 종료
 
