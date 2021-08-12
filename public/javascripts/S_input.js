@@ -161,6 +161,7 @@ $("#summitBT").click(function () {
    /*  data += '&li_id='+ Date.now();
     data += '&label_id='+ Date.now() * 1000; */
 
+    console.log(data);
     xhr.send(data); 
 }); 
 

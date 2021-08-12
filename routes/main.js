@@ -6,6 +6,8 @@ var db = require('../lib/db');
 /* GET main listing. */
 router.get('/', function(req, res, next) {
     console.log('main is loaded', req.user);
+    if(req.user === undefined)
+        res.redirect('/login');
     res.render('Main');    
 });
 
@@ -24,7 +26,7 @@ router.post('/toggle', function(req, res, next) {
 	console.log('/toggle', req.user);
 	var post = req.body;
     console.log("post는 ", post, "입니다.");
-    var { li_id, label_id, label_onoff } = post;
+    var { li_id, label_onoff } = post;
 	var query = db.connection.query('SELECT * FROM RideList WHERE li_id=?', [li_id],function(err, rows){
 		if(label_onoff){
 			var query2 = db.connection.query('UPDATE RideList SET label_onoff=? WHERE li_id=?', [true, li_id]);
@@ -50,25 +52,35 @@ router.get('/long', function(req, res, next) {
 router.delete('/:listID', function(req, res, next) {
     console.log("DELETE method로 데이터 수신...");
     console.log(`리스트 ${req.params.listID}`);
-    res.send('성공적으로 delete');
+    var data = {};
+    var query = db.connection.query('DELETE FROM RideList WHERE li_id=?', [req.params.listID], function(err, rows){
+        if(err) {
+            data.result = 0;
+            data.msg = '에러가 발생했습니다. 새로고침을 해주세요'
+        } {
+            data.result = 1;
+            data.msg = '삭제되었습니다.'
+        }
+        res.json(data);
+    });
 });
 
 // POST /main/create_list
 router.post('/create_list', function(req, res, next) {
     console.log("create_list 입니다");
     var post = req.body;
+    console.log('create_list에 도착한 정보', post);
     var sql = {
-        label_id: Date.now(),
 		Location_start: post.Location_start,
 		Location_end: post.Location_end,
 		Start_time: post.Start_time,
 		Repeat_ornot: post.Repeat_ornot,
         Start_date: post.Start_date,
-		Current_person: post.Current_person,
+		Current_person: 1,
         Limit_person: post.Limit_person,
         transport_way: post.transport_way,
         comments: post.comments,
-        label_onoff: post.label_onoff,
+        label_onoff: true,
 		author_id: req.user,
     };
 	console.log(sql.label_id);

@@ -6,7 +6,7 @@
 var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-}); 
+});
 // 이거 다시 회복
 
 var SavedGetData; 
@@ -22,7 +22,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-}; 
+};
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -50,7 +50,6 @@ $.ajax({
     Makehtml(SavedGetData);
 } */
  
-
 
 // html 만들기 1
 function Makehtml(Data_obj){
