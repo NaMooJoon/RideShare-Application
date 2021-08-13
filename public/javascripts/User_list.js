@@ -49,13 +49,20 @@ var goUserinfo = function(li_id) {
 
 function iterate_createitem(users){
     for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
-        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
+        setProperties(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
+        
+        const layout = document.getElementsByClassName("user_item_layout");
+        const userlist = document.getElementsByClassName("screen");
+        let newitem = document.createElement('div');
+        newitem.className ="useritem";
+        newitem.innerHTML = layout[0].innerHTML;
+        userlist[0].append(newitem);
     }
 }
 
 
-//아이템 만드는 함수 시작
-function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
+//아이템 속성설정 함수 시작
+function setProperties(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
     document.querySelector("div.user_item_layout span.nametext").innerHTML=name
     document.querySelector("div.user_item_layout img.profile").src=img
     document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg"
@@ -72,13 +79,7 @@ function createitem(json_index,name, img, way, startloc, destination, message, u
     if (!img) {
         document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png"
     }
-    const layout = document.getElementsByClassName("user_item_layout");
-    const userlist = document.getElementsByClassName("screen");
-    let newitem = document.createElement('div');
-    newitem.className ="useritem";
-    newitem.innerHTML = layout[0].innerHTML;
-    userlist[0].append(newitem);
-} //아이템 만드는 함수 종료
+} //아이템 속성설정 함수 종료
 
 
 function chatButtonClick(){
