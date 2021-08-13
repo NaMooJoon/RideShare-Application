@@ -54,6 +54,33 @@ function iterate_createitem(users){
 }
 
 
+// url로 파일을 읽어오는 코드
+// function getText(){
+//     var request = new XMLHttpRequest();
+//     request.open('GET', 'public/images/profile/'+stID' , true);
+//     request.send(null);
+//     request.onreadystatechange = function () {
+//         if (request.readyState === 4 && request.status === 200) {
+//             var type = request.getResponseHeader('Content-Type');
+//             if (type.indexOf("text") !== 1) {
+//                 return request.responseText;
+//             }
+//         }
+//     }
+// }
+
+function getBlob(student_id, callback){
+    var request = new XMLHttpRequest();
+    request.open('GET', '/images/profile/'+student_id , true);
+	request.responseType = 'blob';
+    request.send(null);
+    request.onreadystatechange = function () {
+		if(request.readyState === request.DONE) {
+			callback(window.URL.createObjectURL(request.response));
+		}
+    }
+}
+
 //아이템 만드는 함수 시작
 function createitem(stID,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
     document.querySelector("div.user_item_layout span.nametext").innerHTML=name;
@@ -68,20 +95,16 @@ function createitem(stID,name, img, way, startloc, destination, message, usernum
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
 
-    var fs = require('fs'); 
-    fs.readFile('public/images/profile/'+stID, 'utf8', function(data){ //blob파일 읽어오기
-    console.log(data);
-    const blobUrl = window.URL.createObjectURL(blob);
-    document.querySelector("div.user_item_layout img.profile").src=blobUrl;
-    window.URL.revokeObjectURL(blobUrl);
-    });
-
-    const layout = document.getElementsByClassName("user_item_layout");
-    const userlist = document.getElementsByClassName("screen");
-    let newitem = document.createElement('div');
-    newitem.className ="useritem";
-    newitem.innerHTML = layout[0].innerHTML;
-    userlist[0].append(newitem);
+	getBlob(stID, function(generatedUrl){
+	    document.querySelector("div.user_item_layout img.profile").src=generatedUrl;
+	    const layout = document.getElementsByClassName("user_item_layout");
+	    const userlist = document.getElementsByClassName("screen");
+	    let newitem = document.createElement('div');
+	    newitem.className ="useritem";
+	    newitem.innerHTML = layout[0].innerHTML;
+	    userlist[0].append(newitem);
+	    window.URL.revokeObjectURL(generatedUrl);
+	});
 } //아이템 만드는 함수 종료
 
 
