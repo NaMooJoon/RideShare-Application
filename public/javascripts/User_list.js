@@ -1,6 +1,6 @@
 const locname = "포항역"
 const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
-let listOK = false;
+
 
 document.querySelector("div.loc_and_image span").innerHTML=locname
 document.querySelector("div.loc_and_image img").src=locimage
@@ -22,7 +22,23 @@ function sendAjax(url, method, call) {
     });
 };
 
+/*
+"user_name":"신경식",
+"profile_img":"https://www.fnnews.com/resource/media/image/2020/11/20/202011200752197268_l.jpg",
+"Limit_person": 4,
+"Current_person" : 2,
+"Location_end": "서울",
+"Location_start": "포항",
+"Repeat_ornot": "wed,thu,sat",
+"Start_date": "Jul 14, 2021",
+"Start_time": "05:34 PM",
+"comments": "코로나 천국 서울로 떠나실 분~",
+"label_id": 1627284879581000,
+"li_id": 1627284879581,
+"transport_way": "ktx"
+*/ 
 sendAjax( window.location.href , "POST", function(users){
+	console.log(users);
     iterate_createitem(users);
 });
 
@@ -32,73 +48,37 @@ var goUserinfo = function(li_id) {
 }
 
 function iterate_createitem(users){
-    var i = 0;
-    while (i < users.length) { //받아온 JSON을 리스트에 띄우는 while문
-        if (listOK == false){
-            console.log("getBlob을 실행하기 전", users[i].stID);
-            getBlob(users[i].stID,function(generatedUrl){
-                console.log(users);
-                console.log("getBlob을 실행하기 후", users[i].stID);
-                createitem(users[i].stID,users[i].name, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
-                document.querySelector("div.user_item_layout img.profile").src=generatedUrl;
-                const layout = document.getElementsByClassName("user_item_layout");
-                const userlist = document.getElementsByClassName("screen");
-                let newitem = document.createElement('div');
-                newitem.className ="useritem";
-                newitem.innerHTML = layout[0].innerHTML;
-                userlist[0].append(newitem);
-                let listOK = false;
-                //window.URL.revokeObjectURL(generatedUrl);
-            });
-            listOK == true;
-        var i = i+1;
-        }
+    for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
+        createitem(i,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
     }
 }
 
-
-// url로 파일을 읽어오는 코드
-// function getText(){
-//     var request = new XMLHttpRequest();
-//     request.open('GET', 'public/images/profile/'+stID' , true);
-//     request.send(null);
-//     request.onreadystatechange = function () {
-//         if (request.readyState === 4 && request.status === 200) {
-//             var type = request.getResponseHeader('Content-Type');
-//             if (type.indexOf("text") !== 1) {
-//                 return request.responseText;
-//             }
-//         }
-//     }
-// }
-
-function getBlob(student_id, callback){
-    var request = new XMLHttpRequest();
-    request.open('GET', '/images/profile/'+student_id , true);
-	request.responseType = 'blob';
-    request.send(null);
-    request.onreadystatechange = function () {
-		if(request.readyState === request.DONE) {
-			callback(window.URL.createObjectURL(request.response));
-		}
-    }
-}
 
 //아이템 만드는 함수 시작
-function createitem(stID,name, way, startloc, destination, message, usernum, maxnum, li_id) {
-    document.querySelector("div.user_item_layout span.nametext").innerHTML=name;
-    document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg";
-    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination;
-    document.querySelector("div.user_item_layout span.message").innerHTML=message;
-    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")";
-    document.querySelector("div.user_item_layout .findbutton").setAttribute('onclick','goUserinfo('+li_id+')');
-    
+function createitem(json_index,name, img, way, startloc, destination, message, usernum, maxnum, li_id) {
+    document.querySelector("div.user_item_layout span.nametext").innerHTML=name
+    document.querySelector("div.user_item_layout img.profile").src=img
+    document.querySelector("div.user_item_layout div.svgico img").src="/images/"+way+".svg"
+    document.querySelector("div.user_item_layout span.loctext").innerHTML=startloc + " ➔ " + destination
+    document.querySelector("div.user_item_layout span.message").innerHTML=message
+    document.querySelector("div.user_item_layout  span.peoplenum").innerHTML="("+usernum+"/"+maxnum+")"
+    //document.querySelector(".findbutton").onclick=goUserinfo(li_id);
+    document.querySelector("div.user_item_layout .findbutton").setAttribute('onclick','goUserinfo('+li_id+')')
+    console.log(li_id, message);
+
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
-
+    if (!img) {
+        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png"
+    }
+    const layout = document.getElementsByClassName("user_item_layout");
+    const userlist = document.getElementsByClassName("screen");
+    let newitem = document.createElement('div');
+    newitem.className ="useritem";
+    newitem.innerHTML = layout[0].innerHTML;
+    userlist[0].append(newitem);
 } //아이템 만드는 함수 종료
-
 
 
 function chatButtonClick(){
@@ -109,7 +89,6 @@ function chatButtonClick(){
 function refreshClick(){
     location.reload();  
 }
-
 
 
 var strCook = document.cookie;//저장된 쿠키 값을 받아온다.
@@ -125,6 +104,16 @@ document.body.scrollTop = strPos;//스크롤 위치를 적용시킨다.
 //  var intY = document.body.scrollTop;
 //  document.cookie = "yPos=!~"+intY+"~!";
 // }
+
+
+refbtn = document.querySelector(".refresh_btn");
+
+refbtn.addEventListener("click", function(e) {
+  e.preventDefault;
+  refbtn.classList.remove("jello");
+  refbtn.offsetWidth = refbtn.offsetWidth;
+  refbtn.classList.add("jello");
+}, false);
 
 
 
