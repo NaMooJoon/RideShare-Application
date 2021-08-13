@@ -6,7 +6,7 @@ sendAjax(host + '/main/data', "GET", function(Data){
 }); */
 // 이거 다시 회복
 
-var SavedGetData; 
+/* var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -19,12 +19,12 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-};
+}; */
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
 
-let params = {Test1: "data1",Test2:"data2"};
+/* let params = {Test1: "data1",Test2:"data2"};
 $("#Serch")
 $.ajax({ 
     url:"/main/toggle", 
@@ -32,20 +32,20 @@ $.ajax({
          contentType: "application/json", 
          success: function(result) {
               if (result) 
-              { alert("저장되었습니다."); } 
-              else { alert("잠시 후에 시도해주세요."); } 
+              { console.log("저장되었습니다."); } 
+              else { console.log("잠시 후에 시도해주세요."); } 
             }, 
-            error: function() { alert("에러 발생"); } 
-        })
+            error: function() { console.log("에러 발생"); } 
+        }) */
 
 
 
 // let SavedGetData = data; 
-/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* 받아온 Data 불러오기 (localstorage) */
-/* if (SavedGetData!==null){
+if (SavedGetData!==null){
     Makehtml(SavedGetData);
-} */
+}
  
 
 // html 만들기 1
@@ -273,11 +273,11 @@ $(function () {
           $(this)
             .stop(true)
             .css({
-              transition: 'all .3s ease-out',
+              transition: 'all .1s ease-out',
               transform: `translate3d(-${100 - distance}px, 0px, 0px)`,
             });
 
-          if ((phase === 'cancel' || phase === 'end') && distance >= 120) {
+          if ((phase === 'cancel' || phase === 'end') && distance >= 100) {
             $(this)
               .stop(true)
               .css({
@@ -290,9 +290,9 @@ $(function () {
                 transition: 'all 0s ease-out',
               });
             }, 300);
-          } else if ((phase === 'cancel' || phase === 'end') && distance < 120) {
+          } else if ((phase === 'cancel' || phase === 'end') && distance < 100) {
             $(this).stop(true).css({
-              transition: 'all .3s ease-out',
+              transition: 'all .1s ease-out',
               transform: `translate3d(-100px, 0px, 0px)`,
             });
           }
@@ -309,7 +309,7 @@ $(function () {
 
           if (phase === 'cancel' && distance < 100) {
             $(this).stop(true).css({
-              transition: 'all .3s ease-out',
+              transition: 'all .1s ease-out',
             });
 
             setTimeout(() => {
@@ -320,7 +320,7 @@ $(function () {
           } else if ((phase === 'cancel' || phase === 'end') && distance >= 100) {
             $(this).addClass('active');
             $(this).stop(true).css({
-              transition: 'all .3s ease-out',
+              transition: 'all .1s ease-out',
               transform: `translate3d(-100px, 0px, 0px)`,
             });
           }

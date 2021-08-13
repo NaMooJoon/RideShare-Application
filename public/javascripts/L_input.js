@@ -98,7 +98,7 @@ $("#summitBT").click(function () {
         Location_start: StartLocation,
         Location_end:  EndLocation,
         Start_time: TimeInput,
-        Repeat_ornot: null, //because this json is from Long-distance, there is no Repeat
+        Repeat_ornot: "long", //because this json is from Long-distance, there is no Repeat
         Start_date: DateInput,
         Limit_person: PMValue,
         transport_way: TransValue,
