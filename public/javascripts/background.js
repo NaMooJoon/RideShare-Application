@@ -1,6 +1,7 @@
 const body_screen = document.querySelector(".background");
 var deg = 45;
 body_screen.style.position = "fixed"
+body_screen.style.top = "0px"
 body_screen.style.width = "100vw"
 body_screen.style.height = "100vh"
 body_screen.style.zIndex = -10000;
