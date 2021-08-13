@@ -125,7 +125,7 @@ $("#summitBT").click(function () {
     data += 'Location_start='+ StartLocation;
     data += '&Location_end='+ EndLocation;
     data += '&Start_time='+ TimeInput;
-    data += '&Repeat_ornot='+ null;
+    data += '&Repeat_ornot='+ "long";
     data += '&Limit_person='+ PMValue;
     data += '&transport_way='+ TransValue;
     data += '&comments='+ TextArea;

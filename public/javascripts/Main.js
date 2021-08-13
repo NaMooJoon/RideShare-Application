@@ -6,7 +6,7 @@ sendAjax(host + '/main/data', "GET", function(Data){
 }); */
 // 이거 다시 회복
 
-/* var SavedGetData; 
+var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -19,12 +19,12 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-}; */
+};
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
 
-/* let params = {Test1: "data1",Test2:"data2"};
+let params = {Test1: "data1",Test2:"data2"};
 $("#Serch")
 $.ajax({ 
     url:"/main/toggle", 
@@ -36,16 +36,16 @@ $.ajax({
               else { alert("잠시 후에 시도해주세요."); } 
             }, 
             error: function() { alert("에러 발생"); } 
-        }) */
+        })
 
 
 
 // let SavedGetData = data; 
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
 /* 받아온 Data 불러오기 (localstorage) */
-if (SavedGetData!==null){
+/* if (SavedGetData!==null){
     Makehtml(SavedGetData);
-}
+} */
  
 
 // html 만들기 1
@@ -54,7 +54,7 @@ function Makehtml(Data_obj){
     Data_long = [];
     console.log(Data_obj,"Data_obj")
     Data_obj.forEach(function(item) {
-        if (item.Repeat_ornot === null){
+        if (item.Repeat_ornot === "long"){
             Data_long.push(item)
         } else{
             Data_short.push(item)
