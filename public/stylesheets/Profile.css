@@ -10,21 +10,17 @@
   transform: translate(-50%, -50%);
 }
 
-#profile_canvas {
-  display: none;
-}
-
-#canvas_display {
+#profile_display {
   background-color: white;
   width: 250px;
   height: 250px;
   object-fit: fill;
-  border: 5px solid white;
+  border: 4px solid white;
 }
 
 #input_form {
   /*     background-color:blue; */
-  width: 180px;
+  width: 150px;
   height: 126px;
   position: absolute;
   left: 50%;
@@ -73,7 +69,8 @@
   text-align: center;
   width: 100%;
   height: 28px;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
   padding: 4px;
   border: none;
   border-bottom: 3px solid var(--main-blue-80);
