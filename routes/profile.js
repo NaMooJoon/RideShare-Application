@@ -6,7 +6,7 @@ var db = require('../lib/db');
 
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    cb(null, "./public/images/profile");
   },
   filename: function (req, file, cb) {
     // const ext = path.extname(file.originalname);
