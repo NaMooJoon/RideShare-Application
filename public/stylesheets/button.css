@@ -14,8 +14,8 @@ body {
 .fixtop {
   z-index: 99;
   position: fixed;
-  left: 5%;
   height: 12vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,6 +23,7 @@ body {
 }
 
 .top {
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;

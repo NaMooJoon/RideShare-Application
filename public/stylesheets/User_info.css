@@ -57,14 +57,13 @@
 }
 
 .bolded {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: black;
   margin: 2vh 0vh;
 }
 
 .username {
-  margin-top: 90px;
   font-size: 34px;
 }
 
@@ -99,7 +98,7 @@ div button {
 .btn_text {
   width: auto;
   margin: 10px;
-  font-size: 18px;
+  font-size: 20px;
   font-style: normal;
   font-weight: 700;
   color: var(--main-blue);
