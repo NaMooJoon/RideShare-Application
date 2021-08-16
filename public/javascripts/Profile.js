@@ -6,6 +6,8 @@ const WHOLE = document.querySelector('#Whole');
 const After = document.querySelector('#after');
 const BT = document.querySelector('#Button');
 const display = document.querySelector('#profile_display');
+
+
 //
 function StopAndSave(event){
     event.preventDefault();
@@ -47,25 +49,48 @@ function sendAjax(url, method, call) {
 document.getElementById('inputfile').addEventListener('change', (e) => {
     const file = e.target.files[0];
     new Compressor(file, options);
-    })
+    
+})
 
 
 sendAjax( host + '/profile/user' , "POST", function(users){
     console.log(users);
 	UsernameInput.innerHTML = users[0].name;
     UserInfoInput.innerHTML = users[0].stID;
-    BT.addEventListener("click", e => {
-        e.preventDefault();
-        saveImage(users[0].stID, new File([result], result.name, { type: result.type }));
-    });
+    //console.log('파일이 있을까요? 없을까요? >', (`images/profile/${UserInfoInput.innerHTM}.png`.exists()));
+    // if(`images/profile/${users[0].stID}.png`.exists()) {
+    //     display.src = `images/profile/${users[0].stID}.png`;
+    // } else {
+    //     display.src = `images/profile_null.png`;
+    // }
+    imageLoad(`images/profile/${users[0].stID}.png`);
 });
 
-const options = { maxWidth: 500, maxHeight: 500, success: function (result) { if (result.size > 5*1024*1024) {
+function imageLoad(urlToFile) {
+    $.ajax({
+        url: urlToFile,
+        type: 'HEAD',
+        success: function () {
+            display.src = urlToFile;
+        },
+        error: function () {
+            display.src = `images/profile_null.png`;
+        }
+   });
+}
+
+const options = { maxWidth: 1000, maxHeight: 1000, success: function (result) { if (result.size > 5*1024*1024) {
     // 리사이징 했는데도 용량이 큰 경우
     alert("파일 용량이 초과되어 업로드가 불가 합니다."); return; } 
     const _URL = window.URL || window.webkitURL;
     if (_URL) {display.src = _URL.createObjectURL(result)} 
-  }, error: function (err) { console.log(err)}}
+
+    BT.addEventListener("click", e => {
+        e.preventDefault();
+        saveImage(UserInfoInput.innerHTML, new File([result], result.name, { type: result.type }));
+    });
+
+}, error: function (err) { console.log(err)}}
 
 function saveImage(stID, file){
     console.log("저장된 이미지",file)
@@ -73,7 +98,7 @@ function saveImage(stID, file){
     formdata.append("file", file, `${stID}`+'.png');
     $.ajax({
         type : 'post',
-        url : '../public/images/profile',
+        url : '/profile',
         data : formdata,
         processData : false,	// data 파라미터 강제 string 변환 방지!!
         contentType : false,	// application/x-www-form-urlencoded; 방지!!
