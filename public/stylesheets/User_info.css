@@ -108,6 +108,7 @@ div button {
 .screen {
   -webkit-animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
   animation: fade-in-fwd 0.8s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+  animation-delay: 0.1s;
 }
 
 @-webkit-keyframes fade-in-fwd {
