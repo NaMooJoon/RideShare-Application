@@ -1,10 +1,4 @@
-// const username = document.querySelector(".username")
-// const profile = document.querySelector(".profile_image_src")
-// const message = document.querySelector(".message_text")
-// const path1 = document.querySelector(".start")
-// const path2 = document.querySelector(".destination")
-
-
+const profile = document.querySelector(".profile_image_src");
 
 // host -> 현재 창의 주소를 담고 있는 변수.
 var host = window.location.protocol + "//" + window.location.host;
@@ -20,11 +14,26 @@ sendAjax(window.location.href, "POST", function(data){
 	const message = data.comments;
 	const path1 = data.Location_start;
 	const path2 = data.Location_end;
+	const stID = data.stID;
 	document.getElementById('name').innerHTML = username;
 	document.getElementById('message').innerHTML = message;
+	imageLoad('images/profile/'stID+'.png');
+	path1.src = "image/nodata.png"
+	path2.src = "image/nodata.png"
 });
 
-
+function imageLoad(urlToFile) {
+    $.ajax({
+        url: urlToFile,
+        type: 'HEAD',
+        success: function () {
+            profile.src = urlToFile;
+        },
+        error: function () {
+            profile.src = `images/profile_null.png`;
+        }
+   });
+}
 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
