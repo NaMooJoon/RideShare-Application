@@ -7,17 +7,11 @@
     maximum-scale=1.0, minimum-scale=1.0" />
     <title>Main</title>
     <link href="../public/stylesheets/Main.css" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="../public/plug/materialize.css"  media="screen,projection"/>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <style>
-        .Modal_list{
-            width:100px;
-            height:70px;
-            background-color: aqua;
-        }
-    </style>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
 </head>
 <body>
 <div id="Whole">
@@ -147,26 +141,43 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
       <div class="modal-content">
-        <h4>알림창</h4>
+        <h3>알림창</h3>
         <p>A bunch of text</p>
+        <div class="Modal_list">
+            <div class="Md_img_wrap">
+          <div class="Modal_img">
+    
+          </div>
+          </div>
+          <div class="Modal_text">
+              <div class="Modal_T_title">초대 허락</div>
+              <div class="Modal_T_content"><span class="Modal_Intext">kungsik님의 방에 입장하셨습니다.</span></div>
+          </div>
+          <div class="modal_bt_wrap"><button class="Modal_bt">Go to Chat</button></div>
+        </div>
       <div class="Modal_list">
+        <div class="Md_img_wrap">
+      <div class="Modal_img">
 
       </div>
-      <div class="Modal_list">
-
-    </div>
-    <div class="Modal_list">
-
-    </div>
       </div>
+      <div class="Modal_text">
+          <div class="Modal_T_title">초대 허락</div>
+          <div class="Modal_T_content"><span class="Modal_Intext">kungsik님의 방에 입장하셨습니다.</span></div>
+      </div>
+      <div class="modal_bt_wrap"><button class="Modal_bt">Go to Chat</button></div>
+    </div>
+     
+  
       <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
       </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    <!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script type="text/javascript" src="../public/plug/materialize.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
     <script src='../public/javascripts/Main.js'></script>
     

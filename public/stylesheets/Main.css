@@ -10,6 +10,10 @@ body{
     width: 60%;
   }
 }
+button:focus{
+  background-color: rgba(65,105,225,0.6) !important;
+  
+}
 #Whole{
   height:100%;
   width:100%;
@@ -28,6 +32,80 @@ body{
     margin-top:30px;
     
   }
+ /* ///// Modal list css ///// */
+ .modal .modal-footer{
+   background-color: #e8f8ff  !important;
+ }
+ .modal-content{
+   background-color: #e8f8ff !important;
+ }
+
+ .Modal_list{
+  width:100%;
+ /*  height:70px; */
+  /*  background: radial-gradient(55.69% 86.43% at 82.36% 8.6%, #FFFFFF 0%, #FFFFFF 0.01%, #7ce0fd  100%); */
+  /* #e0f8ff */
+  
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  display:flex;
+}
+
+.Modal_img{
+  width:60px;
+  height:60px;
+  background-color: cornflowerblue;
+  border-radius:100%;
+  margin: 5px 5px;
+  
+}
+.Modal_text{
+  /* width: 100px; */
+  height:70px;
+  /* background-color:rgba(0, 0, 0, 0.08); */
+  color:black;
+  flex-grow: 2;
+ /*  overflow: hidden; */
+}
+.Modal_T_title{
+  border-bottom: solid 1px rgba(33,33,33,0.2);
+  height:30px;
+  text-align:center;
+  line-height: 30px;
+font-style: normal;
+font-weight: bold;
+font-size: 14px;
+  
+}
+.Modal_Intext{
+  display:inline-block;
+  padding-top: 3px;
+}
+.Modal_T_content{
+  text-align:center;
+  /* line-height: 40px; */
+  font-size:13px;
+  font-style: normal;
+  font-weight: normal;
+}
+.modal_bt_wrap{
+  display:flex;
+  align-items: center;
+}
+.Modal_bt{
+  width:90px;
+  height:30px;
+  border-radius: 10px;
+  font-weight: 700;
+  background-color: rgb(90, 140, 260);
+  flex-grow:1;
+  border: 4px rgb(90, 140, 260) solid;
+
+  
+}
+
+
+
   /* ///////////////////////////// */
   /*    사이드 바 css ,애니메이션  */
   /* /////////////////////////// */
@@ -415,17 +493,9 @@ a{
   text-align: center;
   line-height:80px;
 }
-/* #Circle_test{
-  background-color: blue;
-  border-radius: 100%;
-  width:56px;
-  height:56px;
-  box-shadow: -3px 2px 3px rgba(0, 0, 0, 0.1);
-  line-height: 56px;
-  text-align: center;
-  font-size:24px;
-  color:white;
-} */
+
+
+
 
 /* // this is the part that the plus botton css starts 
 ////////////////////////////////////////////////////*/
