@@ -5,36 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="../public/stylesheets/reset.css">
-    <link rel="stylesheet" href="../public/stylesheets/Login.css">
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <link rel="stylesheet" href="../public/stylesheets/button.css">
+    <link rel="stylesheet" href="../public/stylesheets/Login.css">
 </head>
+
 <body>
-
-   
-
- <!--    <div id="whole">
-            <div id="BackBOX"></div>
-            <div id="Textwrap"></div>
-        <form id="login-form">
-            <div id="log_inputs">
-            <input 
-            id = "log_input1"
-            required
-            placeholder="Enter your Hisnet ID"
-            type="text">
-            <input 
-            id = "log_input2"
-            required
-            placeholder="Enter your Hisnet password"
-            type="text">
-            </div>
-
-            <button id="Button">Sign in</button>
-        </form>
-    </div> -->
+    <div class="background"></div>
     <div id="Whole" >
-
+        
 
         <div id="top_form">
             <div id="iconpart"><span id="icon"><i class="fas fa-arrow-left"></i></span> <span id="BACK">BACK</span></div>
@@ -43,8 +23,8 @@
     
     
         <div id="Text_form">
-            <div id="big-letter">Handong</div>
-            <div id="small-letter">Hisnet ID / PW</div>
+            <div id="small-letter">Login</div>
+            <div id="big-letter">With Me</div>
         </div>
     
     <form id="formTAG" autocomplete="off">
@@ -54,25 +34,26 @@
                 name = "ID"
                 required
                 type="text" 
-                placeholder="Enter your Hisnet ID"/>
+                placeholder="Hisnet ID"/>
                 <input 
                 id ="input2"
                 required
-                type="text" 
-                placeholder="Enter your Hisnet password"/>
+                type="password" 
+                placeholder="Hisnet password"/>
         </div>
     
     
         <div id="button_form">
-            <button id="Button">press me</button>
+            <button id="Button">로그인</button>
+            <button id="Button_join">회원가입</button>
         </div>
-      
     </form>
     
     </div>
     <div id="test"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="../public/javascripts/Login.js"></script>
+    <script src="../public/javascripts/background_bold.js"></script>
     
 </body>
 </html>
