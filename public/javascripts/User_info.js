@@ -17,12 +17,13 @@ sendAjax(window.location.href, "POST", function(data){
 	const stID = data.stID;
 	document.getElementById('name').innerHTML = username;
 	document.getElementById('message').innerHTML = message;
-	imageLoad('images/profile/'stID+'.png');
-	path1.src = "image/nodata.png"
-	path2.src = "image/nodata.png"
+	imageLoad('/images/profile/'+ stID +'.png');
+	path1.src = "/image/nodata.png"
+	path2.src = "/image/nodata.png"
 });
 
 function imageLoad(urlToFile) {
+	console.log(urlToFile);
     $.ajax({
         url: urlToFile,
         type: 'HEAD',
@@ -30,7 +31,7 @@ function imageLoad(urlToFile) {
             profile.src = urlToFile;
         },
         error: function () {
-            profile.src = `images/profile_null.png`;
+            profile.src = `/images/profile_null.png`;
         }
    });
 }
