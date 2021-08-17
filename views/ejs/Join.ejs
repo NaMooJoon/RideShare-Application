@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="kr">
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="/stylesheets/reset.css" />
+        <link rel="stylesheet" href="/stylesheets/button.css" />
+        <link rel="stylesheet" href="/stylesheets/join.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Join</title>
-        <style>
-            .message{
-                color : #963b3b;
-                margin-bottom: 16px;
-            }
-        </style>
     </head>
     <body>
-        <h1>Join WITH ME</h1>
+        <div class="background"></div>
+        <div class="title_text">Join</div>
+        <div class="title_text withme">With Me</div>
         <section class="message"> <%= message %> </section>
-        <form action="/join" method="post">
-            email: <input type="text" name="joinID"><br>
-            password: <input type="password" name="password"><br>
-            <input type="submit">
+        <form class="input_form" action="/join" method="post">
+            <div class="outdiv"><div class="side_text">Hisnet ID</div> <input class="text_input" type="text" name="joinID"><br></div>
+            <div class="outdiv"><div class="side_text">Hisnet PW</div> <input class="text_input" type="password" name="password"><br></div>
+            <input class="subimt_button" type="submit">
         </form>
+
+
+
+        <script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+        <script  type="text/javascript" src="/javascripts/background_bold.js"></script>
     </body>
 </html>
