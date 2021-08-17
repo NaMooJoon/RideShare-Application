@@ -1,11 +1,11 @@
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-var host = window.location.protocol + "//" + window.location.host;
+/* var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data);
-}); 
+});  */
 // 이거 다시 회복
-
+/* 
 var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
@@ -19,7 +19,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-};
+}; */
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -41,11 +41,11 @@ $.ajax({
 
 
 // let SavedGetData = data; 
-/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* 받아온 Data 불러오기 (localstorage) */
-/* if (SavedGetData!==null){
+if (SavedGetData!==null){
     Makehtml(SavedGetData);
-} */
+}
  
 
 // html 만들기 1
@@ -105,7 +105,7 @@ function createHTML(item){
   
      let LI_ID = item.li_id;
      /* let LABEL_ID = item.label_id; */
-     let LABEL_ID = "Label" + String(item.label_id) 
+     let LABEL_ID = "Label" + String(item.li_id) 
      let S_TEXT = item.Location_start;
      let E_TEXT = item.Location_end;
      let TIME_TEXT = item.Start_time;
@@ -138,7 +138,7 @@ function createHTML(item){
           <ul id="test" class="list">
             <li class="list__item">
               <div class="list__item-text">
-                <li  id="list" class="swiper-slide" >
+                <li  class="swiper-slide" >
                     <div class="L_Text">
                         <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
                         <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div>
@@ -153,8 +153,10 @@ function createHTML(item){
                     </div>
                      </div>
                      <div class="list__item-action">
-                       <span >delete</span>
+                       <span >삭제</span>
+                       <span >수정</span>
                      </div>
+                    
                     </li>
               </div>
             </li>
@@ -263,8 +265,77 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // 스와이프 코드
-
+console.log($('#test li'),"swipe")
 $(function () {
+    $('#test li').swipe({
+      swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+        if (direction === 'right') {
+          if (!$(this).hasClass('active')) {console.log("active true"); return;}  //.hasClass() 메서드는 선택한 요소에 클래스가 있는지 확인합니다. 리턴값:불린
+
+          $(this)
+            .stop(true)
+            .css({
+              transition: 'all .1s ease-out',
+              transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
+            });
+
+          if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+            console.log("cancel or end dis>=200")
+            $(this).stop(true).css({
+                transform: `translate3d(0px, 0px, 0px)`,
+                
+              })
+              .removeClass('active');
+
+            setTimeout(() => {
+              $(this).stop(true).css({
+                transition: 'all 0s ease-out',
+              });
+            }, 300);
+          } else if ((phase === 'cancel' || phase === 'end') && distance < 200) {
+            $(this).stop(true).css({
+              transition: 'all .1s ease-out',
+              transform: `translate3d(-200px, 0px, 0px)`,
+            });
+          }
+        } else if (direction === 'left') {
+          if ($(this).hasClass('active')) {console.log("left: active=true/return:0"); return;}
+          else {
+            console.log("left,active=false/translate3d(-${distance}px ")
+            $(this)
+              .stop(true)
+              .css({
+                transition: 'all 0s ease-out',
+                transform: `translate3d(-${distance}px, 0px, 0px)`,
+              });
+          }
+
+          if (phase === 'cancel' && distance < 200) {
+            console.log("cancel && distance < 200/3d  000")
+            $(this).stop(true).css({
+              transition: 'all .1s ease-out',
+            });
+
+            setTimeout(() => {
+              $(this).stop(true).css({
+                transform: `translate3d(0px, 0px, 0px)`,
+              });
+            }, 0);
+          } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+            console.log("cancel,end && distance >= 200/tran3d -200")
+            $(this).addClass('active');
+            $(this).stop(true).css({
+              transition: 'all .1s ease-out',
+              transform: `translate3d(-200px, 0px, 0px)`,
+            });
+          }
+        }
+      },
+      threshold: 200,
+    });
+  });
+
+  /* $(function () {
     $('#test li').swipe({
       swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
         if (direction === 'right') {
@@ -273,11 +344,11 @@ $(function () {
           $(this)
             .stop(true)
             .css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-${100 - distance}px, 0px, 0px)`,
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
             });
 
-          if ((phase === 'cancel' || phase === 'end') && distance >= 100) {
+          if ((phase === 'cancel' || phase === 'end') && distance >= 120) {
             $(this)
               .stop(true)
               .css({
@@ -290,10 +361,10 @@ $(function () {
                 transition: 'all 0s ease-out',
               });
             }, 300);
-          } else if ((phase === 'cancel' || phase === 'end') && distance < 100) {
+          } else if ((phase === 'cancel' || phase === 'end') && distance < 120) {
             $(this).stop(true).css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-100px, 0px, 0px)`,
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-200px, 0px, 0px)`,
             });
           }
         } else if (direction === 'left') {
@@ -307,9 +378,9 @@ $(function () {
               });
           }
 
-          if (phase === 'cancel' && distance < 100) {
+          if (phase === 'cancel' && distance < 200) {
             $(this).stop(true).css({
-              transition: 'all .1s ease-out',
+              transition: 'all .3s ease-out',
             });
 
             setTimeout(() => {
@@ -317,18 +388,18 @@ $(function () {
                 transform: `translate3d(0px, 0px, 0px)`,
               });
             }, 0);
-          } else if ((phase === 'cancel' || phase === 'end') && distance >= 100) {
+          } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
             $(this).addClass('active');
             $(this).stop(true).css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-100px, 0px, 0px)`,
+              transition: 'all .3s ease-out',
+              transform: `translate3d(-200px, 0px, 0px)`,
             });
           }
         }
       },
       threshold: 200,
     });
-  });
+  }); */
 
 // sidebar materilize 시작
   $(document).ready(function(){
