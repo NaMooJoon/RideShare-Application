@@ -105,7 +105,7 @@ function createHTML(item){
   
      let LI_ID = item.li_id;
      /* let LABEL_ID = item.label_id; */
-     let LABEL_ID = "Label" + String(item.label_id) 
+     let LABEL_ID = "Label" + String(item.li_id) 
      let S_TEXT = item.Location_start;
      let E_TEXT = item.Location_end;
      let TIME_TEXT = item.Start_time;
