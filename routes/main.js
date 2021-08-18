@@ -5,15 +5,18 @@ var db = require('../lib/db');
 
 /* GET main listing. */
 router.get('/', function(req, res, next) {
-    console.log('main is loaded', req.user);
     if(req.user === undefined)
         res.redirect('/login');
-    res.render('Main');    
+    // 유저 정보 Main.ejs로 
+    var query = db.connection.query('SELECT * FROM user WHERE stID=?', [req.user],function(err, rows){
+        if(err) throw err;  
+        res.render('Main', rows[0]);   
+    });
 });
 
 // GET /main/data
 router.get('/data', function(req, res, next) {
-    console.log('/data is called!', req.user);
+    console.log(req.user, '/data is called!');
     var query = db.connection.query('SELECT * FROM RideList WHERE author_id=?', [req.user],function(err, rows){
         if(err) throw err;  
 		res.json(rows);
