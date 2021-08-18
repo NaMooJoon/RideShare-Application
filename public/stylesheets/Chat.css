@@ -59,6 +59,7 @@ nav {
 
 #contentWrap {
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,6 +99,7 @@ nav {
 
 #chatWrap {
   display: flex;
+  height: 97%;
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 10px;
@@ -123,7 +125,7 @@ nav {
 }
 
 #chatLog {
-  height: 700px;
+  flex: 1;
   overflow-y: auto;
   padding: 10px;
 }
@@ -214,6 +216,7 @@ nav {
 }
 
 #contentCover {
+  height: 100%;
   width: 100%;
   margin: 0 auto;
   padding-top: 20px;
@@ -240,32 +243,37 @@ nav {
   padding-top: 60px;
 }
 
-.sidenav a {
-  padding: 8px 8px 8px 32px;
+.sidenav div {
+  padding: 8px;
   text-decoration: none;
   font-size: 25px;
-  color: #3d3d3d;
+  color: #2b2b2b;
   display: block;
   transition: 0.3s;
 }
 
-.sidenav a:hover {
-  color: #f1f1f1;
+.side_item {
+  margin-left: 15px;
+  width: 200px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav div:hover {
+  color: #008165;
 }
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+  top: 0px;
+  right: 10px;
+  font-size: 40px;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav {
-    padding-top: 15px;
+    padding-top: 50px;
   }
-  .sidenav a {
+  .sidenav div {
     font-size: 18px;
   }
 }
