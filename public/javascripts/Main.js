@@ -93,10 +93,18 @@ function Makehtml(Data_obj){
     item.addEventListener("click", CheckToggle)
     });
 
-    // remove 버튼 클릭시 AJAX함수 실행
-    let remove = document.querySelectorAll('.list__item-action'); 
+    // 삭제 버튼 클릭시 AJAX함수 실행
+    let remove = document.querySelectorAll('.deleteBT'); 
+    console.log("remove!!!",remove)
     remove.forEach(function(item) {
         item.addEventListener("click",removeAjax );  
+      });
+
+    // 수정 버튼 클릭시 AJAX 함수 실행
+    let revise = document.querySelectorAll('.reviseBT'); 
+    console.log("수정!!",revise)
+    revise.forEach(function(item) {
+        item.addEventListener("click",reviseAjax );  
       });
 }
 
@@ -153,8 +161,8 @@ function createHTML(item){
                     </div>
                      </div>
                      <div class="list__item-action">
-                       <span >삭제</span>
-                       <span >수정</span>
+                       <span class="deleteBT" >삭제</span>
+                       <span class="reviseBT">수정</span>
                      </div>
                     
                     </li>
@@ -211,9 +219,9 @@ function next(event){
     //         })
 
 }
-//
+// 삭제 버튼 눌렀을때 AJAX 함수
 function removeAjax(event){
-    let li_from_de = event.currentTarget.parentElement.parentElement.parentElement;
+    let li_from_de = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
     console.log("delete",li_from_de)
     $.ajax({ 
           url:`/main/${li_from_de.id}`, 
@@ -226,6 +234,22 @@ function removeAjax(event){
                   }, 
                   error: function() { console.log("에러 발생"); } 
               })
+}
+// 수정 버튼 눌렀을때 AJAX함수
+function reviseAjax(event){
+  let li_from_vi = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
+  console.log("update",li_from_vi)
+  $.ajax({ 
+        url:`/main/${li_from_vi.id}`, 
+             type:"update", data:null, 
+           
+             success: function(result) {
+                  if (result) 
+                  { console.log("저장되었습니다.",result);  } 
+                  else { console.log("전달실패",result); } 
+                }, 
+                error: function() { console.log("에러 발생"); } 
+            })
 }
 
  // list 삭제하기
