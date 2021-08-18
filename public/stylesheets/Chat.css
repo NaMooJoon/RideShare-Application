@@ -11,9 +11,6 @@ html, body {
     display: block;
 }
 
-#userWrap {
-    display: block;
-}
 
 .btn {
     background: #fff;
@@ -56,51 +53,10 @@ nav{
     cursor: pointer;
 }
 
-
-#menuList {
-    float: left;
-    width: 200px;
-    border: 1px solid #0084FF;
-    border-radius: 5px;
-    margin: 20px;
-}
-
-#menuHeader {
-    background-color: #0084FF;
-    color: #fff;
-    height: 40px;
-    font-size: 18px;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.menuBtn {
-    text-align: center;
-    border-bottom: 1px solid #f0f0f0;
-    padding: 10px 0px;
-}
-
-#loginForm {
-    float: left;
-    display: block;
-    width: 400px;
-    text-align: center;
-    margin: 20px;
-}
-
-#joinForm {
-    float: left;
-    display: none;
-    width: 400px;
-    text-align: center;
-    margin: 20px;
-}
-
 #contentWrap {
     width: 100%;
     min-width: 1280px;
-    display: none;
+    display: block;
 }
 
 #roomWrap {
