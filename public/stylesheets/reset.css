@@ -2,11 +2,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
 
 :root {
-  --main-blue: rgb(90, 140, 260);
-  --main-blue-80: rgba(90, 140, 260, 0.8);
-  --main-blue-60: rgba(90, 140, 260, 0.6);
-  --main-blue-40: rgba(90, 140, 260, 0.4);
-  --main-blue-20: rgba(90, 140, 260, 0.2);
+  --main-blue: rgb(90, 140, 255);
+  --main-blue-80: rgba(90, 140, 255, 0.8);
+  --main-blue-60: rgba(90, 140, 255, 0.6);
+  --main-blue-40: rgba(90, 140, 255, 0.4);
+  --main-blue-20: rgba(90, 140, 255, 0.2);
 }
 
 html,

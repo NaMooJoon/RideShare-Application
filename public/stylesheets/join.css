@@ -1,50 +1,14 @@
-#Whole {
-  width: 90%;
-  height: 100%;
-  margin: 0 auto;
-}
-
-#top_form {
-  display: flex;
-  margin-top: 3vh;
-  display: none;
-}
-#Profile {
-  flex-grow: 2;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-}
-
-#BACK {
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  color: #377dff;
-}
-
-#iconpart {
-  flex-grow: 1;
-}
-#icon {
-  font-size: 20px;
-  color: #377dff;
-}
-
-#Text_form {
-  margin: 0 auto;
-  display: flex;
+body {
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  margin-top: 9vh;
+  justify-content: center;
+  height: 100vh;
 }
 
-#big-letter,
-#small-letter {
-  width: auto;
+.title_text {
   padding: 10px;
   text-align: center;
+  font-size: 60px;
   color: white;
   font-family: "Kaushan Script", "Nanum Gothic", sans-serif;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
@@ -55,31 +19,30 @@
   -webkit-animation-delay: 0.6s;
 }
 
-#small-letter {
-  margin-top: 8vh;
-  font-size: 60px;
-}
-
-#big-letter {
-  margin-top: 10px;
+.withme {
   font-size: 70px;
 }
 
-#input_form {
+.message {
+  margin-top: 15vh;
+  margin-bottom: 3vh;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(136, 0, 0);
+}
+
+.input_form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  margin-top: 12vh;
 }
 
-#input1,
-#input2 {
+.text_input {
   width: 200px;
   font-size: 18px;
   padding: 5px 8px;
-  margin: 12px;
+  margin: 6px;
   background-color: rgba(0, 0, 0, 0);
   border: none;
   border-bottom: 2px solid var(--main-blue);
@@ -87,23 +50,14 @@
   outline: none;
 }
 
-#button_form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 6vh;
-}
-
-#Button,
-#Button_join {
+.subimt_button {
+  margin-top: 10vh;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   display: flex;
-  width: 230px;
+  width: 200px;
   height: 45px;
-  margin: 5px;
   align-items: center;
   justify-content: space-evenly;
   border-radius: 8px;

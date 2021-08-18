@@ -1,11 +1,13 @@
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-/* var host = window.location.protocol + "//" + window.location.host;
+var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
-    Makehtml(Data);
-});  */
+    Makehtml(Data, function(){
+      swipe();
+    });
+});  
 // 이거 다시 회복
-/* 
+
 var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
@@ -19,7 +21,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-}; */
+};
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -41,15 +43,15 @@ $.ajax({
 
 
 // let SavedGetData = data; 
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
-/* 받아온 Data 불러오기 (localstorage) */
-if (SavedGetData!==null){
-    Makehtml(SavedGetData);
-}
+// let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+// /* 받아온 Data 불러오기 (localstorage) */
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
  
 
 // html 만들기 1
-function Makehtml(Data_obj){
+function Makehtml(Data_obj, callback){
     Data_short = [];
     Data_long = [];
     console.log(Data_obj,"Data_obj")
@@ -106,6 +108,8 @@ function Makehtml(Data_obj){
     revise.forEach(function(item) {
         item.addEventListener("click",reviseAjax );  
       });
+    
+    callback();
 }
 
 // html 만들기 2
@@ -290,74 +294,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 스와이프 코드
 console.log($('#test li'),"swipe")
-$(function () {
-    $('#test li').swipe({
-      swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-        if (direction === 'right') {
-          if (!$(this).hasClass('active')) {console.log("active true"); return;}  //.hasClass() 메서드는 선택한 요소에 클래스가 있는지 확인합니다. 리턴값:불린
+function swipe(){
+  $(function () {
+      $('#test li').swipe({
+        swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+          if (direction === 'right') {
+            if (!$(this).hasClass('active')) {console.log("active true"); return;}  //.hasClass() 메서드는 선택한 요소에 클래스가 있는지 확인합니다. 리턴값:불린
 
-          $(this)
-            .stop(true)
-            .css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
-            });
-
-          if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
-            console.log("cancel or end dis>=200")
-            $(this).stop(true).css({
-                transform: `translate3d(0px, 0px, 0px)`,
-                
-              })
-              .removeClass('active');
-
-            setTimeout(() => {
-              $(this).stop(true).css({
-                transition: 'all 0s ease-out',
-              });
-            }, 300);
-          } else if ((phase === 'cancel' || phase === 'end') && distance < 200) {
-            $(this).stop(true).css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
-          }
-        } else if (direction === 'left') {
-          if ($(this).hasClass('active')) {console.log("left: active=true/return:0"); return;}
-          else {
-            console.log("left,active=false/translate3d(-${distance}px ")
             $(this)
               .stop(true)
               .css({
-                transition: 'all 0s ease-out',
-                transform: `translate3d(-${distance}px, 0px, 0px)`,
+                transition: 'all .1s ease-out',
+                transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
               });
-          }
 
-          if (phase === 'cancel' && distance < 200) {
-            console.log("cancel && distance < 200/3d  000")
-            $(this).stop(true).css({
-              transition: 'all .1s ease-out',
-            });
-
-            setTimeout(() => {
+            if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+              console.log("cancel or end dis>=200")
               $(this).stop(true).css({
-                transform: `translate3d(0px, 0px, 0px)`,
+                  transform: `translate3d(0px, 0px, 0px)`,
+                  
+                })
+                .removeClass('active');
+
+              setTimeout(() => {
+                $(this).stop(true).css({
+                  transition: 'all 0s ease-out',
+                });
+              }, 300);
+            } else if ((phase === 'cancel' || phase === 'end') && distance < 200) {
+              $(this).stop(true).css({
+                transition: 'all .1s ease-out',
+                transform: `translate3d(-200px, 0px, 0px)`,
               });
-            }, 0);
-          } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
-            console.log("cancel,end && distance >= 200/tran3d -200")
-            $(this).addClass('active');
-            $(this).stop(true).css({
-              transition: 'all .1s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
+            }
+          } else if (direction === 'left') {
+            if ($(this).hasClass('active')) {console.log("left: active=true/return:0"); return;}
+            else {
+              console.log("left,active=false/translate3d(-${distance}px ")
+              $(this)
+                .stop(true)
+                .css({
+                  transition: 'all 0s ease-out',
+                  transform: `translate3d(-${distance}px, 0px, 0px)`,
+                });
+            }
+
+            if (phase === 'cancel' && distance < 200) {
+              console.log("cancel && distance < 200/3d  000")
+              $(this).stop(true).css({
+                transition: 'all .1s ease-out',
+              });
+
+              setTimeout(() => {
+                $(this).stop(true).css({
+                  transform: `translate3d(0px, 0px, 0px)`,
+                });
+              }, 0);
+            } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+              console.log("cancel,end && distance >= 200/tran3d -200")
+              $(this).addClass('active');
+              $(this).stop(true).css({
+                transition: 'all .1s ease-out',
+                transform: `translate3d(-200px, 0px, 0px)`,
+              });
+            }
           }
-        }
-      },
-      threshold: 200,
+        },
+        threshold: 200,
+      });
     });
-  });
+  }
 
   /* $(function () {
     $('#test li').swipe({

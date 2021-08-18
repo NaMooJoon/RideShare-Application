@@ -21,4 +21,3 @@ function sendAjax(url, data){
         else { window.location.href=host + '/main'}
     });
 }
-
