@@ -2,7 +2,7 @@ const locname = "포항역"
 const locimage = "https://railwaynomad.com/wp-content/uploads/2015/04/Pohong_station03.jpg"
 
 
-document.querySelector("div.loc_and_image span").innerHTML=locname
+//document.querySelector("div.loc_and_image span").innerHTML=locname
 document.querySelector("div.loc_and_image img").src=locimage
 
 // host -> 현재 창의 주소를 담고 있는 변수.
@@ -50,7 +50,14 @@ var goUserinfo = function(li_id) {
 function iterate_createitem(users){
     for (var i = 0; i < users.length; i++) { //받아온 JSON을 리스트에 띄우는 for문
         setProperties(users[i].stID,users[i].name, users[i].profile_img, users[i].transport_way, users[i].Location_start, users[i].Location_end, users[i].comments, users[i].Current_person, users[i].Limit_person, users[i].li_id);
+        const layout = document.getElementsByClassName("user_item_layout");
+        const userlist = document.getElementsByClassName("screen");
+        let newitem = document.createElement('div');
+        newitem.className ="useritem";
+        newitem.innerHTML = layout[0].innerHTML;
+        userlist[0].append(newitem);
     }
+    
 }
 
 
@@ -67,28 +74,8 @@ function setProperties(stID,name, img, way, startloc, destination, message, user
     if(message.length >= 50){
         document.querySelector("div.user_item_layout span.message").innerHTML= message.substr(0,50)+"...";
     }
-    if (!img) {
-        document.querySelector("div.user_item_layout img.profile").src="/images/profile_null.png"
-    }
+    document.querySelector(".profile").src = `/images/profile/${stID}.png`;
     
-    $.ajax({
-        url: `/images/profile/${stID}.png`,
-        type: 'HEAD',
-        success: function () {
-            display.src = `/images/profile/${stID}.png`;
-        },
-        error: function () {
-            display.src = `/images/profile_null.png`;
-        },
-        complete: function () {           
-            const layout = document.getElementsByClassName("user_item_layout");
-            const userlist = document.getElementsByClassName("screen");
-            let newitem = document.createElement('div');
-            newitem.className ="useritem";
-            newitem.innerHTML = layout[0].innerHTML;
-            userlist[0].append(newitem);
-        }
-    });
 
 } //아이템 속성설정 함수 종료
 

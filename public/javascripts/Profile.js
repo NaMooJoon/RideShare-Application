@@ -93,7 +93,7 @@ const options = { maxWidth: 1000, maxHeight: 1000, success: function (result) { 
 }, error: function (err) { console.log(err)}}
 
 function saveImage(stID, file){
-    console.log("저장된 이미지",file)
+    alert("저장된 이미지",file);
     var formdata = new FormData();	// formData 생성
     formdata.append("file", file, `${stID}`+'.png');
     $.ajax({
