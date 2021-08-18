@@ -1,5 +1,5 @@
 $(function () {
-    var socket = io.connect();
+    var socket = io();
     var roomId = 1;
     var socketId = "";
     var username = "";
@@ -11,6 +11,23 @@ $(function () {
     var $roomSelect = $('#roomSelect');
     var $memberSelect = $('#memberSelect');
     var $chatLog = $('#chatLog');
+
+    // 여기에서? 백쪽에서 유저에 대한 정보를 가져와야 하는 것이낙?
+    // host -> 현재 창의 주소를 담고 있는 변수.
+    var host = window.location.protocol + "//" + window.location.host;
+    sendAjax(host + '/profile/user', "POST", function(data){
+        console.log(data);
+        username = data[0].name;
+        socketId = socket.id;
+        socket.emit('login user', {id: data[0].stID, name: data[0].name}, function(res) {
+            console.log('socket emit "login user" 이 성공하였습니다.');
+            alert(res.data);
+            roomId = 1;
+            $chatLog.html("");
+            $('#chatHeader').html("Open chat room");
+        });
+    });
+    
 
     $("#loginBtn").click(function (e) {
         e.preventDefault();
@@ -54,29 +71,6 @@ $(function () {
         }
     })
     
-    $joinForm.submit(function (e) {
-        e.preventDefault();
-        let id = $("#joinId");
-        let pw = $("#joinPw");
-        let name = $("#name");
-        if (id.val() === "" || pw.val() === "" || name.val() === "") {
-            alert("check validation");
-            return false;
-        } else {
-            socket.emit('join user', {id: id.val(), pw: pw.val(), name: name.val()}, function (res) {
-                if (res.result) {
-                    alert(res.data);
-                    id.val("");
-                    pw.val("");
-                    $("#loginBtn").click();
-                } else {
-                    alert(res.data);
-                    return false;
-                }
-            });
-        }
-    })
-
 
     $("#logoutBtn").click(function(e) {
         e.preventDefault();
@@ -133,10 +127,11 @@ $(function () {
         console.log(data);
         var i;
         var date = data[0].time.substring(8,11);
-        $chatLog.append(`<div class="notice"><strong>----- ${data[0].time.substring(0,11)} -----</div>`);
+        printDate(data[0].time);
         for(i = 0; i < data.length; i++) {
             if(date !== data[i].time.substring(8,11)){
-                $chatLog.append(`<div class="notice"><strong>----- ${data[i].time.substring(0,11)} -----</div>`);
+                //$chatLog.append(`<div class="notice"><strong>----- ${data[i].time.substring(0,11)} -----</div>`);
+                printDate(data[i].time);
                 date = data[i].time.substring(8,11);
             }
 
@@ -171,10 +166,20 @@ $(function () {
     });
 });
 
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+function printDate(time) {
+    $('#chatLog').append(`<div class="notice"><strong><   ${time.substring(0,10)}   ></div>`);
 }
 
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
+
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
