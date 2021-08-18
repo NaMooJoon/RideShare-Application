@@ -170,11 +170,3 @@ $(function () {
         $chatLog.append(`<div class="notice"><strong>${data}</strong> joined the room</div>`)
     });
 });
-
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-}
-
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-}
