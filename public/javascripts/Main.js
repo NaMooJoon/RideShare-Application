@@ -208,7 +208,9 @@ function removeAjax(event){
              
                success: function(result) {
                     if (result) 
-                    { console.log("저장되었습니다.",result);  } 
+                    { console.log("저장되었습니다.",result);
+                    li_from_de.style.display = 'none';
+                  } 
                     else { console.log("전달실패",result); } 
                   }, 
                   error: function() { console.log("에러 발생"); } 
@@ -268,8 +270,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // 스와이프 코드
+// 서버 용
 console.log($('#test li'),"swipe")
-function swipe(){
+/* function swipe(){
   $(function () {
       $('#test li').swipe({
         swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
@@ -338,73 +341,78 @@ function swipe(){
         threshold: 200,
       });
     });
-  }
-
-  /* $(function () {
-    $('#test li').swipe({
-      swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-        if (direction === 'right') {
-          if (!$(this).hasClass('active')) return;
-
-          $(this)
-            .stop(true)
-            .css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
-            });
-
-          if ((phase === 'cancel' || phase === 'end') && distance >= 120) {
-            $(this)
-              .stop(true)
-              .css({
-                transform: `translate3d(0px, 0px, 0px)`,
-              })
-              .removeClass('active');
-
-            setTimeout(() => {
-              $(this).stop(true).css({
-                transition: 'all 0s ease-out',
-              });
-            }, 300);
-          } else if ((phase === 'cancel' || phase === 'end') && distance < 120) {
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
-          }
-        } else if (direction === 'left') {
-          if ($(this).hasClass('active')) return;
-          else {
-            $(this)
-              .stop(true)
-              .css({
-                transition: 'all 0s ease-out',
-                transform: `translate3d(-${distance}px, 0px, 0px)`,
-              });
-          }
-
-          if (phase === 'cancel' && distance < 200) {
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-            });
-
-            setTimeout(() => {
-              $(this).stop(true).css({
-                transform: `translate3d(0px, 0px, 0px)`,
-              });
-            }, 0);
-          } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
-            $(this).addClass('active');
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
-          }
-        }
-      },
-      threshold: 200,
-    });
-  }); */
+  } */
+  // local 용
+    $(function () {
+        $('#test li').swipe({
+          swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+            if (direction === 'right') {
+              if (!$(this).hasClass('active')) {console.log("active true"); return;}  //.hasClass() 메서드는 선택한 요소에 클래스가 있는지 확인합니다. 리턴값:불린
+  
+              $(this)
+                .stop(true)
+                .css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
+                });
+  
+              if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+                console.log("cancel or end dis>=200")
+                $(this).stop(true).css({
+                    transform: `translate3d(0px, 0px, 0px)`,
+                    
+                  })
+                  .removeClass('active');
+  
+                setTimeout(() => {
+                  $(this).stop(true).css({
+                    transition: 'all 0s ease-out',
+                  });
+                }, 300);
+              } else if ((phase === 'cancel' || phase === 'end') && distance < 200) {
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-200px, 0px, 0px)`,
+                });
+              }
+            } else if (direction === 'left') {
+              if ($(this).hasClass('active')) {console.log("left: active=true/return:0"); return;}
+              else {
+                console.log("left,active=false/translate3d(-${distance}px ")
+                $(this)
+                  .stop(true)
+                  .css({
+                    transition: 'all 0s ease-out',
+                    transform: `translate3d(-${distance}px, 0px, 0px)`,
+                  });
+              }
+  
+              if (phase === 'cancel' && distance < 200) {
+                console.log("cancel && distance < 200/3d  000")
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                });
+  
+                setTimeout(() => {
+                  $(this).stop(true).css({
+                    transform: `translate3d(0px, 0px, 0px)`,
+                  });
+                }, 0);
+              } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+                console.log("cancel,end && distance >= 200/tran3d -200")
+                $(this).addClass('active');
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-200px, 0px, 0px)`,
+                });
+              }
+            }
+          },
+          threshold: 200,
+        });
+      });
+    
+  
 
 // sidebar materilize 시작
   $(document).ready(function(){
