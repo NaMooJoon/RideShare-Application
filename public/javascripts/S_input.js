@@ -125,6 +125,7 @@ $("#summitBT").click(function () {
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
       let ResText = xhr.responseText;
+      ResText = JSON.parse(ResText);
       if(ResText.result === "ok"){
         window.location.href="/main"
        } else{
