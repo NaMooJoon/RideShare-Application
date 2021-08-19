@@ -7,6 +7,7 @@
     maximum-scale=1.0, minimum-scale=1.0" />
     <title>Main</title>
     <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <link rel="stylesheet" href="../public/stylesheets/button.css">
     <link type="text/css" rel="stylesheet" href="../public/plug/materialize.css"  media="screen,projection"/>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -124,7 +125,36 @@
       </div>
 </div>
 
-<div id="test-swipe-2" class="col s12 red">Test 2<div class="SwipeT2"></div></div>
+<div id="test-swipe-2" class="col s12">
+    <div class="screen">
+        <!--## 리스트의 항목 시작 ##-->
+    <div class="user_item_layout"> 
+        <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+        <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
+            <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
+                <div class="namediv"> <!--이름-->
+                        <span class="fatblack nametext" style="font-size: 22px;">이름</span>
+                </div>
+                <div> <!--출발지와 도착지 텍스트 div-->
+                    <span class="smalltext loctext">마지막 대화 12:34</span>
+                </div>
+            </div>
+            <div class="messagebox"> <!--유저메세지-->
+                <span class="lastmsg">여기에 채팅방의 마지막 대화가 표시됩니다.</span>
+            </div>
+        </div>
+
+            <button class="findbutton" onclick="goChatroom()">❯</button>
+
+    </div> 
+     <!--## 리스트의 항목 끝 ##-->
+      
+   
+
+ </div>
+</div>
+
+
 </div>
 
 <!--  Materilize sidebar -->

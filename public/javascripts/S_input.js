@@ -99,24 +99,10 @@ $("#summitBT").click(function () {
     
     console.log(TextArea,TimeInput,DateInput,PMValue,week,StartLocation,EndLocation,TransValue)
 
-  /*   let Send_OBJ = {
-        
-        Location_start: StartLocation,
-        Location_end:  EndLocation,
-        Start_time: TimeInput,
-        Repeat_ornot: week,
-        Start_date: DateInput,
-        Limit_person: PMValue,
-        transport_way: TransValue,
-        comments: TextArea,
-        li_id: Date.now(),
-        label_id: Date.now() * 1000,
-    }
-    Sendarray.push(Send_OBJ);
-    saveDATA(); */
-
     // 버튼 눌렀을시 화면 넘기기
     if (blank_TF === false ){
+
+      // localstorage 코드
       let Send_OBJ = {
         
         Location_start: StartLocation,
@@ -134,19 +120,16 @@ $("#summitBT").click(function () {
     console.log(Sendarray,"Sendarray")
     saveDATA();
 
-      console.log("no blank",
-      // window.location.href="../../views/Main.html"
-      // window.location.href="/main/create_list"
-      ); 
-    } else {
-      document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
-      alert("채우지 않은 빈칸이 있습니다.")
-    }
-   
+    // 서버 통신 코드
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
-        
+      let ResText = xhr.responseText;
+      if(ResText.result === "ok"){
+        window.location.href="/main"
+       } else{
+         console.log("오류! 서버로부터 ok받지 못함")
+       }
     }
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data = '';
@@ -157,12 +140,22 @@ $("#summitBT").click(function () {
     data += '&Limit_person='+ PMValue;
     data += '&transport_way='+ TransValue;
     data += '&comments='+ TextArea;
-    /* data += '&label_onoff='+ true; */
-   /*  data += '&li_id='+ Date.now();
-    data += '&label_id='+ Date.now() * 1000; */
+   
 
     console.log(data);
     xhr.send(data); 
+
+      console.log("no blank",
+      // window.location.href="../../views/Main.html"
+      // window.location.href="/main"
+      ); 
+
+    } else {
+      document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
+      alert("채우지 않은 빈칸이 있습니다.")
+    }
+   
+    
 }); 
 
 

@@ -50,7 +50,7 @@ if (SavedGetData!==null){
 }
  
 
-// html 만들기 1
+// main list html 만들기 1
 function Makehtml(Data_obj, callback){
     Data_short = [];
     Data_long = [];
@@ -68,15 +68,7 @@ function Makehtml(Data_obj, callback){
 
     Short_list.innerHTML = Data_short.map((item) => createHTML(item)).join('')
     Long_list.innerHTML = Data_long.map((item) => createHTML(item)).join('')
-/*     Data_obj.map((item) => {
 
-        if(item.Repeat_ornot===""){
-            console.log("long"); return createHTML(item)
-        }
-        else{
-            console.log("short"); return createHTML(item)
-        }}).join('')
-     */
     
     
     let arrow = document.querySelectorAll('.Arrow');   
@@ -112,7 +104,7 @@ function Makehtml(Data_obj, callback){
     /* callback(); */
 }
 
-// html 만들기 2
+// main list html 만들기 2
 function createHTML(item){
   
      let LI_ID = item.li_id;
@@ -128,23 +120,6 @@ function createHTML(item){
      } else{
          TO_TF = ""
      }
-    /*  return`
-     <li id="${LI_ID}" class="list">
-            <div class="L_Text">
-                <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
-                <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div> 
-            </div>
-            <div class="bu_arrow_wrap">
-            <div class="ON_OFF">
-                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF} />
-                <label class="tgl-btn" for="${LABEL_ID}"></label>
-            </div>
-            <div class="Arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-             </div>
-        </li>
-        `; */
         return`
         <div id="${LI_ID}" class="test-wrapper">
           <ul id="test" class="list">
@@ -176,7 +151,7 @@ function createHTML(item){
       </div>
     `;
  }
- //onclick="SendTFData(this.id)
+
 
 
 
@@ -450,3 +425,113 @@ function swipe(){
     );
   });
           
+
+
+  ///////////////////////////////////////////
+  ///////////채팅 방 코드/////////////////////
+
+//   let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
+// function Makehtml(Data_obj, callback){
+//   Data_short = [];
+//   Data_long = [];
+//   console.log(Data_obj,"Data_obj")
+//   Data_obj.forEach(function(item) {
+//       if (item.Repeat_ornot === "long"){
+//           Data_long.push(item)
+//       } else{
+//           Data_short.push(item)
+//       }
+//   });
+
+//   let Short_list = document.querySelector('#short-List-part');
+//   let Long_list = document.querySelector('#long-List-part');
+
+//   Short_list.innerHTML = Data_short.map((item) => createHTML(item)).join('')
+//   Long_list.innerHTML = Data_long.map((item) => createHTML(item)).join('')
+
+  
+  
+//   let arrow = document.querySelectorAll('.Arrow');   
+  
+//  // Arrow 클릭시 AJAX함수 실행
+//   arrow.forEach(function(item) {
+//     /* item.addEventListener("click",deleteList );  */
+//     item.addEventListener("click",next );  //서버's 코드
+//   });
+
+//   // toggle 버튼 클릭시 AJAX함수 실행
+ 
+//   let toggle_bt = document.querySelectorAll(".ON_OFF input");
+//   console.log(toggle_bt,"toggle_bt")
+//   toggle_bt.forEach(function(item){
+//   item.addEventListener("click", CheckToggle)
+//   });
+
+//   // 삭제 버튼 클릭시 AJAX함수 실행
+//   let remove = document.querySelectorAll('.deleteBT'); 
+//   console.log("remove!!!",remove)
+//   remove.forEach(function(item) {
+//       item.addEventListener("click",removeAjax );  
+//     });
+
+//   // 수정 버튼 클릭시 AJAX 함수 실행
+//   let revise = document.querySelectorAll('.reviseBT'); 
+//   console.log("수정!!",revise)
+//   revise.forEach(function(item) {
+//       item.addEventListener("click",reviseAjax );  
+//     });
+  
+//   /* callback(); */
+// }
+ 
+// // main list html 만들기 2
+// function createHTML(item){
+  
+//   let LI_ID = item.li_id;
+//   /* let LABEL_ID = item.label_id; */
+//   let LABEL_ID = "Label" + String(item.li_id) 
+//   let S_TEXT = item.Location_start;
+//   let E_TEXT = item.Location_end;
+//   let TIME_TEXT = item.Start_time;
+//   let WEEk = item.Repeat_ornot;
+//   let TO_TF_SEVER = item.label_onoff;
+//   if (TO_TF_SEVER===1){
+//       TO_TF = "checked"
+//   } else{
+//       TO_TF = ""
+//   }
+//      return`
+//      <div id="${LI_ID}" class="test-wrapper">
+//        <ul id="test" class="list">
+//          <li class="list__item">
+//            <div class="list__item-text">
+//              <li  class="swiper-slide" >
+//                  <div class="L_Text">
+//                      <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
+//                      <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div>
+//                  </div>
+//                  <div class="bu_arrow_wrap">
+//                  <div class="ON_OFF">
+//                      <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF}/>
+//                      <label class="tgl-btn" for="${LABEL_ID}"></label>
+//                  </div>
+//                  <div class="Arrow">
+//                      <i class="fas fa-chevron-right"></i>
+//                  </div>
+//                   </div>
+//                   <div class="list__item-action">
+//                     <span class="deleteBT" >삭제</span>
+//                     <span class="reviseBT">수정</span>
+//                   </div>
+                 
+//                  </li>
+//            </div>
+//          </li>
+//      </ul>
+//    </div>
+//  `;
+// }
