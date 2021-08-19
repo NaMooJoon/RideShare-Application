@@ -111,7 +111,11 @@ $("#summitBT").click(function () {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
-        
+      if(ResText.result === "ok"){
+        window.location.href="/main"
+       } else{
+         console.log("오류! 서버로부터 ok받지 못함")
+       }
     }
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     var data = '';
