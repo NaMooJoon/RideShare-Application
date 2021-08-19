@@ -12,7 +12,7 @@ var db = require('./lib/db');
 var sessionStore = new MySQLStore(options);
 
 
-var onlineUsers = {};                       // 현재 온라인인 유저를 저장하는 곳
+var onlineUsers = {};                     // 현재 온라인인 유저를 저장하는 곳
 
 // Call routers
 var indexRouter = require('./routes/index');
@@ -130,7 +130,14 @@ io.use(sharedsession(session, {
 
 // Set sockets
 io.sockets.on('connection', function(socket) {
-  console.log('socket id :',socket.id);
+  socket.on("alarm", function(data) {
+    console.log(data);
+  });
+
+  console.log('----------------> socket id :',socket.id);
+  socket.handshake.session.socketId = socket.id;
+  socket.handshake.session.save();
+  console.log("-->", socket.handshake.session);
   socket.on("send message", function(data) {
       // data -> roomId, msg
       console.log("send message 소켓이 실행됩니다...");
@@ -152,16 +159,20 @@ io.sockets.on('connection', function(socket) {
 
 
   // id 값과 pw 값이 data 안으로 값이 들어온다.
-  socket.on('login user', function(data, cb) {
-      onlineUsers[data.id] = {roomId: 1, socketId: socket.id, userId: data.id, username: data.name};
+  socket.on('connect user', function(student, cb) {
+      onlineUsers[student.id] = {roomId: 1, socketId: socket.id, userId: student.id, username: student.name};
       socket.join('room1');
-      var query = db.connection.query('SELECT chat_message.stID,name,message,time FROM chat_message LEFT JOIN user ON chat_message.stID=user.stID WHERE roomID=?', [onlineUsers[data.id].roomId], function(err, message){
-        console.log("login user에서 조회한 message는 :", message);
+      var query = db.connection.query('SELECT chat_message.stID,name,message,time FROM chat_message LEFT JOIN user ON chat_message.stID=user.stID WHERE roomID=?', [onlineUsers[student.id].roomId], function(err, message){
         socket.emit('message history', message);
-        updateUserList(0, 1, data.id);
+        updateUserList(0, 1, student.id);
       });
-      cb({ data: '채팅방 접속에 성공하였습니다.'});
+      cb({ data: '채팅방 접속에 성공하였습니다.'}); 
+      // 모든 유저들의 user 리스트 최신화.
+      io.emit("onlineUsers", onlineUsers);
+      
   });
+  
+  //io.to(onlineUsers[21800000].socketId).emit('alarm', {data:"Hello"});
 
   socket.on('join room', function(data) {
       let id = getUserIdBySocketId(socket.id);
@@ -192,6 +203,7 @@ io.sockets.on('connection', function(socket) {
           return ;
       let roomId = onlineUsers[id].roomId || 0;
       delete onlineusers[getUserIdBySocketId(socket.id)];
+      io.emit("onlineUsers", onlineUsers);
       updateUserList(roomId, 0, id);
   });
 

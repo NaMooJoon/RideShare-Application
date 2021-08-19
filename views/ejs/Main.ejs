@@ -7,12 +7,12 @@
     maximum-scale=1.0, minimum-scale=1.0" />
     <title>Main</title>
     <link rel="stylesheet" href="/stylesheets/reset.css">
-    <link href="/stylesheets/Main.css" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/button.css">
     <link type="text/css" rel="stylesheet" href="/plug/materialize.css"  media="screen,projection"/>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+    <link href="/stylesheets/Main.css" rel="stylesheet">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
 <div id="Whole">
@@ -34,10 +34,10 @@
         <div id="bell">
             <a class="modal-trigger" href="#modal1">
             <label for="bell_input" class="bell_click_input">
-                <i class="fas fa-bell">
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                <i id="bell_icon" class="fas fa-bell">
+                        <span id="bell_span">
                         3
-                        <span class="visually-hidden">unread messages</span>
+                        
                     </span>
                 </i>
             </label>
@@ -67,10 +67,16 @@
         </div>
     </div>
     <div id="Buttons">
-        <div id="B_MYLIST">My list</div>
-        <div id="B_CHAT">Chat</div>
+       <!--  <div id="B_MYLIST">My list</div>
+        <div id="B_CHAT">Chat</div> -->
+        <ul id="tabs-swipe-demo" class="tabs">
+            <li id="B_MYLIST" class="tab col s3"><a href="#test-swipe-1">My list</a></li>
+            <li id="B_CHAT" class="tab col s3"><a class="active" href="#test-swipe-2">Chat</a></li>
+          
+        </ul>
     </div>
 </div>
+<div id="test-swipe-1" class="col s12">
 <div id="Bottom_Part">
     <div id="Short-dis">
         <span>Short - distance</span>
@@ -100,6 +106,7 @@
 
     </ul>
 </div>
+</div>
 <div id="Plus">
     <!-- <a href="../MakeList/MakeList.html" data-transition="slide" class="btn-floating btn-large waves-effect waves-light red "><i class="material-icons"><i class="fas fa-plus"></i></i></a> -->
     <!-- // this is real
@@ -117,6 +124,12 @@
       </div>
 </div>
 
+<div id="test-swipe-2" class="col s12">
+    <div class="screen">
+
+ </div>
+</div>
+
 
 </div>
 
@@ -126,15 +139,15 @@
       <div class="background">
        <!--  <img src="images/office.jpg"> -->
       </div>
-      <a href="#Hisnet_id"><img class="circle" src="#"><%=email%></a>
-      <a href="#name"><span class="white-text name"><%=name%></span></a>
-      <a href="#student_id"><span class="white-text email"><%=stID%></span></a>
+      <a href="#user"><img class="circle" src="#">hihi</a>
+      <a href="#name"><span class="white-text name">신경식</span></a>
+      <a href="#email"><span class="white-text email">22100411</span></a>
     </div></li>
     <li><a class="subheader">프로필 편집</a></li>
-    <li><a class="waves-effect"href="/profile"><i class="fas fa-sign-out-alt"></i>Profile</a></li>
+    <li><a class="waves-effect"href="#!"><i class="fas fa-sign-out-alt"></i>Profile</a></li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">로그아웃하기</a></li>
-    <li><a class="waves-effect" href="/logout"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+    <li><a class="waves-effect" href="#!"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
   </ul>
  
     
@@ -178,8 +191,8 @@
     <!--  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/plug/materialize.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.19/jquery.touchSwipe.min.js"></script>
+    <script type="text/javascript" src="/plug/materialize.js"></script>
     <script src='/javascripts/Main.js'></script>
     
 </body>

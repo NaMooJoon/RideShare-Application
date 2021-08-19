@@ -7,7 +7,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/data', function(req, res, next) {
-  console.log(req.user);
   if(req.user){
     res.json({user: req.user});
   } else {

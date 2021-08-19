@@ -19,8 +19,8 @@ $(function () {
         console.log(data);
         username = data[0].name;
         socketId = socket.id;
-        socket.emit('login user', {id: data[0].stID, name: data[0].name}, function(res) {
-            console.log('socket emit "login user" 이 성공하였습니다.');
+        socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
+            console.log('socket emit "connect user"가 성공하였습니다.');
             alert(res.data);
             roomId = 1;
             $chatLog.html("");
@@ -28,18 +28,6 @@ $(function () {
         });
     });
     
-
-    $("#loginBtn").click(function (e) {
-        e.preventDefault();
-        $loginForm.show();
-        $joinForm.hide();
-    });
-
-    $("#joinBtn").click(function (e) {
-        e.preventDefault();
-        $joinForm.show();
-        $loginForm.hide();
-    });
 
     $loginForm.submit(function(e) {
         e.preventDefault();
@@ -126,16 +114,16 @@ $(function () {
     socket.on('message history', function(data) {
         console.log(data);
         var i;
-        var date = data[0].time.substring(8,11);
+        var date = data[0].time.substring(8,10);
         printDate(data[0].time);
         for(i = 0; i < data.length; i++) {
-            if(date !== data[i].time.substring(8,11)){
+            if(date !== data[i].time.substring(8,10)){
                 //$chatLog.append(`<div class="notice"><strong>----- ${data[i].time.substring(0,11)} -----</div>`);
                 printDate(data[i].time);
-                date = data[i].time.substring(8,11);
+                date = data[i].time.substring(8,10);
             }
 
-            data[i].time = data[i].time.substring(11,16);
+            data[i].time = data[i].time.substring(10,16);
             if(data[i].name === username) {
                 $chatLog.append(`<div class="myMsg msgEl"><span class='msgTime'>${data[i].time}   </span><span class="msg">${data[i].message}</span></div>`)
             } else {
