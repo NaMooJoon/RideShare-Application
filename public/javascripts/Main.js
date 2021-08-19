@@ -41,16 +41,16 @@ $.ajax({
         }) */
 
 
+// 이거 다시 지움
 
-// let SavedGetData = data; 
-// let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
-// /* 받아온 Data 불러오기 (localstorage) */
-// if (SavedGetData!==null){
-//     Makehtml(SavedGetData);
-// }
+/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
+/* 받아온 Data 불러오기 (localstorage) */
+/* if (SavedGetData!==null){
+    Makehtml(SavedGetData);
+} */
  
 
-// html 만들기 1
+// main list html 만들기 1
 function Makehtml(Data_obj, callback){
     Data_short = [];
     Data_long = [];
@@ -68,15 +68,7 @@ function Makehtml(Data_obj, callback){
 
     Short_list.innerHTML = Data_short.map((item) => createHTML(item)).join('')
     Long_list.innerHTML = Data_long.map((item) => createHTML(item)).join('')
-/*     Data_obj.map((item) => {
 
-        if(item.Repeat_ornot===""){
-            console.log("long"); return createHTML(item)
-        }
-        else{
-            console.log("short"); return createHTML(item)
-        }}).join('')
-     */
     
     
     let arrow = document.querySelectorAll('.Arrow');   
@@ -95,16 +87,24 @@ function Makehtml(Data_obj, callback){
     item.addEventListener("click", CheckToggle)
     });
 
-    // remove 버튼 클릭시 AJAX함수 실행
-    let remove = document.querySelectorAll('.list__item-action'); 
+    // 삭제 버튼 클릭시 AJAX함수 실행
+    let remove = document.querySelectorAll('.deleteBT'); 
+    console.log("remove!!!",remove)
     remove.forEach(function(item) {
         item.addEventListener("click",removeAjax );  
+      });
+
+    // 수정 버튼 클릭시 AJAX 함수 실행
+    let revise = document.querySelectorAll('.reviseBT'); 
+    console.log("수정!!",revise)
+    revise.forEach(function(item) {
+        item.addEventListener("click",reviseAjax );  
       });
     
     callback();
 }
 
-// html 만들기 2
+// main list html 만들기 2
 function createHTML(item){
   
      let LI_ID = item.li_id;
@@ -120,23 +120,6 @@ function createHTML(item){
      } else{
          TO_TF = ""
      }
-    /*  return`
-     <li id="${LI_ID}" class="list">
-            <div class="L_Text">
-                <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
-                <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div> 
-            </div>
-            <div class="bu_arrow_wrap">
-            <div class="ON_OFF">
-                <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF} />
-                <label class="tgl-btn" for="${LABEL_ID}"></label>
-            </div>
-            <div class="Arrow">
-                <i class="fas fa-chevron-right"></i>
-            </div>
-             </div>
-        </li>
-        `; */
         return`
         <div id="${LI_ID}" class="test-wrapper">
           <ul id="test" class="list">
@@ -157,8 +140,8 @@ function createHTML(item){
                     </div>
                      </div>
                      <div class="list__item-action">
-                       <span >삭제</span>
-                       <span >수정</span>
+                       <span class="deleteBT" >삭제</span>
+                       <span class="reviseBT">수정</span>
                      </div>
                     
                     </li>
@@ -168,7 +151,7 @@ function createHTML(item){
       </div>
     `;
  }
- //onclick="SendTFData(this.id)
+
 
 
 
@@ -215,9 +198,9 @@ function next(event){
     //         })
 
 }
-//
+// 삭제 버튼 눌렀을때 AJAX 함수
 function removeAjax(event){
-    let li_from_de = event.currentTarget.parentElement.parentElement.parentElement;
+    let li_from_de = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
     console.log("delete",li_from_de)
     $.ajax({ 
           url:`/main/${li_from_de.id}`, 
@@ -225,11 +208,29 @@ function removeAjax(event){
              
                success: function(result) {
                     if (result) 
-                    { console.log("저장되었습니다.",result);  } 
+                    { console.log("저장되었습니다.",result);
+                    li_from_de.style.display = 'none';
+                  } 
                     else { console.log("전달실패",result); } 
                   }, 
                   error: function() { console.log("에러 발생"); } 
               })
+}
+// 수정 버튼 눌렀을때 AJAX함수
+function reviseAjax(event){
+  let li_from_vi = event.currentTarget.parentElement.parentElement.parentElement.parentElement;
+  console.log("update",li_from_vi)
+  $.ajax({ 
+        url:`/main/${li_from_vi.id}`, 
+             type:"update", data:null, 
+           
+             success: function(result) {
+                  if (result) 
+                  { console.log("저장되었습니다.",result);  } 
+                  else { console.log("전달실패",result); } 
+                }, 
+                error: function() { console.log("에러 발생"); } 
+            })
 }
 
  // list 삭제하기
@@ -269,6 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // 스와이프 코드
+// 서버 용
 console.log($('#test li'),"swipe")
 function swipe(){
   $(function () {
@@ -340,72 +342,77 @@ function swipe(){
       });
     });
   }
-
-  /* $(function () {
-    $('#test li').swipe({
-      swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
-        if (direction === 'right') {
-          if (!$(this).hasClass('active')) return;
-
-          $(this)
-            .stop(true)
-            .css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
-            });
-
-          if ((phase === 'cancel' || phase === 'end') && distance >= 120) {
-            $(this)
-              .stop(true)
-              .css({
-                transform: `translate3d(0px, 0px, 0px)`,
-              })
-              .removeClass('active');
-
-            setTimeout(() => {
-              $(this).stop(true).css({
-                transition: 'all 0s ease-out',
-              });
-            }, 300);
-          } else if ((phase === 'cancel' || phase === 'end') && distance < 120) {
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
-          }
-        } else if (direction === 'left') {
-          if ($(this).hasClass('active')) return;
-          else {
-            $(this)
-              .stop(true)
-              .css({
-                transition: 'all 0s ease-out',
-                transform: `translate3d(-${distance}px, 0px, 0px)`,
-              });
-          }
-
-          if (phase === 'cancel' && distance < 200) {
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-            });
-
-            setTimeout(() => {
-              $(this).stop(true).css({
-                transform: `translate3d(0px, 0px, 0px)`,
-              });
-            }, 0);
-          } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
-            $(this).addClass('active');
-            $(this).stop(true).css({
-              transition: 'all .3s ease-out',
-              transform: `translate3d(-200px, 0px, 0px)`,
-            });
-          }
-        }
-      },
-      threshold: 200,
-    });
-  }); */
+  // local 용
+ /*    $(function () {
+        $('#test li').swipe({
+          swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
+            if (direction === 'right') {
+              if (!$(this).hasClass('active')) {console.log("active true"); return;}  //.hasClass() 메서드는 선택한 요소에 클래스가 있는지 확인합니다. 리턴값:불린
+  
+              $(this)
+                .stop(true)
+                .css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-${200 - distance}px, 0px, 0px)`,
+                });
+  
+              if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+                console.log("cancel or end dis>=200")
+                $(this).stop(true).css({
+                    transform: `translate3d(0px, 0px, 0px)`,
+                    
+                  })
+                  .removeClass('active');
+  
+                setTimeout(() => {
+                  $(this).stop(true).css({
+                    transition: 'all 0s ease-out',
+                  });
+                }, 300);
+              } else if ((phase === 'cancel' || phase === 'end') && distance < 200) {
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-200px, 0px, 0px)`,
+                });
+              }
+            } else if (direction === 'left') {
+              if ($(this).hasClass('active')) {console.log("left: active=true/return:0"); return;}
+              else {
+                console.log("left,active=false/translate3d(-${distance}px ")
+                $(this)
+                  .stop(true)
+                  .css({
+                    transition: 'all 0s ease-out',
+                    transform: `translate3d(-${distance}px, 0px, 0px)`,
+                  });
+              }
+  
+              if (phase === 'cancel' && distance < 200) {
+                console.log("cancel && distance < 200/3d  000")
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                });
+  
+                setTimeout(() => {
+                  $(this).stop(true).css({
+                    transform: `translate3d(0px, 0px, 0px)`,
+                  });
+                }, 0);
+              } else if ((phase === 'cancel' || phase === 'end') && distance >= 200) {
+                console.log("cancel,end && distance >= 200/tran3d -200")
+                $(this).addClass('active');
+                $(this).stop(true).css({
+                  transition: 'all .1s ease-out',
+                  transform: `translate3d(-200px, 0px, 0px)`,
+                });
+              }
+            }
+          },
+          threshold: 200,
+        });
+      }); */
+    
+  
 
 // sidebar materilize 시작
   $(document).ready(function(){
@@ -416,4 +423,100 @@ function swipe(){
   $(document).ready(function(){
     $('.modal').modal();
   });
+
+   // tab 메뉴
+   $(document).ready(function(){
+    $('.tabs').tabs(
+      /*   {
+            swipeable: 'true',
+        } */
+    );
+  });
           
+
+
+  ///////////////////////////////////////////
+  ///////////채팅 방 코드/////////////////////
+
+//   let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
+
+
+// Makehtml -> MakeChat_html
+// createHTML -> createChat_html
+// SavedGetData -> SavedChatData
+var SavedChatData = [{
+  name:"신경식",
+  Chat_content:"안녕하세요 저는 신경식입니다",
+  Chat_time: "10:30 AM" ,
+},
+{
+  name:"김준현",
+  Chat_content:"안녕하세요 저는 윗미의 팀장입니다",
+  Chat_time: "12:30 PM" ,
+},
+{
+  name:"정예준",
+  Chat_content:"안녕하세요 저는 윗미의 요리사 입니다",
+  Chat_time: "11:30 AM" ,
+}
+]
+
+MakeChat_html(SavedChatData);
+// var host = window.location.protocol + "//" + window.location.host;
+// sendAjax(host + '/main/chat_data', "GET", function(Data){
+//   MakeChat_html(Data, function(){
+      
+//     });
+// });  
+// 이거 다시 회복
+// var SavedChatData; 
+// function sendAjax(url, method, call) {
+// 	const xhr = new XMLHttpRequest();
+// 	xhr.open(method, url);
+
+// 	var data = null;
+//     xhr.send(data);
+
+//     xhr.addEventListener('load', function(){
+//         const result = JSON.parse(xhr.responseText);
+// 		console.log("Getting data success!", result);
+// 		call(result);
+//     });
+// };
+function MakeChat_html(ChatData_obj){
+  let Chat_screen = document.querySelector(".screen")
+ 
+  console.log(Chat_screen,"Chat_screen")
+  Chat_screen.innerHTML = ChatData_obj.map((item) => createChat_html(item)).join('')
+}
+ 
+// main list html 만들기 2
+function createChat_html(item){
+  
+  let CH_name = item.name;
+  let CH_con = item.Chat_content;
+  let CH_time =  item.Chat_time
+     return`
+    <div class="user_item_layout"> 
+        <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+        <div class="info"> 
+            <div class="align"> 
+                <div class="namediv"> 
+                        <span class="fatblack nametext" style="font-size: 22px;">${CH_name}</span>
+                </div>
+                <div> 
+                    <span class="smalltext loctext">마지막 대화 ${CH_time}</span>
+                </div>
+            </div>
+            <div class="messagebox"> 
+                <span class="lastmsg">${CH_con}</span>
+            </div>
+        </div>
+            <button class="findbutton" onclick="goChatroom()">❯</button>
+    </div> 
+ `;
+}
