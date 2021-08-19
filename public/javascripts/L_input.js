@@ -108,13 +108,6 @@ $("#summitBT").click(function () {
     }
     Sendarray.push(Send_OBJ);
     saveDATA();
-
-      console.log("no blank"); 
-      /* window.location.href="../../views/Main.html";  */
-    } else {
-      document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
-      alert("채우지 않은 빈칸이 있습니다.")
-    }
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/main/create_list');
     xhr.onreadystatechange = function(){
@@ -132,6 +125,13 @@ $("#summitBT").click(function () {
    
 
     xhr.send(data); 
+      console.log("no blank"); 
+      /* window.location.href="../../views/Main.html";  */
+    } else {
+      document.querySelector("#Blank_mes").innerHTML = "빈칸이 있습니다";
+      alert("채우지 않은 빈칸이 있습니다.")
+    }
+     
 }); 
 
 
