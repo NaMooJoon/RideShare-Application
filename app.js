@@ -8,7 +8,11 @@ var session = require('express-session')
 var flash = require('connect-flash')
 var MySQLStore = require('express-mysql-session')(session)
 var options = require('./lib/db').options;
+var db = require('./lib/db');
 var sessionStore = new MySQLStore(options);
+
+
+var onlineUsers = {};                       // 현재 온라인인 유저를 저장하는 곳
 
 // Call routers
 var indexRouter = require('./routes/index');
@@ -21,6 +25,62 @@ var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
 
 var app = express();
+
+/////////////////////////////////// www //////////////////////////////////////
+
+// Listen on provided port, on all network interfaces.
+var debug = require('debug')('rideshare-application:server');
+var port = process.env.PORT || 3000;
+app.set('port', port);
+
+// Create HTTP server.
+var server = require('http').createServer(app);
+
+// Listen on provided port, on all network interfaces.
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+//Event listener for HTTP server "error" event.
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+// Event listener for HTTP server "listening" event.
+  function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+      ? 'pipe ' + addr
+      : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+  }
+  
+///////////////////////////////////////////////////////////////////////////
+ 
+var io = require('socket.io')(server);
+var moment = require('moment');
+// io router setting
+app.set('socketio', io);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views/ejs'));
@@ -42,15 +102,128 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
+app.use('/scripts', express.static(__dirname + '/node_modules/compressorjs/dist/'))
 // Using routers.
 app.use('/', indexRouter);
 app.use('/login', loginRouter);
 app.use('/join', joinRouter);
 app.use('/main', mainRouter);
 app.use('/ride-share', rideRouter);
-app.use('/chat-share', chatRouter);
+app.use('/chat', chatRouter);
 app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
+
+
+// Use shared session middleware for socket.io
+// setting autoSave:true
+session = session({
+  secret: 'keyboard dog',
+  resave: false,            // session이 항상 저장될지 여부를 정하는 값
+  saveUninitialized: true,   // Session이 필요할 때만 구동시킨다.
+  store: sessionStore,
+  expires: 300000
+})
+var sharedsession = require("express-socket.io-session");
+io.use(sharedsession(session, {
+	autoSave:true
+}));
+
+// Set sockets
+io.sockets.on('connection', function(socket) {
+  console.log('socket id :',socket.id);
+  socket.on("send message", function(data) {
+      // data -> roomId, msg
+      console.log("send message 소켓이 실행됩니다...");
+      console.log(Object.keys(onlineUsers));
+      var userId = getUserIdBySocketId(socket.id);
+      console.log('sending user:', userId);
+      console.log('sending username:', onlineUsers[userId].username);
+      var query = db.connection.query('INSERT INTO chat_message (roomID,stID,message,time) VALUES(?,?,?,NOW())', [data.roomId, onlineUsers[userId].userId, data.msg], function(err, rows){
+          if(err) throw err;
+
+          io.sockets.in('room' + data.roomId).emit('new message', {
+              username: onlineUsers[userId].username,
+              socketId: socket.id,
+              msg: data.msg,
+              time: moment().format('HH:mm')
+          });
+      });
+  })
+
+
+  // id 값과 pw 값이 data 안으로 값이 들어온다.
+  socket.on('login user', function(data, cb) {
+      onlineUsers[data.id] = {roomId: 1, socketId: socket.id, userId: data.id, username: data.name};
+      socket.join('room1');
+      var query = db.connection.query('SELECT chat_message.stID,name,message,time FROM chat_message LEFT JOIN user ON chat_message.stID=user.stID WHERE roomID=?', [onlineUsers[data.id].roomId], function(err, message){
+        console.log("login user에서 조회한 message는 :", message);
+        socket.emit('message history', message);
+        updateUserList(0, 1, data.id);
+      });
+      cb({ data: '채팅방 접속에 성공하였습니다.'});
+  });
+
+  socket.on('join room', function(data) {
+      let id = getUserIdBySocketId(socket.id);
+      console.log('id: ',id);
+      let prevRoomId = onlineUsers[id].roomId;
+      let nextRoomId = data.roomId;
+      socket.leave('room' + prevRoomId);
+      socket.join('room' + nextRoomId);
+      onlineUsers[id].roomId = data.roomId;
+      var query = db.connection.query('SELECT userID,name,message,time FROM message LEFT JOIN user ON message.userID=user.id WHERE roomID=?', [data.roomId], function(err, message){
+          socket.emit('message history', message);
+          updateUserList(prevRoomId, nextRoomId, id);
+      });
+  });
+
+  socket.on('logout', function() {
+      if(!socket.id) return;
+      let id = getUserIdBySocketId(socket.id);
+      let roomId = onlineUsers[id].roomId;
+      delete onlineUsers[getUserIdBySocketId(socket.id)];
+      updateUserList(roomId, 0, id);
+  });
+
+  socket.on('disconnect', function(socket) {
+      if(!socket.id) return;
+      let id = getUserIdBySocketId(socket.id);
+      if(id === undefined || id === null)
+          return ;
+      let roomId = onlineUsers[id].roomId || 0;
+      delete onlineusers[getUserIdBySocketId(socket.id)];
+      updateUserList(roomId, 0, id);
+  });
+
+
+  function updateUserList(prev, next, id) {
+      if(prev !== 0) {
+          io.sockets.in('room' + prev).emit('userlist', getUsersByRoomId(prev));
+          io.sockets.in('room' + prev).emit('lefted room', onlineUsers[id].username);
+      }
+      if(next !== 0) {
+          io.sockets.in('room' + next).emit('userlist', getUsersByRoomId(next));
+          io.sockets.in('room' + next).emit('joined room', onlineUsers[id].username);
+      }
+  }
+
+  function getUsersByRoomId(roomId) {
+      let userstemp = [];
+      Object.keys(onlineUsers).forEach((el) => {
+          if(onlineUsers[el].roomId === roomId) {
+              userstemp.push({
+                  socketId : onlineUsers[el].socketId,
+                  name : onlineUsers[el].username
+              });
+          }
+      });
+      return userstemp;
+  }
+});
+
+function getUserIdBySocketId(id) {
+  return Object.keys(onlineUsers).find(key => onlineUsers[key].socketId === id);
+}
 
 
 //////////////////////////error///////////////////////////////////
