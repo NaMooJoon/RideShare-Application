@@ -42,7 +42,7 @@ button {
 
 nav {
   width: 100vw;
-  height: 50px;
+  height: 60px;
   background: var(--main-blue);
   color: #fff;
   padding: 0px 20px;
@@ -51,6 +51,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   font-size: 17px;
+}
+
+#nav-header {
+  font-family: "Kaushan Script", "Nanum Gothic", sans-serif;
+  font-size: 35px;
+  text-shadow: 1px 1px 2px black;
 }
 
 #logoutBtn {
@@ -195,7 +201,7 @@ nav {
 
 #memberList {
   width: 200px;
-  border: 1px solid #aaaaaa;
+  border: 2px solid #c9c9c9;
   border-radius: 5px;
 }
 
@@ -231,50 +237,74 @@ nav {
 }
 
 .sidenav {
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
   width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: rgb(212, 231, 255);
+  background-color: rgb(231, 241, 253);
   overflow-x: hidden;
-  transition: 0.3s;
-  padding-top: 60px;
+  transition: 0.2s;
 }
 
 .sidenav div {
-  padding: 8px;
   text-decoration: none;
-  font-size: 25px;
+  font-size: 22px;
   color: #2b2b2b;
   display: block;
   transition: 0.3s;
 }
 
-.side_item {
-  margin-left: 15px;
-  width: 200px;
-  border: 2px solid rgba(0, 0, 0, 0.5);
+.chat_users {
+  padding: 0px !important;
+  flex: 1;
 }
 
-.sidenav div:hover {
-  color: #008165;
+.side_item {
+  cursor: pointer;
+  padding: 8px;
+  width: 200px;
+  border: 2px solid var(--main-blue-60);
+  box-shadow: 0px 2px 3px rgb(153, 153, 153);
+  border-radius: 3px;
+  margin: 8px 0px;
+}
+
+.escape {
+  cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
+  border-top: 2px solid rgba(0, 0, 0, 0.4);
 }
 
 .sidenav .closebtn {
-  position: absolute;
-  top: 0px;
-  right: 10px;
   font-size: 40px;
 }
 
+.closebtn {
+  cursor: pointer;
+  background-color: #d1dbeb;
+  padding: 5px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.commonText {
+  width: 85%;
+  font-size: 18px !important;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
 @media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 50px;
-  }
   .sidenav div {
-    font-size: 18px;
+    font-size: 16px;
   }
 }
 
