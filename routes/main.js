@@ -8,8 +8,11 @@ router.get('/', function(req, res, next) {
     if(req.user === undefined)
         res.redirect('/login');
     // 유저 정보 Main.ejs로 
-    var query = db.connection.query('SELECT * FROM user WHERE stID=?', [req.user],function(err, rows){
+    var io = req.app.get('socketio');
+    var query = db.connection.query('SELECT email,stID,name FROM user WHERE stID=?', [req.user],function(err, rows){
         if(err) throw err;  
+        console.log('router안에서 소켓의 아이디는 ... ', req.session.socketId);
+        
         res.render('Main', rows[0]);   
     });
 });
@@ -90,9 +93,9 @@ router.post('/create_list', function(req, res, next) {
     var query = db.connection.query('INSERT INTO RideList SET ?', sql, function(err, rows){
         if(err) throw err;
         console.log('list is added!', rows.insertId);
-        res.redirect('/main')    
+        res.json({"result":"ok"});  
     });
 });
-;
+
 
 module.exports = router;

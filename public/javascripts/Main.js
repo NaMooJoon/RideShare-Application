@@ -1,3 +1,7 @@
+var socket = io();
+var socketId = "";
+var username = "";
+var onlineUsers;
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
 var host = window.location.protocol + "//" + window.location.host;
@@ -6,6 +10,28 @@ sendAjax(host + '/main/data', "GET", function(Data){
       swipe();
     });
 });  
+
+// host -> 현재 창의 주소를 담고 있는 변수.
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/profile/user', "POST", function(data){
+    username = data[0].name;
+    socketId = socket.id;
+    socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
+        console.log('socket emit "connect user"가 성공하였습니다.');
+    });
+});
+
+socket.on("onlineUsers", function(users) {
+  console.log("onlineUsers의 목록 :", users);
+  onlineUsers = users;
+});
+
+socket.on("alarm", function(data) {
+  console.log('alarm: ', data);
+})
+
+
+
 // 이거 다시 회복
 
 var SavedGetData; 
@@ -54,7 +80,6 @@ $.ajax({
 function Makehtml(Data_obj, callback){
     Data_short = [];
     Data_long = [];
-    console.log(Data_obj,"Data_obj")
     Data_obj.forEach(function(item) {
         if (item.Repeat_ornot === "long"){
             Data_long.push(item)
@@ -82,7 +107,6 @@ function Makehtml(Data_obj, callback){
     // toggle 버튼 클릭시 AJAX함수 실행
    
     let toggle_bt = document.querySelectorAll(".ON_OFF input");
-    console.log(toggle_bt,"toggle_bt")
     toggle_bt.forEach(function(item){
     item.addEventListener("click", CheckToggle)
     });
