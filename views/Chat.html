@@ -18,9 +18,8 @@
 
         <nav>
             <span id="nav-header">
-                WITH ME
+                With Me
             </span>
-            <span id="logoutBtn">로그아웃</span>
         </nav>
 
         <div id="contentCover">
@@ -67,19 +66,23 @@
 
 <div id="mySidenav" class="sidenav">
     <div href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</div>
+    <div class="commonText">채팅방 참가자</div>
+    <div class="chat_users">
     <div class="side_item" href="#">About</div>
     <div class="side_item" href="#">Services</div>
     <div class="side_item" href="#">Clients</div>
     <div class="side_item" href="#">Contact</div>
-  </div>
+    </div>
+    <div class="escape" onclick="Escape()">채팅방 나가기 🚪</div>
+</div>
 
 <script>
     function openNav() {
-        document.getElementById("mySidenav").style.width = "250px";
+        document.querySelector("#mySidenav").setAttribute('style','width: 250px; box-shadow: 0px 0px 100px 1000vw rgba(0,0,0,0.4)');
     }
     
     function closeNav() {
-        document.getElementById("mySidenav").style.width = "0";
+        document.querySelector("#mySidenav").setAttribute('style','opacity:0%; width: 0px; box-shadow: none;');
     }
 </script>
 
