@@ -443,103 +443,80 @@ console.log($('#test li'),"swipe")
 // if (SavedGetData!==null){
 //     Makehtml(SavedGetData);
 // }
-// function Makehtml(Data_obj, callback){
-//   Data_short = [];
-//   Data_long = [];
-//   console.log(Data_obj,"Data_obj")
-//   Data_obj.forEach(function(item) {
-//       if (item.Repeat_ornot === "long"){
-//           Data_long.push(item)
-//       } else{
-//           Data_short.push(item)
-//       }
-//   });
 
-//   let Short_list = document.querySelector('#short-List-part');
-//   let Long_list = document.querySelector('#long-List-part');
 
-//   Short_list.innerHTML = Data_short.map((item) => createHTML(item)).join('')
-//   Long_list.innerHTML = Data_long.map((item) => createHTML(item)).join('')
+// Makehtml -> MakeChat_html
+// createHTML -> createChat_html
+// SavedGetData -> SavedChatData
+var SavedChatData = [{
+  name:"신경식",
+  Chat_content:"안녕하세요 저는 신경식입니다",
+  Chat_time: "10:30 AM" ,
+},
+{
+  name:"김준현",
+  Chat_content:"안녕하세요 저는 윗미의 팀장입니다",
+  Chat_time: "12:30 PM" ,
+},
+{
+  name:"정예준",
+  Chat_content:"안녕하세요 저는 윗미의 요리사 입니다",
+  Chat_time: "11:30 AM" ,
+}
+]
 
-  
-  
-//   let arrow = document.querySelectorAll('.Arrow');   
-  
-//  // Arrow 클릭시 AJAX함수 실행
-//   arrow.forEach(function(item) {
-//     /* item.addEventListener("click",deleteList );  */
-//     item.addEventListener("click",next );  //서버's 코드
-//   });
-
-//   // toggle 버튼 클릭시 AJAX함수 실행
- 
-//   let toggle_bt = document.querySelectorAll(".ON_OFF input");
-//   console.log(toggle_bt,"toggle_bt")
-//   toggle_bt.forEach(function(item){
-//   item.addEventListener("click", CheckToggle)
-//   });
-
-//   // 삭제 버튼 클릭시 AJAX함수 실행
-//   let remove = document.querySelectorAll('.deleteBT'); 
-//   console.log("remove!!!",remove)
-//   remove.forEach(function(item) {
-//       item.addEventListener("click",removeAjax );  
+MakeChat_html(SavedChatData);
+// var host = window.location.protocol + "//" + window.location.host;
+// sendAjax(host + '/main/data', "GET", function(Data){
+//   MakeChat_html(Data, function(){
+      
 //     });
+// });  
+// 이거 다시 회복
+// var SavedChatData; 
+// function sendAjax(url, method, call) {
+// 	const xhr = new XMLHttpRequest();
+// 	xhr.open(method, url);
 
-//   // 수정 버튼 클릭시 AJAX 함수 실행
-//   let revise = document.querySelectorAll('.reviseBT'); 
-//   console.log("수정!!",revise)
-//   revise.forEach(function(item) {
-//       item.addEventListener("click",reviseAjax );  
+// 	var data = null;
+//     xhr.send(data);
+
+//     xhr.addEventListener('load', function(){
+//         const result = JSON.parse(xhr.responseText);
+// 		console.log("Getting data success!", result);
+// 		call(result);
 //     });
-  
-//   /* callback(); */
-// }
+// };
+function MakeChat_html(ChatData_obj){
+  let Chat_screen = document.querySelector(".screen")
  
-// // main list html 만들기 2
-// function createHTML(item){
+  console.log(Chat_screen,"Chat_screen")
+  Chat_screen.innerHTML = ChatData_obj.map((item) => createChat_html(item)).join('')
+}
+ 
+// main list html 만들기 2
+function createChat_html(item){
   
-//   let LI_ID = item.li_id;
-//   /* let LABEL_ID = item.label_id; */
-//   let LABEL_ID = "Label" + String(item.li_id) 
-//   let S_TEXT = item.Location_start;
-//   let E_TEXT = item.Location_end;
-//   let TIME_TEXT = item.Start_time;
-//   let WEEk = item.Repeat_ornot;
-//   let TO_TF_SEVER = item.label_onoff;
-//   if (TO_TF_SEVER===1){
-//       TO_TF = "checked"
-//   } else{
-//       TO_TF = ""
-//   }
-//      return`
-//      <div id="${LI_ID}" class="test-wrapper">
-//        <ul id="test" class="list">
-//          <li class="list__item">
-//            <div class="list__item-text">
-//              <li  class="swiper-slide" >
-//                  <div class="L_Text">
-//                      <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
-//                      <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div>
-//                  </div>
-//                  <div class="bu_arrow_wrap">
-//                  <div class="ON_OFF">
-//                      <input class="tgl tgl-ios" id="${LABEL_ID}" type="checkbox" ${TO_TF}/>
-//                      <label class="tgl-btn" for="${LABEL_ID}"></label>
-//                  </div>
-//                  <div class="Arrow">
-//                      <i class="fas fa-chevron-right"></i>
-//                  </div>
-//                   </div>
-//                   <div class="list__item-action">
-//                     <span class="deleteBT" >삭제</span>
-//                     <span class="reviseBT">수정</span>
-//                   </div>
-                 
-//                  </li>
-//            </div>
-//          </li>
-//      </ul>
-//    </div>
-//  `;
-// }
+  let CH_name = item.name;
+  let CH_con = item.Chat_content;
+  let CH_time =  item.Chat_time
+     return`
+    <div class="user_item_layout"> 
+        <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
+        <div class="info"> 
+            <div class="align"> 
+                <div class="namediv"> 
+                        <span class="fatblack nametext" style="font-size: 22px;">${CH_name}</span>
+                </div>
+                <div> 
+                    <span class="smalltext loctext">마지막 대화 ${CH_time}</span>
+                </div>
+            </div>
+            <div class="messagebox"> 
+                <span class="lastmsg">${CH_con}</span>
+            </div>
+        </div>
+            <button class="findbutton" onclick="goChatroom()">❯</button>
+    </div> 
+ `;
+}
