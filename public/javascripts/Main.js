@@ -1,14 +1,14 @@
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-var host = window.location.protocol + "//" + window.location.host;
+/* var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data, function(){
       swipe();
     });
-});  
+});   */
 // 이거 다시 회복
 
-var SavedGetData; 
+/* var SavedGetData; 
 function sendAjax(url, method, call) {
 	const xhr = new XMLHttpRequest();
 	xhr.open(method, url);
@@ -21,7 +21,7 @@ function sendAjax(url, method, call) {
 		console.log("Getting data success!", result);
 		call(result);
     });
-};
+}; */
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -41,13 +41,13 @@ $.ajax({
         }) */
 
 
+// 이거 다시 지움
 
-// let SavedGetData = data; 
-// let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
-// /* 받아온 Data 불러오기 (localstorage) */
-// if (SavedGetData!==null){
-//     Makehtml(SavedGetData);
-// }
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+/* 받아온 Data 불러오기 (localstorage) */
+if (SavedGetData!==null){
+    Makehtml(SavedGetData);
+}
  
 
 // html 만들기 1
@@ -109,7 +109,7 @@ function Makehtml(Data_obj, callback){
         item.addEventListener("click",reviseAjax );  
       });
     
-    callback();
+    /* callback(); */
 }
 
 // html 만들기 2
@@ -439,5 +439,14 @@ function swipe(){
   // modal 창(materilize) 시작
   $(document).ready(function(){
     $('.modal').modal();
+  });
+
+   // tab 메뉴
+   $(document).ready(function(){
+    $('.tabs').tabs(
+      /*   {
+            swipeable: 'true',
+        } */
+    );
   });
           
