@@ -15,27 +15,23 @@
     <div class="background"></div>
 
      <div class="screen">
-        <div class="user_item_layout"> <!--## 리스트의 항목 시작 ##-->
-            
+        <div id="CHAT${Chat_ID}" class="user_item_layout"> 
             <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
-            
-            <div class="info"> <!--이름, 아이콘, 출발지, 도착지, 메세지 모두 넣을 div-->
-                <div class="align"> <!--이름, 아이콘, 출발지, 도착지 정렬하는 div-->
-                    <div class="namediv"> <!--이름-->
-                            <span class="fatblack nametext" style="font-size: 22px;">이름</span>
+            <div class="info"> 
+                <div class="align"> 
+                    <div class="namediv"> 
+                            <span class="fatblack nametext" style="font-size: 22px;">정예준</span>
                     </div>
-                    <div> <!--출발지와 도착지 텍스트 div-->
-                        <span class="smalltext loctext">마지막 대화 12:34</span>
+                    <div> 
+                        <div class="smalltext loctext">한동대->커피유야<br>12:30</div>
                     </div>
                 </div>
-                <div class="messagebox"> <!--유저메세지-->
-                    여기에 채팅방의 마지막 대화가 표시되는데 말이 많으면 중간에 끊어지도록 제가 이클립스 속성을 좀 건드려봤구요 화면을 엄청 많이 늘이면 이 글자가 다 보일거에요 근데 이 글자 다 보려면 21:9 대화면 모니터 필요할듯 ㄹㅇㅋㅋ
+                <div class="messagebox"> 
+                    <span class="lastmsg">안녕하세요 한동대에서 커피유야로 가려하는데 함께하실분을 모십니다!</span>
                 </div>
             </div>
-    
-            <button class="findbutton" onclick="goChatroom()">❯</button>
-
-        </div>  <!--## 리스트의 항목 끝 ##-->
+                <button class="findbutton">❯</button>
+        </div>
 
      </div> <!--리스트의 항목이 담기는 div -->
 

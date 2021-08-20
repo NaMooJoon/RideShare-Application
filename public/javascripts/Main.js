@@ -136,7 +136,14 @@ function createHTML(item){
      let S_TEXT = item.Location_start;
      let E_TEXT = item.Location_end;
      let TIME_TEXT = item.Start_time;
+     let DATE = item.Start_date;
      let WEEk = item.Repeat_ornot;
+     let DAorWE =''
+     if (WEEk === "long"){
+      DAorWE = DATE;
+     } else{
+      DAorWE = WEEk;
+     }
      let TO_TF_SEVER = item.label_onoff;
      if (TO_TF_SEVER===1){
          TO_TF = "checked"
@@ -151,7 +158,7 @@ function createHTML(item){
                 <li  class="swiper-slide" >
                     <div class="L_Text">
                         <div class="L_Top_Text"><span>${S_TEXT}</span><i class="fas fa-arrow-right"></i><span >${E_TEXT}</span></div>
-                        <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${WEEk}</span></div>
+                        <div class="L_bottom_Text"><span class="Time">${TIME_TEXT}</span><span>${DAorWE}</span></div>
                     </div>
                     <div class="bu_arrow_wrap">
                     <div class="ON_OFF">
@@ -476,24 +483,27 @@ function swipe(){
 // Makehtml -> MakeChat_html
 // createHTML -> createChat_html
 // SavedGetData -> SavedChatData
-var SavedChatData = [{
-  name:"신경식",
-  Chat_content:"안녕하세요 저는 신경식입니다",
-  Chat_time: "10:30 AM" ,
-},
-{
-  name:"김준현",
-  Chat_content:"안녕하세요 저는 윗미의 팀장입니다",
-  Chat_time: "12:30 PM" ,
-},
-{
-  name:"정예준",
-  Chat_content:"안녕하세요 저는 윗미의 요리사 입니다",
-  Chat_time: "11:30 AM" ,
-}
-]
+// var SavedChatData = [{
+//   name:"신경식",
+//   Chat_content:"안녕하세요 저는 신경식입니다",
+//   Chat_time: "10:30 AM" ,
+// },
+// {
+//   name:"김준현",
+//   Chat_content:"안녕하세요 저는 윗미의 팀장입니다",
+//   Chat_time: "12:30 PM" ,
+// },
+// {
+//   name:"정예준",
+//   Chat_content:"안녕하세요 저는 윗미의 요리사 입니다",
+//   Chat_time: "11:30 AM" ,
+// }
+// ]
+// local 코드
+// MakeChat_html(SavedChatData);
 
-MakeChat_html(SavedChatData);
+
+// 서버 코드
 var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/chat_data', "GET", function(Data){
   MakeChat_html(Data);
@@ -529,11 +539,24 @@ function MakeChat_html(ChatData_obj){
 // main list html 만들기 2
 function createChat_html(item){
   
-  let CH_name = item.name;
-  let CH_con = item.Chat_content;
-  let CH_time =  item.Chat_time
+  //////// sever code ///////
+  let Chat_ID = item.roomID;
+  let CH_name = item.participants;
+  let CH_con = item.message;
+  let CH_Severtime =  item.time; 
+  let CH_time = CH_Severtime.substring(12,17);
+  let L_START = item.Location_start;
+  let L_END = item.Location_end;
+  ////////local data
+  // let Chat_ID = "2345";
+  // let CH_name = "신경식";
+  // let CH_con = "안녕하세요 커피유야 같이갈 사람 구합니다";
+  // let CH_Severtime =  "12:30"; 
+  // let CH_time = "12:30";
+  // let L_START = "한동대";
+  // let L_END = "커피유야";
      return`
-    <div class="user_item_layout"> 
+    <div id="CHAT${Chat_ID}" class="user_item_layout"> 
         <img class="circle profile" alt="프로필 이미지" src="https://mblogthumb-phinf.pstatic.net/20150427_261/ninevincent_1430122791768m7oO1_JPEG/kakao_1.jpg?type=w2"/>
         <div class="info"> 
             <div class="align"> 
@@ -541,7 +564,7 @@ function createChat_html(item){
                         <span class="fatblack nametext" style="font-size: 22px;">${CH_name}</span>
                 </div>
                 <div> 
-                    <span class="smalltext loctext">마지막 대화 ${CH_time}</span>
+                    <div class="smalltext loctext">${L_START}->${L_END}<br>${CH_time}</div>
                 </div>
             </div>
             <div class="messagebox"> 
@@ -555,8 +578,10 @@ function createChat_html(item){
 
 
 function ChatArrow(event){
-  // chatlist id??
-  console.log("CHat arrow")
-  // window.location.href = host + '/chat' 
+  let ChatRoom = event.currentTarget.parentElement;
+  let ChatRoom_id = ChatRoom.id.substring(4)
+
+  console.log("check",'/chat/' + ChatRoom_id)
+  window.location.href = host + '/chat' + ChatRoom_id
 }
 
