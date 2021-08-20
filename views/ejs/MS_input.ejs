@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS_input</title>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/stylesheets/reset.css">
+    <link rel="stylesheet" href="/stylesheets/button.css">
+    <link rel="stylesheet" type="text/css" href="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/dropdown.min.css">
+    <link rel="stylesheet" type="text/css" href="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/transition.min.css">
+    <link rel="stylesheet" type="text/css" href="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/icon.css">
+ <!--    <link rel="stylesheet" type="text/css" href="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/semantic.min.css"> -->
+    <!--     <link rel="stylesheet" type="text/css" href="../Semantic-UI-CSS-master/Semantic-UI-CSS-master/icon.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="/stylesheets/jquery.nice-number.css">
+    <link rel="stylesheet" href="/stylesheets/inputs.css">
+  </head>
+  <body>
+  <div class="fixtop">
+    <div class="top">
+        <div class="back_button" onclick="goBack()">
+            <div style="align-items:center; justify-content: center;  width:28px; height:28px; border-radius: 50%; background-color: rgb(213, 233, 255);">
+                <svg width="26" height="26" viewBox="-3 -1 18 12" xmlns="http://www.w3.org/2000/svg">
+                <path style="fill:var(--main-blue)" fill-rule="evenodd" clip-rule="evenodd" d="M12.6001 7.49999C13.3732 7.49999 14 6.82843 14 5.99998C14 5.17153 13.3732 4.49998 12.6001 4.49998L4.7797 4.49998L6.58969 2.56062C7.13637 1.97487 7.13637 1.02506 6.58969 0.439313C6.04287 -0.146439 5.15656 -0.146439 4.60975 0.439313L0.409907 4.93933C0.147417 5.22058 1.51299e-06 5.60218 1.47821e-06 5.99998C1.44344e-06 6.39778 0.147417 6.77938 0.409907 7.06063L4.60974 11.5607C5.15656 12.1464 6.04287 12.1464 6.58969 11.5607C7.13637 10.9749 7.13637 10.0251 6.58969 9.43933L4.7797 7.49998L12.6001 7.49999Z" fill="rgba(255,255,255,1)"/>
+                </svg>
+                <script>
+                function goBack() {
+                window.history.back();
+                }
+                </script>
+            </div>
+                <span class="back_text">Back</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="distance">Short-distance(수정)</div>
+          <div class="screeeen">
+            
+
+            <!-- <form action="/main/create_list" method="post"> -->
+              <div class="location_form">
+                <div class="Start_wrap">
+                  <div class="Start_text">출발지:</div>
+                  <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-start" >
+                    
+                    <span id="T1" class="text" >Search</span>
+                    <div class="menu">
+                      <div class="ui search icon input">
+                        <input type="text" name="Location_start" placeholder="검색어를 입력해주세요">
+                      </div>
+                      <div class="header">
+                        <i class="caret right"></i>
+                        양덕
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        
+                        커피유야
+                      </div>
+                      <div class="item">
+                        
+                        그랜드할인마트
+                      </div>
+                      <div class="item">
+                        하나로마트
+                      </div>
+                      <div class="item">
+                        세차장
+                      </div>
+                      <div class="item">
+                        광천수
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        한동대학교
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        포항역
+                      </div>
+
+                      <div class="divider"></div>
+                      <div class="item">
+                        영일대
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        고속버스터미널
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        시외버스터미널
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        북부해수욕장
+                      </div>
+                      <div class="divider"></div>
+                      <div class="item">
+                        육거리
+                      </div>
+                    </div>
+                  </div>
+          
+          
+          </div>
+          <div class="End_wrap">
+          <div class="End_text">도착지:</div>
+           <div class="ui labeled icon top right pointing dropdown button" id="Search-Cate-end">
+      
+            <span id="T2" class="text">Search</span>
+            <div class="menu">
+              <div class="ui search icon input">
+                <input type="text" name="Location_end" placeholder="검색어를 입력해주세요">
+              </div>
+              <div class="header">
+                <i class="caret right"></i>
+                양덕
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                
+                커피유야
+              </div>
+              <div class="item">
+                
+                그랜드할인마트
+              </div>
+              <div class="item">
+                하나로마트
+              </div>
+              <div class="item">
+                세차장
+              </div>
+              <div class="item">
+                광천수
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                한동대학교
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                포항역
+              </div>
+
+              <div class="divider"></div>
+              <div class="item">
+                영일대
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                고속버스터미널
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                시외버스터미널
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                북부해수욕장
+              </div>
+              <div class="divider"></div>
+              <div class="item">
+                육거리
+              </div>
+            </div>
+          </div>
+          
+       
+          </div>
+
+    </div>
+
+
+    <div class="Time_form">
+      <div class="Time_text">출발시각</div>
+      <input type="text" id="time" name="Start_time" class="timepicker" required/>
+    </div>
+
+
+    <div class="Repeat_form">
+      <div class="ui fluid multiple search selection dropdown" id="week">
+        <input type="hidden" name="Repeat_ornot" id="weekinput" placeholder="Enter your Hisnet ID">
+        <i class="dropdown icon"></i>
+        <div class="default text" id="Select">Select Repeat or not</div>
+        <div class="menu">
+        <div class="item" data-value="Once">한번실행</div>
+        <div class="item" data-value="mon">월</div>
+        <div class="item" data-value="tue">화</div>
+        <div class="item" data-value="wed">수</div>
+        <div class="item" data-value="thu">목</div>
+        <div class="item" data-value="fri">금</div>
+        <div class="item" data-value="sat">토</div>
+        <div class="item" data-value="sun">일</div>
+          </div>
+          </div>
+    </div>
+    <div class="Date_form UNable">
+      <div class="Date_text">날짜선택</div>
+      <input type="text" id="date" name="Start_date" class="datepicker" required>
+    </div>
+
+    <div class="LimitNum_form">
+      <div class="LimitNum_text">제한 승객 인원</div>
+      <div class="container">
+        <input type="number" name="Limit_person" id="mid" value="1" min="1" max="5">
+    </div>
+    </div>
+
+
+
+
+    <div class="Trans_form">
+      <div id="Trans_text">이용수단</div>
+      <div class="ui fluid selection dropdown" id="Trans">
+        <input type="hidden" name="transport_way">
+        <i class="dropdown icon"></i>
+        <div class="default text">Select Friend</div>
+        <div class="menu">
+          <div class="item" data-value="driver">
+            <img class="ui mini avatar image" src="\images\driver.svg">
+            운전자
+          </div>
+          <div class="item" data-value="rider">
+            <img class="ui mini avatar image" src="\images\rider.svg">
+            탑승자
+          </div>
+          <div class="item" data-value="taxi">
+            <img class="ui mini avatar image" src="\images\taxi.svg">
+            택시 동반
+          </div>
+          <div class="item" data-value="ktx">
+            <img class="ui mini avatar image" src="\images\ktx.svg">
+            ktx 동반
+          </div>
+          <div class="item" data-value="bus">
+            <img class="ui mini avatar image" src="\images\bus.svg">
+            bus 동반
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <div class="Comments_form">
+      <div class="Comments_text">Comments</div>
+      <textarea id="Comments_input" name="comments"></textarea>
+    </div>
+
+    <div id="Blank_mes"></div>
+
+    <div id="summitBT_div">
+    <button id="summitBT">
+        submit
+    </button>
+    </div>
+    </div>
+  <!--   </form> -->
+
+    
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/jquery-3.1.1.min.js"
+    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+    crossorigin="anonymous"></script>
+    <script src="/plug/Semantic-UI-CSS-master/Semantic-UI-CSS-master/dropdown.min.js"></script>
+    <script src="..\public/plug/Semantic-UI-CSS-master\Semantic-UI-CSS-master\transition.min.js"></script>
+    <script src="/javascripts/jquery.nice-number.js"></script>
+    <script src="/javascripts/MS_input.js"></script>
+</body>
+</html>
