@@ -13,7 +13,7 @@ body {
   margin: 0;
 }
 .screeeen {
-  width: 90%;
+  width: 100%;
 }
 @media (min-width: 1000px) {
   .screeeen {
@@ -41,7 +41,7 @@ body {
 
 .distance {
   margin-bottom: 35px;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
   width: 100vw;
   padding-top: 85px;
@@ -90,7 +90,7 @@ body {
 
 .Start_text,
 .End_text {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 700;
   padding-right: 20px;
   line-height: 42px;
@@ -324,7 +324,7 @@ body {
   border-radius: 20px;
   padding: 10px;
   height: auto;
-  margin: 25px;
+  margin: 20px;
 }
 
 .ui.dropdown .menu > .header {

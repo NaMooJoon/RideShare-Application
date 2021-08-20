@@ -160,8 +160,8 @@ io.sockets.on('connection', function(socket) {
 
   // id 값과 pw 값이 data 안으로 값이 들어온다.
   socket.on('connect user', function(student, cb) {
-      onlineUsers[student.id] = {roomId: 1, socketId: socket.id, userId: student.id, username: student.name};
-      socket.join('room1');
+      onlineUsers[student.id] = {roomId: student.roomId, socketId: socket.id, userId: student.id, username: student.name};
+      socket.join('room' + student.roomId);
       var query = db.connection.query('SELECT chat_message.stID,name,message,time FROM chat_message LEFT JOIN user ON chat_message.stID=user.stID WHERE roomID=?', [onlineUsers[student.id].roomId], function(err, message){
         socket.emit('message history', message);
         updateUserList(0, 1, student.id);
@@ -169,7 +169,7 @@ io.sockets.on('connection', function(socket) {
       cb({ data: '채팅방 접속에 성공하였습니다.'}); 
       // 모든 유저들의 user 리스트 최신화.
       io.emit("onlineUsers", onlineUsers);
-      
+      io.to('room' + student.roomId).emit('joined room', student.name);
   });
   
   //io.to(onlineUsers[21800000].socketId).emit('alarm', {data:"Hello"});
