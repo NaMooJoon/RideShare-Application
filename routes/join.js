@@ -8,6 +8,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const saltRounds = option.saltRounds;
 const db = require('../lib/db').connection;
+const fs = require('fs');
+const path = require('path');
 
 //router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
@@ -43,6 +45,15 @@ passport.use('local-join', new LocalStrategy({
                 if(student.name === 'nope') throw err;
                 console.log('name: ', student.name);
                 console.log('StID: ', student.id);
+
+                // To copy the profile image.
+                var source = path.join(__dirname, '../public/images/profile/handong.png');
+                var destination = path.join(__dirname, `/../public/images/profile/${student.id}.png`);
+                
+                fs.copyFile(source , destination, (err) => {
+                    if (err) throw err;
+                    console.log('source file was copied to destination');
+                });
                 bcrypt.genSalt(saltRounds, function(err1, salt){
                     if(err1) throw err1;
                     bcrypt.hash(password, salt, function(err2, hash){
@@ -108,6 +119,12 @@ router.post('/test', function(req, res) {
                     });
                 })
             })
+            var source = path.join(__dirname, '../public/images/profile/handong.png');
+            var destination = path.join(__dirname, `/../public/images/profile/${data.stID}.png`);
+            fs.copyFile(source , destination, (err) => {
+                if (err) throw err;
+                console.log('source file was copied to destination');
+            });
         }
     });
 });
