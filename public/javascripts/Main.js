@@ -515,8 +515,8 @@ function MakeChat_html(ChatData_obj){
   Chat_screen.innerHTML = ChatData_obj.map((item) => createChat_html(item)).join('')
 
   
-  let remove = document.querySelectorAll('.findbutton'); 
-  remove.forEach(function(item) {
+  let CHarrow = document.querySelectorAll('.findbutton'); 
+  CHarrow.forEach(function(item) {
       item.addEventListener("click",ChatArrow );  
     });
 }
