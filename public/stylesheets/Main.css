@@ -28,6 +28,9 @@ margin: 0 auto;
 margin-top:30px;
 
 }
+#Bottom_Part{
+  padding-bottom: 80px;
+}
 /* ///// Modal list css ///// */
 .modal .modal-footer{
 background-color: #e8f8ff  !important;
@@ -758,6 +761,8 @@ opacity: 1;
 }
 /* ////// this is CHAT layout ////// */
 .screen {
+  width: 100%;
+  display: flex;
   background-color: none;
   flex-direction: column;
   align-items: center;
@@ -925,7 +930,9 @@ opacity: 1;
 }
 
 
-
+.tabs .indicator{
+  will-change:unset;
+}
 
 
 

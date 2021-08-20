@@ -3,7 +3,7 @@ var socketId = "";
 var username = "";
 var onlineUsers;
 // host -> 현재 창의 주소를 담고 있는 변수.
-//이거 다시 회복
+// 이거 다시 회복
 var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/main/data', "GET", function(Data){
     Makehtml(Data, function(){
@@ -69,11 +69,11 @@ $.ajax({
 
 // 이거 다시 지움
 
-/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
-/* 받아온 Data 불러오기 (localstorage) */
-/* if (SavedGetData!==null){
-    Makehtml(SavedGetData);
-} */
+// let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+// /* 받아온 Data 불러오기 (localstorage) */
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
  
 
 // main list html 만들기 1
@@ -113,7 +113,6 @@ function Makehtml(Data_obj, callback){
 
     // 삭제 버튼 클릭시 AJAX함수 실행
     let remove = document.querySelectorAll('.deleteBT'); 
-    console.log("remove!!!",remove)
     remove.forEach(function(item) {
         item.addEventListener("click",removeAjax );  
       });
@@ -250,11 +249,16 @@ function reviseAjax(event){
            
              success: function(result) {
                   if (result) 
-                  { console.log("저장되었습니다.",result);  } 
+                  { console.log("저장되었습니다.",result); 
+                  // result 로 가져와서 if쓰기
+                  // window.location.href = '/main/MS_input'
+                  // window.locatino.href = '/main/ML_input'
+                } 
                   else { console.log("전달실패",result); } 
                 }, 
                 error: function() { console.log("에러 발생"); } 
             })
+
 }
 
  // list 삭제하기
@@ -367,7 +371,7 @@ function swipe(){
     });
   }
   // local 용
- /*    $(function () {
+    /* $(function () {
         $('#test li').swipe({
           swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
             if (direction === 'right') {
@@ -490,32 +494,36 @@ var SavedChatData = [{
 ]
 
 MakeChat_html(SavedChatData);
-// var host = window.location.protocol + "//" + window.location.host;
-// sendAjax(host + '/main/chat_data', "GET", function(Data){
-//   MakeChat_html(Data, function(){
-      
-//     });
-// });  
-// 이거 다시 회복
-// var SavedChatData; 
-// function sendAjax(url, method, call) {
-// 	const xhr = new XMLHttpRequest();
-// 	xhr.open(method, url);
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/main/chat_data', "GET", function(Data){
+  MakeChat_html(Data);
+});  
 
-// 	var data = null;
-//     xhr.send(data);
+var SavedChatData; 
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
 
-//     xhr.addEventListener('load', function(){
-//         const result = JSON.parse(xhr.responseText);
-// 		console.log("Getting data success!", result);
-// 		call(result);
-//     });
-// };
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
 function MakeChat_html(ChatData_obj){
   let Chat_screen = document.querySelector(".screen")
  
   console.log(Chat_screen,"Chat_screen")
   Chat_screen.innerHTML = ChatData_obj.map((item) => createChat_html(item)).join('')
+
+  
+  let CHarrow = document.querySelectorAll('.findbutton'); 
+  CHarrow.forEach(function(item) {
+      item.addEventListener("click",ChatArrow );  
+    });
 }
  
 // main list html 만들기 2
@@ -540,7 +548,15 @@ function createChat_html(item){
                 <span class="lastmsg">${CH_con}</span>
             </div>
         </div>
-            <button class="findbutton" onclick="goChatroom()">❯</button>
+            <button class="findbutton">❯</button>
     </div> 
  `;
 }
+
+
+function ChatArrow(event){
+  // chatlist id??
+  console.log("CHat arrow")
+  // window.location.href = host + '/chat' 
+}
+
