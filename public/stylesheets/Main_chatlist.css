@@ -1,4 +1,6 @@
 .screen {
+  width: 100%;
+  display: flex;
   background-color: none;
   flex-direction: column;
   align-items: center;
@@ -93,6 +95,7 @@
 
 .smalltext {
   font-size: 14px;
+  text-align:end;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
 }
