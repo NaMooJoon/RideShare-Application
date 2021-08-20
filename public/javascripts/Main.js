@@ -544,7 +544,7 @@ function createChat_html(item){
   let CH_name = item.participants;
   let CH_con = item.message;
   let CH_Severtime =  item.time; 
-  let CH_time = CH_Severtime.substring(12,17);
+  let CH_time = CH_Severtime.substring(12,16);
   let L_START = item.Location_start;
   let L_END = item.Location_end;
   ////////local data
@@ -564,7 +564,7 @@ function createChat_html(item){
                         <span class="fatblack nametext" style="font-size: 22px;">${CH_name}</span>
                 </div>
                 <div> 
-                    <div class="smalltext loctext">${L_START}->${L_END}<br>${CH_time}</div>
+                    <div class="smalltext loctext">${L_START} ➔ ${L_END}<br>${CH_time}</div>
                 </div>
             </div>
             <div class="messagebox"> 
@@ -582,6 +582,6 @@ function ChatArrow(event){
   let ChatRoom_id = ChatRoom.id.substring(4)
 
   console.log("check",'/chat/' + ChatRoom_id)
-  window.location.href = host + '/chat' + ChatRoom_id
+  window.location.href = host + '/chat/' + ChatRoom_id
 }
 
