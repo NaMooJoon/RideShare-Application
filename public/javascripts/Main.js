@@ -1,53 +1,53 @@
-var socket = io();
-var socketId = "";
-var username = "";
-var onlineUsers;
+// var socket = io();
+// var socketId = "";
+// var username = "";
+// var onlineUsers;
 // host -> 현재 창의 주소를 담고 있는 변수.
 //이거 다시 회복
-var host = window.location.protocol + "//" + window.location.host;
-sendAjax(host + '/main/data', "GET", function(Data){
-    Makehtml(Data, function(){
-      swipe();
-    });
-});  
+// var host = window.location.protocol + "//" + window.location.host;
+// sendAjax(host + '/main/data', "GET", function(Data){
+//     Makehtml(Data, function(){
+//       swipe();
+//     });
+// });  
 
 // host -> 현재 창의 주소를 담고 있는 변수.
-var host = window.location.protocol + "//" + window.location.host;
-sendAjax(host + '/profile/user', "POST", function(data){
-    username = data[0].name;
-    socketId = socket.id;
-    socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
-        console.log('socket emit "connect user"가 성공하였습니다.');
-    });
-});
+// var host = window.location.protocol + "//" + window.location.host;
+// sendAjax(host + '/profile/user', "POST", function(data){
+//     username = data[0].name;
+//     socketId = socket.id;
+//     socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
+//         console.log('socket emit "connect user"가 성공하였습니다.');
+//     });
+// });
 
-socket.on("onlineUsers", function(users) {
-  console.log("onlineUsers의 목록 :", users);
-  onlineUsers = users;
-});
+// socket.on("onlineUsers", function(users) {
+//   console.log("onlineUsers의 목록 :", users);
+//   onlineUsers = users;
+// });
 
-socket.on("alarm", function(data) {
-  console.log('alarm: ', data);
-})
+// socket.on("alarm", function(data) {
+//   console.log('alarm: ', data);
+// })
 
 
 
 // 이거 다시 회복
 
-var SavedGetData; 
-function sendAjax(url, method, call) {
-	const xhr = new XMLHttpRequest();
-	xhr.open(method, url);
+// var SavedGetData; 
+// function sendAjax(url, method, call) {
+// 	const xhr = new XMLHttpRequest();
+// 	xhr.open(method, url);
 
-	var data = null;
-    xhr.send(data);
+// 	var data = null;
+//     xhr.send(data);
 
-    xhr.addEventListener('load', function(){
-        const result = JSON.parse(xhr.responseText);
-		console.log("Getting data success!", result);
-		call(result);
-    });
-};
+//     xhr.addEventListener('load', function(){
+//         const result = JSON.parse(xhr.responseText);
+// 		console.log("Getting data success!", result);
+// 		call(result);
+//     });
+// };
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -69,11 +69,11 @@ $.ajax({
 
 // 이거 다시 지움
 
-/* let SavedGetData = JSON.parse(localStorage.getItem("Datas")); */
+let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
 /* 받아온 Data 불러오기 (localstorage) */
-/* if (SavedGetData!==null){
+if (SavedGetData!==null){
     Makehtml(SavedGetData);
-} */
+}
  
 
 // main list html 만들기 1
@@ -113,7 +113,6 @@ function Makehtml(Data_obj, callback){
 
     // 삭제 버튼 클릭시 AJAX함수 실행
     let remove = document.querySelectorAll('.deleteBT'); 
-    console.log("remove!!!",remove)
     remove.forEach(function(item) {
         item.addEventListener("click",removeAjax );  
       });
@@ -125,7 +124,7 @@ function Makehtml(Data_obj, callback){
         item.addEventListener("click",reviseAjax );  
       });
     
-    callback();
+   /*  callback(); */
 }
 
 // main list html 만들기 2
@@ -296,7 +295,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 스와이프 코드
 // 서버 용
 console.log($('#test li'),"swipe")
-function swipe(){
+/* function swipe(){
   $(function () {
       $('#test li').swipe({
         swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
@@ -365,9 +364,9 @@ function swipe(){
         threshold: 200,
       });
     });
-  }
+  } */
   // local 용
- /*    $(function () {
+    $(function () {
         $('#test li').swipe({
           swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
             if (direction === 'right') {
@@ -434,7 +433,7 @@ function swipe(){
           },
           threshold: 200,
         });
-      }); */
+      });
     
   
 
@@ -492,9 +491,7 @@ var SavedChatData = [{
 MakeChat_html(SavedChatData);
 // var host = window.location.protocol + "//" + window.location.host;
 // sendAjax(host + '/main/chat_data', "GET", function(Data){
-//   MakeChat_html(Data, function(){
-      
-//     });
+//   MakeChat_html(Data);
 // });  
 // 이거 다시 회복
 // var SavedChatData; 
@@ -516,6 +513,12 @@ function MakeChat_html(ChatData_obj){
  
   console.log(Chat_screen,"Chat_screen")
   Chat_screen.innerHTML = ChatData_obj.map((item) => createChat_html(item)).join('')
+
+  
+  let remove = document.querySelectorAll('.findbutton'); 
+  remove.forEach(function(item) {
+      item.addEventListener("click",ChatArrow );  
+    });
 }
  
 // main list html 만들기 2
@@ -540,7 +543,15 @@ function createChat_html(item){
                 <span class="lastmsg">${CH_con}</span>
             </div>
         </div>
-            <button class="findbutton" onclick="goChatroom()">❯</button>
+            <button class="findbutton">❯</button>
     </div> 
  `;
 }
+
+
+function ChatArrow(event){
+  // chatlist id??
+  console.log("CHat arrow")
+  // window.location.href = host + '/chat' 
+}
+

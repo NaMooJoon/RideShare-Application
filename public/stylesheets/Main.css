@@ -925,7 +925,9 @@ opacity: 1;
 }
 
 
-
+.tabs .indicator{
+  will-change:unset;
+}
 
 
 
