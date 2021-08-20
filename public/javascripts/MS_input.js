@@ -9,26 +9,38 @@
 // host -> 현재 창의 주소를 담고 있는 변수.
 var host = window.location.protocol + "//" + window.location.host;
 sendAjax(host + '/profile/user', "POST", function(data){
+    let testdata ={
+    Limit_person: "3",
+    Location_end: "하나로마트",
+    Location_start: "하나로마트",
+    Repeat_ornot: "tue",
+    Start_date: "",
+    Start_time: "04:28 PM",
+    comments: "dgsdg",
+    label_id: 1628839690807000,
+    li_id: 1628839690807,
+    transport_way: "driver",
+    }
     // 시작 input
       $('#Search-Cate-start')
-      .dropdown('set selected', '커피유야');
+      .dropdown('set selected',testdata.Location_start );
     // 도착 input
       $('#Search-Cate-end')
-      .dropdown('set selected', '그랜드할인마트');
+      .dropdown('set selected', testdata.Location_end);
       // 시간
-      $(".datepicker").val('23/01/2015');
+      $(".timepicker").val(testdata.Start_time);
       // 요일 선택
       $('#week')
-      .dropdown('set selected', ['Once']);
+      .dropdown('set selected', [testdata.Repeat_ornot]);
       // 날짜
-      $(".timepicker").val('12:30 PM');
+      $(".datepicker").val(testdata.Start_date);
       // 제한 인원
-       document.querySelector("#mid").value = 3;
+       document.querySelector("#mid").value = testdata.Limit_person;
       // 이용수단
       $('#Trans')
-      .dropdown('set selected', 'taxi');
+      .dropdown('set selected', testdata.transport_way);
     // comments
-      document.querySelector("#Comments_input").value ="hi"
+      document.querySelector("#Comments_input").value =testdata.comments;
 });
 
 
@@ -46,6 +58,7 @@ function sendAjax(url, method, call) {
 		call(result);
     });
 };
+
 
 // 출발지 검색 드롭다운 활성화
 $('#Search-Cate-start')

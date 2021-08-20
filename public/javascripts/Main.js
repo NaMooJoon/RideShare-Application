@@ -1,53 +1,53 @@
-// var socket = io();
-// var socketId = "";
-// var username = "";
-// var onlineUsers;
+var socket = io();
+var socketId = "";
+var username = "";
+var onlineUsers;
 // host -> 현재 창의 주소를 담고 있는 변수.
-//이거 다시 회복
-// var host = window.location.protocol + "//" + window.location.host;
-// sendAjax(host + '/main/data', "GET", function(Data){
-//     Makehtml(Data, function(){
-//       swipe();
-//     });
-// });  
+// 이거 다시 회복
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/main/data', "GET", function(Data){
+    Makehtml(Data, function(){
+      swipe();
+    });
+});  
 
 // host -> 현재 창의 주소를 담고 있는 변수.
-// var host = window.location.protocol + "//" + window.location.host;
-// sendAjax(host + '/profile/user', "POST", function(data){
-//     username = data[0].name;
-//     socketId = socket.id;
-//     socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
-//         console.log('socket emit "connect user"가 성공하였습니다.');
-//     });
-// });
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/profile/user', "POST", function(data){
+    username = data[0].name;
+    socketId = socket.id;
+    socket.emit('connect user', {id: data[0].stID, name: data[0].name}, function(res) {
+        console.log('socket emit "connect user"가 성공하였습니다.');
+    });
+});
 
-// socket.on("onlineUsers", function(users) {
-//   console.log("onlineUsers의 목록 :", users);
-//   onlineUsers = users;
-// });
+socket.on("onlineUsers", function(users) {
+  console.log("onlineUsers의 목록 :", users);
+  onlineUsers = users;
+});
 
-// socket.on("alarm", function(data) {
-//   console.log('alarm: ', data);
-// })
+socket.on("alarm", function(data) {
+  console.log('alarm: ', data);
+})
 
 
 
 // 이거 다시 회복
 
-// var SavedGetData; 
-// function sendAjax(url, method, call) {
-// 	const xhr = new XMLHttpRequest();
-// 	xhr.open(method, url);
+var SavedGetData; 
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
 
-// 	var data = null;
-//     xhr.send(data);
+	var data = null;
+    xhr.send(data);
 
-//     xhr.addEventListener('load', function(){
-//         const result = JSON.parse(xhr.responseText);
-// 		console.log("Getting data success!", result);
-// 		call(result);
-//     });
-// };
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
 
 // 토글 버튼 클릭시 서버로 데이터 전송
 //https://ourcstory.tistory.com/161 블로그 주소
@@ -69,11 +69,11 @@ $.ajax({
 
 // 이거 다시 지움
 
-let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
-/* 받아온 Data 불러오기 (localstorage) */
-if (SavedGetData!==null){
-    Makehtml(SavedGetData);
-}
+// let SavedGetData = JSON.parse(localStorage.getItem("Datas"));
+// /* 받아온 Data 불러오기 (localstorage) */
+// if (SavedGetData!==null){
+//     Makehtml(SavedGetData);
+// }
  
 
 // main list html 만들기 1
@@ -124,7 +124,7 @@ function Makehtml(Data_obj, callback){
         item.addEventListener("click",reviseAjax );  
       });
     
-   /*  callback(); */
+    callback();
 }
 
 // main list html 만들기 2
@@ -249,11 +249,16 @@ function reviseAjax(event){
            
              success: function(result) {
                   if (result) 
-                  { console.log("저장되었습니다.",result);  } 
+                  { console.log("저장되었습니다.",result); 
+                  // result 로 가져와서 if쓰기
+                  // window.location.href = '/main/MS_input'
+                  // window.locatino.href = '/main/ML_input'
+                } 
                   else { console.log("전달실패",result); } 
                 }, 
                 error: function() { console.log("에러 발생"); } 
             })
+
 }
 
  // list 삭제하기
@@ -295,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // 스와이프 코드
 // 서버 용
 console.log($('#test li'),"swipe")
-/* function swipe(){
+function swipe(){
   $(function () {
       $('#test li').swipe({
         swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
@@ -364,9 +369,9 @@ console.log($('#test li'),"swipe")
         threshold: 200,
       });
     });
-  } */
+  }
   // local 용
-    $(function () {
+    /* $(function () {
         $('#test li').swipe({
           swipeStatus: function (event, phase, direction, distance, duration, fingers, fingerData, currentDirection) {
             if (direction === 'right') {
@@ -433,7 +438,7 @@ console.log($('#test li'),"swipe")
           },
           threshold: 200,
         });
-      });
+      }); */
     
   
 
@@ -489,25 +494,25 @@ var SavedChatData = [{
 ]
 
 MakeChat_html(SavedChatData);
-// var host = window.location.protocol + "//" + window.location.host;
-// sendAjax(host + '/main/chat_data', "GET", function(Data){
-//   MakeChat_html(Data);
-// });  
-// 이거 다시 회복
-// var SavedChatData; 
-// function sendAjax(url, method, call) {
-// 	const xhr = new XMLHttpRequest();
-// 	xhr.open(method, url);
+var host = window.location.protocol + "//" + window.location.host;
+sendAjax(host + '/main/chat_data', "GET", function(Data){
+  MakeChat_html(Data);
+});  
 
-// 	var data = null;
-//     xhr.send(data);
+var SavedChatData; 
+function sendAjax(url, method, call) {
+	const xhr = new XMLHttpRequest();
+	xhr.open(method, url);
 
-//     xhr.addEventListener('load', function(){
-//         const result = JSON.parse(xhr.responseText);
-// 		console.log("Getting data success!", result);
-// 		call(result);
-//     });
-// };
+	var data = null;
+    xhr.send(data);
+
+    xhr.addEventListener('load', function(){
+        const result = JSON.parse(xhr.responseText);
+		console.log("Getting data success!", result);
+		call(result);
+    });
+};
 function MakeChat_html(ChatData_obj){
   let Chat_screen = document.querySelector(".screen")
  
