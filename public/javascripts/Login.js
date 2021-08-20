@@ -9,6 +9,11 @@ document.querySelector('#Button').addEventListener('click', function(event) {
     sendAjax(host + '/login', inputdata);
 })
 
+document.querySelector('#Button_join').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.location.href = "/views/ejs/Join.ejs"
+})
+
 function sendAjax(url, data){
     data = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
