@@ -258,7 +258,8 @@ function reviseAjax(event){
                   if (result) 
                   { console.log("저장되었습니다.",result); 
                   // result 로 가져와서 if쓰기
-                  // window.location.href = '/main/MS_input'
+
+                  window.location.href = '/main/MS_input'
                   // window.locatino.href = '/main/ML_input'
                 } 
                   else { console.log("전달실패",result); } 
