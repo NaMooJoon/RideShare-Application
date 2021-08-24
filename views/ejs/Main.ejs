@@ -8,11 +8,15 @@
     <title>Main</title>
     <link rel="stylesheet" href="/stylesheets/reset.css">
     <link rel="stylesheet" href="/stylesheets/button.css">
+    <link rel="stylesheet" href="/stylesheets/Main_chatlist.css">
     <link type="text/css" rel="stylesheet" href="/plug/materialize.css"  media="screen,projection"/>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/stylesheets/Main.css" rel="stylesheet">
     <script src="/socket.io/socket.io.js"></script>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> -->
+
 </head>
 <body>
 <div id="Whole">
@@ -69,11 +73,12 @@
     <div id="Buttons">
        <!--  <div id="B_MYLIST">My list</div>
         <div id="B_CHAT">Chat</div> -->
+     
         <ul id="tabs-swipe-demo" class="tabs">
-            <li id="B_MYLIST" class="tab col s3"><a href="#test-swipe-1">My list</a></li>
-            <li id="B_CHAT" class="tab col s3"><a class="active" href="#test-swipe-2">Chat</a></li>
-          
+            <li id="B_MYLIST" class="tab col s3"><a class="active" href="#test-swipe-1">My list</a></li>
+            <li id="B_CHAT" class="tab col s3"><a  href="#test-swipe-2">Chat</a></li>
         </ul>
+     
     </div>
 </div>
 <div id="test-swipe-1" class="col s12">
@@ -139,9 +144,9 @@
       <div class="background">
        <!--  <img src="images/office.jpg"> -->
       </div>
-      <a href="#user"><img class="circle" src="#">hihi</a>
-      <a href="#name"><span class="white-text name">신경식</span></a>
-      <a href="#email"><span class="white-text email">22100411</span></a>
+      <a href="#Hisnet_id"><img class="circle" src="#"><%=email%></a>
+      <a href="#name"><span class="white-text name"><%=name%></span></a>
+      <a href="#Student_id"><span class="white-text email"><%=stID%></span></a>
     </div></li>
     <li><a class="subheader">프로필 편집</a></li>
     <li><a class="waves-effect"href="#!"><i class="fas fa-sign-out-alt"></i>Profile</a></li>

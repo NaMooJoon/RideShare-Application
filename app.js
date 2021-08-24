@@ -174,6 +174,17 @@ io.sockets.on('connection', function(socket) {
   
   //io.to(onlineUsers[21800000].socketId).emit('alarm', {data:"Hello"});
 
+
+  /*
+    main화면에서 chat list들을 쭉 띄우는데 일단 지금 거기 데이터 전송하는 곳(/main/chat_data)에서
+    데이터를 메시지가 없으면 전송을 안하는 방식으로 처리했단 말이지.
+    그렇다면 누군가가 방에 join하게 될 경우에는 join 된 순간에 chat_message라는 데이터베이스 안에서
+    예를 들어 "XXX가 채팅방에 입장하였습니다." 이런식으로 문구를 적어야지.
+    그렇다면 프론트 쪽에서 뭐가 바뀌어야 하는가.
+      -> 프론트 쪽에서 지금 'message history'에서 받아오는 데이터의 author_id가 username과 같은지 아닌지를
+      확인해서 자기 자신이면 자기 채팅으로 아니면 남이 말한 채팅으로 띄우도록 처리가 되어있음.(여기서 동명이인이 있을 수도 있으니까 이름 비교 말고 stID 처리로 해야 할 것 같음.)
+      -> 위의 '->'에서 씨부린 것을 또하나 if else() 조건문을 다는 방식으로 구별 값이 server라면, server가 전송하는 메시지를 저장하고 띄울 수 있도록 로직을 짜야할 것 같음.
+  */
   socket.on('join room', function(data) {
       let id = getUserIdBySocketId(socket.id);
       console.log('id: ',id);
